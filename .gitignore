@@ -15,3 +15,6 @@ Icon[\r]
 
 # Compiled Python files
 *.pyc
+
+# Open Tableau files
+.~rating_vis__*
