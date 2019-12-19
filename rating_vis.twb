@@ -3,7 +3,6 @@
 <!-- build 20192.19.1110.1721                               -->
 <workbook original-version='18.1' source-build='2019.2.6 (20192.19.1110.1721)' source-platform='mac' version='18.1' xmlns:user='http://www.tableausoftware.com/xml/user'>
   <document-format-change-manifest>
-    <SavingAnalyticObjects />
     <SheetIdentifierTracking ignorable='true' predowngraded='true' />
     <WindowsPersistSimpleIdentifiers />
   </document-format-change-manifest>
@@ -45,7 +44,7 @@
             <aggregation>Count</aggregation>
             <contains-null>true</contains-null>
             <attributes>
-              <attribute datatype='string' name='character-set'>&quot;ibm-5348_P100-1997&quot;</attribute>
+              <attribute datatype='string' name='character-set'>&quot;windows-1252&quot;</attribute>
               <attribute datatype='string' name='collation'>&quot;en_US&quot;</attribute>
               <attribute datatype='string' name='field-delimiter'>&quot;,&quot;</attribute>
               <attribute datatype='string' name='header-row'>&quot;true&quot;</attribute>
@@ -220,30 +219,11 @@
       <column datatype='integer' name='[Number of Records]' role='measure' type='quantitative' user:auto-column='numrec'>
         <calculation class='tableau' formula='1' />
       </column>
-      <column datatype='string' name='[Title]' role='dimension' type='nominal' />
       <column datatype='integer' name='[Year]' role='dimension' type='quantitative' />
-      <column-instance column='[Title]' derivation='Attribute' name='[attr:Title:nk]' pivot='key' type='nominal' />
       <layout dim-ordering='alphabetic' dim-percentage='0.570481' measure-ordering='alphabetic' measure-percentage='0.429519' show-structure='true' />
       <semantic-values>
         <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
       </semantic-values>
-      <analytic-model>
-        <name>
-          <field name='[AnalyticModel:{d353938b-1f0c-4288-967c-5c22d62ba2ec}]' />
-        </name>
-        <analytic-model-specifications class='cluster-specifications'>
-          <analysis-fields>
-            <field name='[federated.0xxgkjg0i9gxzc1fd1isd168gogw].[attr:Title:nk]' />
-          </analysis-fields>
-          <filter-fields />
-          <lod-fields />
-          <number-of-desired-clusters>0</number-of-desired-clusters>
-          <is-dissagregate>false</is-dissagregate>
-        </analytic-model-specifications>
-        <result-fields>
-          <field name='[federated.0xxgkjg0i9gxzc1fd1isd168gogw].[AdhocCluster:1]' />
-        </result-fields>
-      </analytic-model>
     </datasource>
   </datasources>
   <worksheets>
