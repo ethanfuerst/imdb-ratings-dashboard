@@ -16,6 +16,6 @@ This project is for me to look a little bit more at my imdb ratings. Eventually,
 
 **TODO:**
 
-- [ ] learn more about Plotly and Dash
-
-- [ ] figure out how to clean all the data and what format I will use the dataframes for
+- [ ] look in to [APIs](http://www.omdbapi.com/)
+- [ ] learn more about Plotly and Dash and create visualizations
+- [ ] create ML model to predict my scores
