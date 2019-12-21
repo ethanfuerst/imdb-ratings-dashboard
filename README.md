@@ -2,7 +2,7 @@
 
 This project is for me to look a little bit more at my imdb ratings. Eventually, I'd like to create a Plotly/Dash dashboard that summarizes the data just like in ethanfuerst/[spotifyinsights](https://github.com/ethanfuerst/spotifyinsights)
 
-**Files in this repository:**
+## Files in this repository:
 
 *ratings_analysis.py* - .py file that takes data from the ratings.csv and creates the visualizations
 
@@ -14,7 +14,7 @@ This project is for me to look a little bit more at my imdb ratings. Eventually,
 
 *.gitignore* - shows github what files to ignore when I commit my changes.
 
-**TODO:**
+## TODO:
 
 - [ ] look in to [APIs](http://www.omdbapi.com/)
 - [ ] learn more about Plotly and Dash and create visualizations
