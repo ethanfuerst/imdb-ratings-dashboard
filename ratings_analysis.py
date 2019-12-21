@@ -19,6 +19,7 @@ df['Date Rated'] = pd.to_datetime(df['Date Rated'])
 # Get number of days
 df['Days waited to see'] = df['Date Rated'] - df['Release Date']
 df['Days waited to see'] = (df['Days waited to see'].astype(int) / int(float('8.64e+13'))).astype(int)
+df['Diff in ratings'] = df['IMDb Rating'] - df['Your Rating']
 
 df['Title Type'] = df['Title Type'].apply(media_kind)
 
