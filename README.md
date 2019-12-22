@@ -4,15 +4,15 @@ This project is for me to look a little bit more at my imdb ratings. Eventually,
 
 ## Files in this repository:
 
-*ratings_analysis.py* - .py file that takes data from the ratings.csv and creates the visualizations
+__*ratings_analysis.py*__ - .py file that takes data from the ratings.csv and creates the visualizations
 
-*ratings.csv* - .csv file with my ratings data.
+__*ratings.csv*__ - .csv file with my ratings data.
 
-*ratings_clean.csv* - .csv file connected to the .twb
+__*ratings_clean.csv*__ - .csv file connected to the .twb
 
-*rating_vis.twb* - Tableau workbook where I can plan out how I want to visualize the data
+__*rating_vis.twb*__ - Tableau workbook where I can plan out how I want to visualize the data
 
-*.gitignore* - shows github what files to ignore when I commit my changes.
+__*.gitignore*__ - shows github what files to ignore when I commit my changes.
 
 ## TODO:
 
