@@ -24,7 +24,7 @@ df['Diff in ratings'] = df['IMDb Rating'] - df['Your Rating']
 df['Title Type'] = df['Title Type'].apply(media_kind)
 
 # Before adding to df, need to remove one-hot columns with very few values
-one_hot = df['Genres'].str.get_dummies(sep=',')
+one_hot = df['Genres'].str.get_dummies(sep=', ')
 df = pd.concat([df, one_hot], axis=1, sort=False)
 
 # df.to_csv('ratings_clean.csv', index=False)
