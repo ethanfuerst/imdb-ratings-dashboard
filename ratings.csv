@@ -1,147 +1,150 @@
 Const,Your Rating,Date Rated,Title,URL,Title Type,IMDb Rating,Runtime (mins),Year,Genres,Num Votes,Release Date,Directors
-tt1024648,9,2017-08-25,Argo,https://www.imdb.com/title/tt1024648/,movie,7.7,120,2012,"Biography, Drama, Thriller",545594,2012-08-31,Ben Affleck
-tt1060277,7,2019-12-19,Cloverfield,https://www.imdb.com/title/tt1060277/,movie,7.0,85,2008,"Horror, Sci-Fi, Thriller",357912,2008-01-16,Matt Reeves
-tt1092026,5,2019-12-19,Paul,https://www.imdb.com/title/tt1092026/,movie,7.0,104,2011,"Adventure, Comedy, Sci-Fi",225048,2011-02-07,Greg Mottola
-tt0109830,9,2017-08-28,Forrest Gump,https://www.imdb.com/title/tt0109830/,movie,8.8,142,1994,"Drama, Romance",1671088,1994-06-23,Robert Zemeckis
-tt0110912,9,2019-12-18,Pulp Fiction,https://www.imdb.com/title/tt0110912/,movie,8.9,154,1994,"Crime, Drama",1703484,1994-05-21,Quentin Tarantino
-tt0111257,8,2018-02-01,Speed,https://www.imdb.com/title/tt0111257/,movie,7.2,116,1994,"Action, Adventure, Thriller",310955,1994-06-10,Jan de Bont
-tt1130080,7,2018-11-20,The Informant!,https://www.imdb.com/title/tt1130080/,movie,6.4,108,2009,"Biography, Comedy, Crime, Drama",61121,2009-09-07,Steven Soderbergh
-tt1136608,9,2017-08-10,District 9,https://www.imdb.com/title/tt1136608/,movie,7.9,112,2009,"Action, Sci-Fi, Thriller",614889,2009-08-13,Neill Blomkamp
-tt0114369,9,2017-07-28,Se7en,https://www.imdb.com/title/tt0114369/,movie,8.6,127,1995,"Crime, Drama, Mystery, Thriller",1334101,1995-09-15,David Fincher
-tt1156398,8,2019-10-17,Zombieland,https://www.imdb.com/title/tt1156398/,movie,7.6,88,2009,"Adventure, Comedy, Horror, Sci-Fi",486023,2009-09-25,Ruben Fleischer
-tt0116282,8,2017-08-28,Fargo,https://www.imdb.com/title/tt0116282/,movie,8.1,98,1996,"Crime, Drama, Thriller",576773,1996-03-08,"Ethan Coen, Joel Coen"
-tt1187043,9,2017-08-28,3 Idiots,https://www.imdb.com/title/tt1187043/,movie,8.4,170,2009,"Comedy, Drama",312728,2009-12-23,Rajkumar Hirani
-tt0119217,8,2019-11-28,Good Will Hunting,https://www.imdb.com/title/tt0119217/,movie,8.3,126,1997,"Drama, Romance",794338,1997-12-02,Gus Van Sant
-tt0119654,9,2019-06-16,Men in Black,https://www.imdb.com/title/tt0119654/,movie,7.3,98,1997,"Action, Adventure, Comedy, Sci-Fi",489601,1997-06-25,Barry Sonnenfeld
-tt0120382,8,2017-10-18,The Truman Show,https://www.imdb.com/title/tt0120382/,movie,8.1,103,1998,"Comedy, Drama, Sci-Fi",865235,1998-06-01,Peter Weir
-tt0120630,8,2018-04-26,Chicken Run,https://www.imdb.com/title/tt0120630/,movie,7.0,84,2000,"Animation, Adventure, Comedy, Drama, Family",167951,2000-06-17,"Peter Lord, Nick Park"
-tt0120912,8,2019-06-16,Men in Black II,https://www.imdb.com/title/tt0120912/,movie,6.2,88,2002,"Action, Adventure, Comedy, Mystery, Sci-Fi",324310,2002-07-03,Barry Sonnenfeld
-tt1219289,7,2019-11-30,Limitless,https://www.imdb.com/title/tt1219289/,movie,7.4,105,2011,"Sci-Fi, Thriller",503357,2011-03-08,Neil Burger
-tt1255919,6,2019-12-19,Holmes & Watson,https://www.imdb.com/title/tt1255919/,movie,3.8,90,2018,"Comedy, Crime, Mystery",24373,2018-12-20,Etan Cohen
-tt1266020,10,2019-12-19,Parks and Recreation,https://www.imdb.com/title/tt1266020/,tvSeries,8.6,22,2009,Comedy,186186,2009-04-09,
-tt1270797,6,2018-10-04,Venom,https://www.imdb.com/title/tt1270797/,movie,6.7,112,2018,"Action, Sci-Fi, Thriller",315513,2018-10-01,Ruben Fleischer
-tt1276104,10,2017-08-22,Looper,https://www.imdb.com/title/tt1276104/,movie,7.4,113,2012,"Action, Crime, Drama, Sci-Fi, Thriller",510689,2012-09-06,Rian Johnson
-tt1285016,8,2019-12-13,The Social Network,https://www.imdb.com/title/tt1285016/,movie,7.7,120,2010,"Biography, Drama",582271,2010-09-24,David Fincher
-tt1302006,10,2019-11-15,The Irishman,https://www.imdb.com/title/tt1302006/,movie,8.2,209,2019,"Biography, Crime, Drama",141700,2019-09-27,Martin Scorsese
-tt1345836,9,2017-07-29,The Dark Knight Rises,https://www.imdb.com/title/tt1345836/,movie,8.4,164,2012,"Action, Thriller",1427082,2012-07-16,Christopher Nolan
-tt1355644,7,2019-12-19,Passengers,https://www.imdb.com/title/tt1355644/,movie,7.0,116,2016,"Drama, Romance, Sci-Fi, Thriller",322663,2016-12-14,Morten Tyldum
-tt1375666,9,2017-07-28,Inception,https://www.imdb.com/title/tt1375666/,movie,8.8,148,2010,"Action, Adventure, Sci-Fi, Thriller",1901662,2010-07-08,Christopher Nolan
-tt1385826,8,2019-08-19,The Adjustment Bureau,https://www.imdb.com/title/tt1385826/,movie,7.0,106,2011,"Romance, Sci-Fi, Thriller",232201,2011-02-14,George Nolfi
-tt1386588,8,2019-12-14,The Other Guys,https://www.imdb.com/title/tt1386588/,movie,6.6,107,2010,"Action, Comedy, Crime",227294,2010-08-02,Adam McKay
-tt1470023,7,2019-11-08,MacGruber,https://www.imdb.com/title/tt1470023/,movie,5.5,90,2010,"Action, Comedy, Romance",40700,2010-03-15,Jorma Taccone
-tt1483013,7,2017-08-10,Oblivion,https://www.imdb.com/title/tt1483013/,movie,7.0,124,2013,"Action, Adventure, Sci-Fi",463646,2013-03-26,Joseph Kosinski
-tt1488606,8,2019-03-16,Triple Frontier,https://www.imdb.com/title/tt1488606/,movie,6.5,125,2019,"Action, Adventure, Crime, Drama, Thriller",86530,2019-03-06,J.C. Chandor
-tt0149460,9,2019-12-19,Futurama,https://www.imdb.com/title/tt0149460/,tvSeries,8.4,22,1999,"Animation, Comedy, Sci-Fi",202110,1999-03-28,
-tt0151804,9,2017-07-29,Office Space,https://www.imdb.com/title/tt0151804/,movie,7.7,89,1999,Comedy,231379,1999-02-19,Mike Judge
-tt1535108,8,2018-03-11,Elysium,https://www.imdb.com/title/tt1535108/,movie,6.6,109,2013,"Action, Drama, Sci-Fi",403219,2013-08-07,Neill Blomkamp
-tt1560220,7,2019-10-22,Zombieland: Double Tap,https://www.imdb.com/title/tt1560220/,movie,7.1,99,2019,"Action, Comedy, Horror",36804,2019-10-09,Ruben Fleischer
-tt1618434,7,2019-06-17,Murder Mystery,https://www.imdb.com/title/tt1618434/,movie,6.0,97,2019,"Action, Comedy, Crime, Mystery, Romance",75496,2019-06-14,Kyle Newacheck
-tt1631867,7,2019-11-30,Edge of Tomorrow,https://www.imdb.com/title/tt1631867/,movie,7.9,113,2014,"Action, Sci-Fi",562279,2014-05-28,Doug Liman
-tt1650062,9,2017-07-29,Super 8,https://www.imdb.com/title/tt1650062/,movie,7.0,112,2011,"Mystery, Sci-Fi, Thriller",324843,2011-06-09,J.J. Abrams
-tt1677720,8,2018-04-19,Ready Player One,https://www.imdb.com/title/tt1677720/,movie,7.5,140,2018,"Action, Adventure, Sci-Fi",322959,2018-03-11,Steven Spielberg
-tt1700841,7,2019-12-19,Sausage Party,https://www.imdb.com/title/tt1700841/,movie,6.2,89,2016,"Animation, Adventure, Comedy, Fantasy",164388,2016-03-14,"Conrad Vernon, Greg Tiernan"
-tt0181689,10,2017-08-31,Minority Report,https://www.imdb.com/title/tt0181689/,movie,7.6,145,2002,"Action, Crime, Mystery, Sci-Fi, Thriller",480213,2002-06-17,Steven Spielberg
-tt0181739,9,2018-10-11,Osmosis Jones,https://www.imdb.com/title/tt0181739/,movie,6.3,95,2001,"Animation, Action, Adventure, Comedy, Crime, Family, Fantasy, Sci-Fi",30488,2001-08-07,"Bobby Farrelly, Peter Farrelly"
-tt1823672,8,2018-05-07,Chappie,https://www.imdb.com/title/tt1823672/,movie,6.8,120,2015,"Action, Crime, Drama, Sci-Fi, Thriller",218346,2015-03-04,Neill Blomkamp
-tt1856101,10,2017-10-06,Blade Runner 2049,https://www.imdb.com/title/tt1856101/,movie,8.0,164,2017,"Action, Drama, Mystery, Sci-Fi, Thriller",404176,2017-10-03,Denis Villeneuve
-tt1895587,8,2019-07-03,Spotlight,https://www.imdb.com/title/tt1895587/,movie,8.1,129,2015,"Biography, Crime, Drama",380726,2015-09-03,Tom McCarthy
-tt1950186,8,2019-12-18,Ford v Ferrari,https://www.imdb.com/title/tt1950186/,movie,8.3,152,2019,"Action, Biography, Drama, Sport",61732,2019-08-30,James Mangold
-tt1987680,7,2019-08-11,The Upside,https://www.imdb.com/title/tt1987680/,movie,6.9,126,2017,"Comedy, Drama",34825,2017-09-08,Neil Burger
-tt2066051,6,2019-06-05,Rocketman,https://www.imdb.com/title/tt2066051/,movie,7.4,121,2019,"Biography, Drama, Music, Musical",82714,2019-05-16,Dexter Fletcher
-tt2085059,9,2019-12-21,Black Mirror,https://www.imdb.com/title/tt2085059/,tvSeries,8.8,60,2011,"Drama, Sci-Fi, Thriller",367114,2011-12-04,
-tt0209144,9,2017-07-28,Memento,https://www.imdb.com/title/tt0209144/,movie,8.4,113,2000,"Mystery, Thriller",1056667,2000-09-05,Christopher Nolan
-tt2139881,8,2019-05-06,Long Shot,https://www.imdb.com/title/tt2139881/,movie,6.9,125,2019,"Comedy, Romance",59199,2019-03-09,Jonathan Levine
-tt2140479,9,2019-11-29,The Accountant,https://www.imdb.com/title/tt2140479/,movie,7.3,128,2016,"Action, Crime, Drama, Thriller",241599,2016-10-03,Gavin O'Connor
-tt2231461,6,2019-12-19,Rampage,https://www.imdb.com/title/tt2231461/,movie,6.1,107,2018,"Action, Adventure, Sci-Fi",124790,2018-04-11,Brad Peyton
-tt2241351,8,2018-03-30,Money Monster,https://www.imdb.com/title/tt2241351/,movie,6.5,98,2016,"Crime, Drama, Thriller",89039,2016-05-12,Jodie Foster
-tt2267998,7,2019-06-16,Gone Girl,https://www.imdb.com/title/tt2267998/,movie,8.1,149,2014,"Drama, Mystery, Thriller",788543,2014-09-26,David Fincher
-tt2283362,8,2018-01-26,Jumanji: Welcome to the Jungle,https://www.imdb.com/title/tt2283362/,movie,6.9,119,2017,"Action, Adventure, Comedy, Fantasy",267671,2017-12-05,Jake Kasdan
-tt2297757,9,2019-12-21,Nathan for You,https://www.imdb.com/title/tt2297757/,tvSeries,8.8,30,2013,"Documentary, Comedy",15335,2013-02-28,
-tt2314952,7,2019-12-19,Comedians in Cars Getting Coffee,https://www.imdb.com/title/tt2314952/,tvSeries,8.1,20,2012,"Comedy, Talk-Show",9651,2012-07-19,
-tt0240772,10,2019-12-06,Ocean's Eleven,https://www.imdb.com/title/tt0240772/,movie,7.8,116,2001,"Crime, Thriller",484844,2001-12-05,Steven Soderbergh
-tt2461150,7,2019-07-18,Masterminds,https://www.imdb.com/title/tt2461150/,movie,5.8,95,2016,"Comedy, Crime",47021,2016-09-26,Jared Hess
-tt0246578,9,2017-08-28,Donnie Darko,https://www.imdb.com/title/tt0246578/,movie,8.0,113,2001,"Drama, Sci-Fi, Thriller",710633,2001-01-19,Richard Kelly
-tt2467372,8,2019-12-19,Brooklyn Nine-Nine,https://www.imdb.com/title/tt2467372/,tvSeries,8.4,22,2013,"Comedy, Crime",170675,2013-09-17,
-tt2481498,6,2019-05-29,"Extremely Wicked, Shockingly Evil and Vile",https://www.imdb.com/title/tt2481498/,movie,6.6,110,2019,"Biography, Crime, Drama, Thriller",59752,2019-01-26,Joe Berlinger
-tt2543164,10,2017-07-29,Arrival,https://www.imdb.com/title/tt2543164/,movie,7.9,116,2016,"Drama, Mystery, Sci-Fi, Thriller",540176,2016-09-01,Denis Villeneuve
-tt2548396,5,2019-12-19,The Cloverfield Paradox,https://www.imdb.com/title/tt2548396/,movie,5.5,102,2018,"Drama, Horror, Mystery, Sci-Fi, Thriller",87389,2018-02-04,Julius Onah
-tt2561572,7,2019-12-19,Get Hard,https://www.imdb.com/title/tt2561572/,movie,6.0,100,2015,"Comedy, Crime",114142,2015-03-16,Etan Cohen
-tt2575988,8,2019-12-21,Silicon Valley,https://www.imdb.com/title/tt2575988/,tvSeries,8.5,28,2014,Comedy,111655,2014-04-06,
-tt2582782,8,2017-09-08,Hell or High Water,https://www.imdb.com/title/tt2582782/,movie,7.6,102,2016,"Action, Crime, Drama, Thriller, Western",184298,2016-05-16,David Mackenzie
-tt2584384,8,2019-11-07,Jojo Rabbit,https://www.imdb.com/title/tt2584384/,movie,8.1,108,2019,"Comedy, Drama, War",16359,2019-09-08,Taika Waititi
-tt2704998,8,2019-03-26,Game Night,https://www.imdb.com/title/tt2704998/,movie,6.9,100,2018,"Action, Comedy, Crime, Mystery",176995,2018-02-15,"Jonathan Goldstein, John Francis Daley"
-tt2798920,9,2018-02-24,Annihilation,https://www.imdb.com/title/tt2798920/,movie,6.9,115,2018,"Adventure, Drama, Horror, Mystery, Sci-Fi, Thriller",246949,2018-02-13,Alex Garland
-tt2854926,7,2019-06-16,Tag,https://www.imdb.com/title/tt2854926/,movie,6.5,100,2018,Comedy,95444,2018-06-14,Jeff Tomsic
-tt2861424,8,2019-12-21,Rick and Morty,https://www.imdb.com/title/tt2861424/,tvSeries,9.3,23,2013,"Animation, Adventure, Comedy, Sci-Fi",307657,2013-12-02,
-tt2872718,8,2017-10-18,Nightcrawler,https://www.imdb.com/title/tt2872718/,movie,7.9,117,2014,"Crime, Drama, Thriller",421417,2014-09-05,Dan Gilroy
-tt2935510,9,2019-09-23,Ad Astra,https://www.imdb.com/title/tt2935510/,movie,6.8,123,2019,"Adventure, Drama, Mystery, Sci-Fi, Thriller",98409,2019-08-29,James Gray
-tt2948356,8,2019-12-19,Zootopia,https://www.imdb.com/title/tt2948356/,movie,8.0,108,2016,"Animation, Adventure, Comedy, Crime, Family, Mystery",398616,2016-02-11,"Rich Moore, Jared Bush, Byron Howard"
-tt0312172,8,2019-12-19,Monk,https://www.imdb.com/title/tt0312172/,tvSeries,7.9,44,2002,"Comedy, Crime, Drama, Mystery",60700,2002-07-12,
-tt0319343,9,2018-07-10,Elf,https://www.imdb.com/title/tt0319343/,movie,6.9,97,2003,"Comedy, Family, Fantasy, Romance",198949,2003-10-09,Jon Favreau
-tt3263904,8,2017-08-25,Sully,https://www.imdb.com/title/tt3263904/,movie,7.4,96,2016,"Biography, Drama",213370,2016-09-02,Clint Eastwood
-tt3397884,7,2018-03-05,Sicario,https://www.imdb.com/title/tt3397884/,movie,7.6,121,2015,"Action, Crime, Drama, Mystery, Thriller",341067,2015-05-19,Denis Villeneuve
-tt0343818,9,2018-12-24,"I, Robot",https://www.imdb.com/title/tt0343818/,movie,7.1,115,2004,"Action, Crime, Drama, Sci-Fi, Thriller",475290,2004-07-07,Alex Proyas
-tt0349903,9,2019-12-04,Ocean's Twelve,https://www.imdb.com/title/tt0349903/,movie,6.5,125,2004,"Crime, Thriller",338912,2004-12-08,Steven Soderbergh
-tt3521126,9,2018-03-30,The Disaster Artist,https://www.imdb.com/title/tt3521126/,movie,7.4,104,2017,"Biography, Comedy, Drama",119835,2017-09-11,James Franco
-tt3532216,7,2019-06-16,American Made,https://www.imdb.com/title/tt3532216/,movie,7.1,115,2017,"Action, Biography, Comedy, Crime",141835,2017-08-18,Doug Liman
-tt0361748,9,2019-10-11,Inglourious Basterds,https://www.imdb.com/title/tt0361748/,movie,8.3,153,2009,"Adventure, Drama, War",1168076,2009-05-20,Quentin Tarantino
-tt3659388,9,2018-04-11,The Martian,https://www.imdb.com/title/tt3659388/,movie,8.0,144,2015,"Adventure, Drama, Sci-Fi",705397,2015-09-11,Ridley Scott
-tt0367279,8,2019-12-19,Arrested Development,https://www.imdb.com/title/tt0367279/,tvSeries,8.8,22,2003,Comedy,262056,2003-11-02,
-tt0372784,8,2018-04-05,Batman Begins,https://www.imdb.com/title/tt0372784/,movie,8.2,140,2005,"Action, Adventure",1229901,2005-05-31,Christopher Nolan
-tt3783958,10,2017-05-04,La La Land,https://www.imdb.com/title/tt3783958/,movie,8.0,128,2016,"Comedy, Drama, Music, Musical, Romance",456642,2016-08-31,Damien Chazelle
-tt3799694,9,2019-06-10,The Nice Guys,https://www.imdb.com/title/tt3799694/,movie,7.4,116,2016,"Action, Comedy, Crime, Mystery, Thriller",251293,2016-05-10,Shane Black
-tt0382932,9,2018-04-02,Ratatouille,https://www.imdb.com/title/tt0382932/,movie,8.0,111,2007,"Animation, Adventure, Comedy, Drama, Family, Fantasy",598308,2007-06-22,"Brad Bird, Jan Pinkava"
-tt0384642,8,2019-12-19,Kicking & Screaming,https://www.imdb.com/title/tt0384642/,movie,5.6,95,2005,"Comedy, Family, Romance, Sport",34463,2005-05-01,Jesse Dylan
-tt3890160,9,2017-07-29,Baby Driver,https://www.imdb.com/title/tt3890160/,movie,7.6,113,2017,"Action, Crime, Drama, Music, Thriller",389930,2017-03-11,Edgar Wright
-tt0390384,8,2018-03-11,Primer,https://www.imdb.com/title/tt0390384/,movie,6.9,77,2004,"Drama, Sci-Fi, Thriller",91922,2004-01-16,Shane Carruth
-tt3960412,9,2017-09-29,Popstar: Never Stop Never Stopping,https://www.imdb.com/title/tt3960412/,movie,6.7,87,2016,"Comedy, Music",49247,2016-05-24,"Jorma Taccone, Akiva Schaffer"
-tt0425061,7,2019-12-19,Get Smart,https://www.imdb.com/title/tt0425061/,movie,6.5,110,2008,"Action, Adventure, Comedy",194102,2008-06-19,Peter Segal
-tt0425112,10,2017-07-29,Hot Fuzz,https://www.imdb.com/title/tt0425112/,movie,7.8,121,2007,"Action, Comedy, Mystery",437116,2007-02-16,Edgar Wright
-tt4288182,9,2019-12-19,Atlanta,https://www.imdb.com/title/tt4288182/,tvSeries,8.6,30,2016,"Comedy, Drama, Music",43066,2016-09-06,
-tt0432283,9,2018-02-22,Fantastic Mr. Fox,https://www.imdb.com/title/tt0432283/,movie,7.8,87,2009,"Animation, Adventure, Comedy, Crime, Drama, Family",182185,2009-10-14,Wes Anderson
-tt0443706,8,2018-03-14,Zodiac,https://www.imdb.com/title/tt0443706/,movie,7.7,157,2007,"Crime, Drama, Mystery, Thriller",409751,2007-02-28,David Fincher
-tt4633694,9,2019-01-09,Spider-Man: Into the Spider-Verse,https://www.imdb.com/title/tt4633694/,movie,8.4,117,2018,"Animation, Action, Adventure, Family, Sci-Fi",282379,2018-12-06,"Bob Persichetti, Rodney Rothman, Peter Ramsey"
-tt0468569,10,2017-07-28,The Dark Knight,https://www.imdb.com/title/tt0468569/,movie,9.0,152,2008,"Action, Crime, Drama, Thriller",2153700,2008-07-14,Christopher Nolan
-tt0475784,7,2019-12-21,Westworld,https://www.imdb.com/title/tt0475784/,tvSeries,8.8,62,2016,"Drama, Mystery, Sci-Fi, Western",368806,2016-09-30,
-tt0478311,8,2019-10-31,Knocked Up,https://www.imdb.com/title/tt0478311/,movie,6.9,129,2007,"Comedy, Romance",337084,2007-03-12,Judd Apatow
-tt0482571,9,2017-08-26,The Prestige,https://www.imdb.com/title/tt0482571/,movie,8.5,130,2006,"Drama, Mystery, Sci-Fi, Thriller",1100162,2006-10-17,Christopher Nolan
-tt4955642,9,2019-12-19,The Good Place,https://www.imdb.com/title/tt4955642/,tvSeries,8.1,22,2016,"Comedy, Drama, Fantasy, Romance",77776,2016-09-19,
-tt0496806,8,2019-10-26,Ocean's Thirteen,https://www.imdb.com/title/tt0496806/,movie,6.9,122,2007,"Action, Crime, Thriller",303862,2007-05-24,Steven Soderbergh
-tt0499549,8,2019-12-19,Avatar,https://www.imdb.com/title/tt0499549/,movie,7.8,162,2009,"Action, Adventure, Fantasy, Sci-Fi",1070291,2009-12-10,James Cameron
-tt5013056,9,2017-07-28,Dunkirk,https://www.imdb.com/title/tt5013056/,movie,7.9,106,2017,"Action, Drama, History, Thriller, War",490970,2017-07-13,Christopher Nolan
-tt5052448,8,2017-07-29,Get Out,https://www.imdb.com/title/tt5052448/,movie,7.7,104,2017,"Horror, Mystery, Thriller",433503,2017-01-23,Jordan Peele
-tt5104604,9,2018-04-01,Isle of Dogs,https://www.imdb.com/title/tt5104604/,movie,7.9,101,2018,"Animation, Adventure, Comedy, Drama, Fantasy, Sci-Fi",118866,2018-02-15,Wes Anderson
-tt5348176,9,2019-12-19,Barry,https://www.imdb.com/title/tt5348176/,tvSeries,8.3,30,2018,"Action, Comedy, Crime, Drama",32017,2018-03-09,
-tt5439796,10,2017-11-24,Logan Lucky,https://www.imdb.com/title/tt5439796/,movie,7.0,118,2017,"Comedy, Crime, Drama",111986,2017-08-07,Steven Soderbergh
-tt5442430,7,2019-12-19,Life,https://www.imdb.com/title/tt5442430/,movie,6.6,104,2017,"Horror, Sci-Fi, Thriller",190206,2017-03-18,Daniel Espinosa
-tt5462602,7,2018-07-04,The Big Sick,https://www.imdb.com/title/tt5462602/,movie,7.6,120,2017,"Comedy, Drama, Romance",109247,2017-01-20,Michael Showalter
-tt5688932,8,2018-11-09,Sorry to Bother You,https://www.imdb.com/title/tt5688932/,movie,6.9,112,2018,"Comedy, Fantasy, Sci-Fi",48767,2018-01-20,Boots Riley
-tt6266538,8,2018-12-26,Vice,https://www.imdb.com/title/tt6266538/,movie,7.2,132,2018,"Biography, Comedy, Drama",95172,2018-12-12,Adam McKay
-tt6857112,6,2019-07-04,Us,https://www.imdb.com/title/tt6857112/,movie,6.9,116,2019,"Horror, Mystery, Thriller",168276,2019-03-08,Jordan Peele
-tt6966692,9,2019-03-14,Green Book,https://www.imdb.com/title/tt6966692/,movie,8.2,130,2018,"Biography, Comedy, Drama, Music",268226,2018-09-11,Peter Farrelly
-tt7131622,10,2019-08-03,Once Upon a Time... in Hollywood,https://www.imdb.com/title/tt7131622/,movie,7.8,161,2019,"Comedy, Drama",285061,2019-05-21,Quentin Tarantino
-tt7286456,6,2019-10-04,Joker,https://www.imdb.com/title/tt7286456/,movie,8.7,122,2019,"Crime, Drama, Thriller",532698,2019-08-31,Todd Phillips
-tt7343762,6,2019-12-19,Good Boys,https://www.imdb.com/title/tt7343762/,movie,6.7,90,2019,"Adventure, Comedy",33146,2019-03-11,Gene Stupnitsky
-tt7349662,8,2018-09-03,BlacKkKlansman,https://www.imdb.com/title/tt7349662/,movie,7.5,135,2018,"Biography, Crime, Drama",171688,2018-05-14,Spike Lee
-tt7529770,4,2019-12-19,Miracle Workers,https://www.imdb.com/title/tt7529770/,tvSeries,6.9,30,2019,"Comedy, Drama, Fantasy, Romance",5033,2019-02-08,
-tt7775622,8,2019-07-09,Free Solo,https://www.imdb.com/title/tt7775622/,movie,8.2,100,2018,"Documentary, Adventure, Sport",41651,2018-08-31,"Jimmy Chin, Elizabeth Chai Vasarhelyi"
-tt0787475,7,2019-12-10,Hot Rod,https://www.imdb.com/title/tt0787475/,movie,6.7,88,2007,"Comedy, Sport",71818,2007-08-03,Akiva Schaffer
-tt0799934,8,2019-12-09,Be Kind Rewind,https://www.imdb.com/title/tt0799934/,movie,6.4,102,2008,Comedy,86609,2008-01-20,Michel Gondry
-tt8079248,9,2019-06-28,Yesterday,https://www.imdb.com/title/tt8079248/,movie,6.9,116,2019,"Comedy, Fantasy, Music, Musical, Romance",68476,2019-05-04,Danny Boyle
-tt0816692,8,2017-08-28,Interstellar,https://www.imdb.com/title/tt0816692/,movie,8.6,169,2014,"Adventure, Drama, Sci-Fi",1356497,2014-10-26,Christopher Nolan
-tt0816711,7,2017-08-10,World War Z,https://www.imdb.com/title/tt0816711/,movie,7.0,116,2013,"Action, Adventure, Horror, Sci-Fi",567053,2013-06-02,Marc Forster
-tt0083658,6,2019-12-19,Blade Runner,https://www.imdb.com/title/tt0083658/,movie,8.1,117,1982,"Action, Sci-Fi, Thriller",648110,1982-06-25,Ridley Scott
-tt0840361,9,2019-08-04,The Town,https://www.imdb.com/title/tt0840361/,movie,7.5,125,2010,"Crime, Drama, Thriller",330346,2010-09-08,Ben Affleck
-tt8722346,8,2019-12-13,Queen & Slim,https://www.imdb.com/title/tt8722346/,movie,7.0,132,2019,Drama,4123,2019-11-14,Melina Matsoukas
-tt0088763,9,2019-06-16,Back to the Future,https://www.imdb.com/title/tt0088763/,movie,8.5,116,1985,"Adventure, Comedy, Sci-Fi",970199,1985-07-03,Robert Zemeckis
-tt8946378,10,2019-11-28,Knives Out,https://www.imdb.com/title/tt8946378/,movie,8.1,130,2019,"Comedy, Crime, Drama, Mystery, Thriller",62160,2019-09-07,Rian Johnson
-tt0903747,10,2019-12-19,Breaking Bad,https://www.imdb.com/title/tt0903747/,tvSeries,9.5,49,2008,"Crime, Drama, Thriller",1289453,2008-01-20,
-tt0910970,9,2017-08-28,WALL·E,https://www.imdb.com/title/tt0910970/,movie,8.4,98,2008,"Animation, Adventure, Family, Sci-Fi",935570,2008-06-21,Andrew Stanton
-tt9243946,10,2019-10-14,El Camino: A Breaking Bad Movie,https://www.imdb.com/title/tt9243946/,movie,7.4,122,2019,"Action, Drama",138454,2019-10-11,Vince Gilligan
-tt9398640,7,2019-09-23,Between Two Ferns: The Movie,https://www.imdb.com/title/tt9398640/,movie,6.1,82,2019,Comedy,19998,2019-09-20,Scott Aukerman
-tt0942385,8,2017-08-24,Tropic Thunder,https://www.imdb.com/title/tt0942385/,movie,7.0,107,2008,"Action, Comedy, War",359301,2008-08-11,Ben Stiller
-tt0945513,7,2018-04-19,Source Code,https://www.imdb.com/title/tt0945513/,movie,7.5,93,2011,"Action, Drama, Mystery, Sci-Fi, Thriller",461727,2011-03-11,Duncan Jones
-tt0098904,10,2019-12-19,Seinfeld,https://www.imdb.com/title/tt0098904/,tvSeries,8.8,22,1989,Comedy,234207,1989-07-05,
-tt0990407,7,2019-12-19,The Green Hornet,https://www.imdb.com/title/tt0990407/,movie,5.8,119,2011,"Action, Comedy, Crime, Sci-Fi, Thriller",150468,2011-01-12,Michel Gondry
-tt0993846,8,2017-08-28,The Wolf of Wall Street,https://www.imdb.com/title/tt0993846/,movie,8.2,180,2013,"Biography, Crime, Drama",1075766,2013-12-17,Martin Scorsese
-tt0099685,8,2019-12-01,Goodfellas,https://www.imdb.com/title/tt0099685/,movie,8.7,146,1990,"Biography, Crime, Drama",941611,1990-09-09,Martin Scorsese
+tt1024648,9,2017-08-25,Argo,https://www.imdb.com/title/tt1024648/,movie,7.7,120,2012,"Biography, Drama, Thriller",545708,2012-08-31,Ben Affleck
+tt1060277,7,2019-12-19,Cloverfield,https://www.imdb.com/title/tt1060277/,movie,7.0,85,2008,"Horror, Sci-Fi, Thriller",357982,2008-01-16,Matt Reeves
+tt1092026,5,2019-12-19,Paul,https://www.imdb.com/title/tt1092026/,movie,7.0,104,2011,"Adventure, Comedy, Sci-Fi",225089,2011-02-07,Greg Mottola
+tt0109830,9,2017-08-28,Forrest Gump,https://www.imdb.com/title/tt0109830/,movie,8.8,142,1994,"Drama, Romance",1671728,1994-06-23,Robert Zemeckis
+tt0110912,9,2019-12-18,Pulp Fiction,https://www.imdb.com/title/tt0110912/,movie,8.9,154,1994,"Crime, Drama",1704135,1994-05-21,Quentin Tarantino
+tt0111257,8,2018-02-01,Speed,https://www.imdb.com/title/tt0111257/,movie,7.2,116,1994,"Action, Adventure, Thriller",311030,1994-06-10,Jan de Bont
+tt1130080,7,2018-11-20,The Informant!,https://www.imdb.com/title/tt1130080/,movie,6.4,108,2009,"Biography, Comedy, Crime, Drama",61128,2009-09-07,Steven Soderbergh
+tt0113497,7,2019-12-21,Jumanji,https://www.imdb.com/title/tt0113497/,movie,7.0,104,1995,"Adventure, Comedy, Family, Fantasy",281159,1995-12-15,Joe Johnston
+tt1136608,9,2017-08-10,District 9,https://www.imdb.com/title/tt1136608/,movie,7.9,112,2009,"Action, Sci-Fi, Thriller",614992,2009-08-13,Neill Blomkamp
+tt0114369,9,2017-07-28,Se7en,https://www.imdb.com/title/tt0114369/,movie,8.6,127,1995,"Crime, Drama, Mystery, Thriller",1334603,1995-09-15,David Fincher
+tt1156398,8,2019-10-17,Zombieland,https://www.imdb.com/title/tt1156398/,movie,7.6,88,2009,"Adventure, Comedy, Horror, Sci-Fi",486235,2009-09-25,Ruben Fleischer
+tt0116282,8,2017-08-28,Fargo,https://www.imdb.com/title/tt0116282/,movie,8.1,98,1996,"Crime, Drama, Thriller",576937,1996-03-08,"Ethan Coen, Joel Coen"
+tt1187043,9,2017-08-28,3 Idiots,https://www.imdb.com/title/tt1187043/,movie,8.4,170,2009,"Comedy, Drama",312835,2009-12-23,Rajkumar Hirani
+tt0119217,8,2019-11-28,Good Will Hunting,https://www.imdb.com/title/tt0119217/,movie,8.3,126,1997,"Drama, Romance",794672,1997-12-02,Gus Van Sant
+tt0119654,9,2019-06-16,Men in Black,https://www.imdb.com/title/tt0119654/,movie,7.3,98,1997,"Action, Adventure, Comedy, Sci-Fi",489770,1997-06-25,Barry Sonnenfeld
+tt0120382,8,2017-10-18,The Truman Show,https://www.imdb.com/title/tt0120382/,movie,8.1,103,1998,"Comedy, Drama, Sci-Fi",865560,1998-06-01,Peter Weir
+tt0120630,8,2018-04-26,Chicken Run,https://www.imdb.com/title/tt0120630/,movie,7.0,84,2000,"Animation, Adventure, Comedy, Drama, Family",167989,2000-06-17,"Peter Lord, Nick Park"
+tt0120912,8,2019-06-16,Men in Black II,https://www.imdb.com/title/tt0120912/,movie,6.2,88,2002,"Action, Adventure, Comedy, Mystery, Sci-Fi",324431,2002-07-03,Barry Sonnenfeld
+tt1219289,7,2019-11-30,Limitless,https://www.imdb.com/title/tt1219289/,movie,7.4,105,2011,"Sci-Fi, Thriller",503454,2011-03-08,Neil Burger
+tt1255919,6,2019-12-19,Holmes & Watson,https://www.imdb.com/title/tt1255919/,movie,3.8,90,2018,"Comedy, Crime, Mystery",24412,2018-12-20,Etan Cohen
+tt1266020,10,2019-12-19,Parks and Recreation,https://www.imdb.com/title/tt1266020/,tvSeries,8.6,22,2009,Comedy,186297,2009-04-09,
+tt1270797,6,2018-10-04,Venom,https://www.imdb.com/title/tt1270797/,movie,6.7,112,2018,"Action, Sci-Fi, Thriller",315718,2018-10-01,Ruben Fleischer
+tt1276104,10,2017-08-22,Looper,https://www.imdb.com/title/tt1276104/,movie,7.4,113,2012,"Action, Crime, Drama, Sci-Fi, Thriller",510822,2012-09-06,Rian Johnson
+tt1285016,8,2019-12-13,The Social Network,https://www.imdb.com/title/tt1285016/,movie,7.7,120,2010,"Biography, Drama",582403,2010-09-24,David Fincher
+tt1302006,10,2019-11-15,The Irishman,https://www.imdb.com/title/tt1302006/,movie,8.2,209,2019,"Biography, Crime, Drama",146825,2019-09-27,Martin Scorsese
+tt1345836,9,2017-07-29,The Dark Knight Rises,https://www.imdb.com/title/tt1345836/,movie,8.4,164,2012,"Action, Thriller",1427562,2012-07-16,Christopher Nolan
+tt1355644,7,2019-12-19,Passengers,https://www.imdb.com/title/tt1355644/,movie,7.0,116,2016,"Drama, Romance, Sci-Fi, Thriller",322820,2016-12-14,Morten Tyldum
+tt1375666,9,2017-07-28,Inception,https://www.imdb.com/title/tt1375666/,movie,8.8,148,2010,"Action, Adventure, Sci-Fi, Thriller",1902326,2010-07-08,Christopher Nolan
+tt1385826,8,2019-08-19,The Adjustment Bureau,https://www.imdb.com/title/tt1385826/,movie,7.0,106,2011,"Romance, Sci-Fi, Thriller",232234,2011-02-14,George Nolfi
+tt1386588,8,2019-12-14,The Other Guys,https://www.imdb.com/title/tt1386588/,movie,6.6,107,2010,"Action, Comedy, Crime",227357,2010-08-02,Adam McKay
+tt1470023,7,2019-11-08,MacGruber,https://www.imdb.com/title/tt1470023/,movie,5.5,90,2010,"Action, Comedy, Romance",40708,2010-03-15,Jorma Taccone
+tt1483013,7,2017-08-10,Oblivion,https://www.imdb.com/title/tt1483013/,movie,7.0,124,2013,"Action, Adventure, Sci-Fi",463765,2013-03-26,Joseph Kosinski
+tt1488606,8,2019-03-16,Triple Frontier,https://www.imdb.com/title/tt1488606/,movie,6.5,125,2019,"Action, Adventure, Crime, Drama, Thriller",86687,2019-03-06,J.C. Chandor
+tt0149460,9,2019-12-19,Futurama,https://www.imdb.com/title/tt0149460/,tvSeries,8.4,22,1999,"Animation, Comedy, Sci-Fi",202171,1999-03-28,
+tt0151804,9,2017-07-29,Office Space,https://www.imdb.com/title/tt0151804/,movie,7.7,89,1999,Comedy,231430,1999-02-19,Mike Judge
+tt1535108,8,2018-03-11,Elysium,https://www.imdb.com/title/tt1535108/,movie,6.6,109,2013,"Action, Drama, Sci-Fi",403297,2013-08-07,Neill Blomkamp
+tt1560220,7,2019-10-22,Zombieland: Double Tap,https://www.imdb.com/title/tt1560220/,movie,7.1,99,2019,"Action, Comedy, Horror",37872,2019-10-09,Ruben Fleischer
+tt1618434,7,2019-06-17,Murder Mystery,https://www.imdb.com/title/tt1618434/,movie,6.0,97,2019,"Action, Comedy, Crime, Mystery, Romance",75640,2019-06-14,Kyle Newacheck
+tt1631867,7,2019-11-30,Edge of Tomorrow,https://www.imdb.com/title/tt1631867/,movie,7.9,113,2014,"Action, Sci-Fi",562478,2014-05-28,Doug Liman
+tt1650062,9,2017-07-29,Super 8,https://www.imdb.com/title/tt1650062/,movie,7.0,112,2011,"Mystery, Sci-Fi, Thriller",324901,2011-06-09,J.J. Abrams
+tt1677720,8,2018-04-19,Ready Player One,https://www.imdb.com/title/tt1677720/,movie,7.5,140,2018,"Action, Adventure, Sci-Fi",323282,2018-03-11,Steven Spielberg
+tt1700841,7,2019-12-19,Sausage Party,https://www.imdb.com/title/tt1700841/,movie,6.2,89,2016,"Animation, Adventure, Comedy, Fantasy",164442,2016-03-14,"Conrad Vernon, Greg Tiernan"
+tt0181689,10,2017-08-31,Minority Report,https://www.imdb.com/title/tt0181689/,movie,7.6,145,2002,"Action, Crime, Mystery, Sci-Fi, Thriller",480328,2002-06-17,Steven Spielberg
+tt0181739,9,2018-10-11,Osmosis Jones,https://www.imdb.com/title/tt0181739/,movie,6.3,95,2001,"Animation, Action, Adventure, Comedy, Crime, Family, Fantasy, Sci-Fi",30491,2001-08-07,"Bobby Farrelly, Peter Farrelly"
+tt1823672,8,2018-05-07,Chappie,https://www.imdb.com/title/tt1823672/,movie,6.8,120,2015,"Action, Crime, Drama, Sci-Fi, Thriller",218399,2015-03-04,Neill Blomkamp
+tt1856101,10,2017-10-06,Blade Runner 2049,https://www.imdb.com/title/tt1856101/,movie,8.0,164,2017,"Action, Drama, Mystery, Sci-Fi, Thriller",404467,2017-10-03,Denis Villeneuve
+tt1895587,8,2019-07-03,Spotlight,https://www.imdb.com/title/tt1895587/,movie,8.1,129,2015,"Biography, Crime, Drama",380915,2015-09-03,Tom McCarthy
+tt1950186,8,2019-12-18,Ford v Ferrari,https://www.imdb.com/title/tt1950186/,movie,8.3,152,2019,"Action, Biography, Drama, Sport",62778,2019-08-30,James Mangold
+tt1987680,7,2019-08-11,The Upside,https://www.imdb.com/title/tt1987680/,movie,6.9,126,2017,"Comedy, Drama",34882,2017-09-08,Neil Burger
+tt2066051,6,2019-06-05,Rocketman,https://www.imdb.com/title/tt2066051/,movie,7.4,121,2019,"Biography, Drama, Music, Musical",83058,2019-05-16,Dexter Fletcher
+tt2085059,9,2019-12-21,Black Mirror,https://www.imdb.com/title/tt2085059/,tvSeries,8.8,60,2011,"Drama, Sci-Fi, Thriller",367530,2011-12-04,
+tt0209144,9,2017-07-28,Memento,https://www.imdb.com/title/tt0209144/,movie,8.4,113,2000,"Mystery, Thriller",1056990,2000-09-05,Christopher Nolan
+tt2139881,8,2019-05-06,Long Shot,https://www.imdb.com/title/tt2139881/,movie,6.9,125,2019,"Comedy, Romance",59533,2019-03-09,Jonathan Levine
+tt2140479,9,2019-11-29,The Accountant,https://www.imdb.com/title/tt2140479/,movie,7.3,128,2016,"Action, Crime, Drama, Thriller",241683,2016-10-03,Gavin O'Connor
+tt2231461,6,2019-12-19,Rampage,https://www.imdb.com/title/tt2231461/,movie,6.1,107,2018,"Action, Adventure, Sci-Fi",124887,2018-04-11,Brad Peyton
+tt2241351,8,2018-03-30,Money Monster,https://www.imdb.com/title/tt2241351/,movie,6.5,98,2016,"Crime, Drama, Thriller",89065,2016-05-12,Jodie Foster
+tt2267998,7,2019-06-16,Gone Girl,https://www.imdb.com/title/tt2267998/,movie,8.1,149,2014,"Drama, Mystery, Thriller",788832,2014-09-26,David Fincher
+tt2283362,8,2018-01-26,Jumanji: Welcome to the Jungle,https://www.imdb.com/title/tt2283362/,movie,6.9,119,2017,"Action, Adventure, Comedy, Fantasy",268671,2017-12-05,Jake Kasdan
+tt2297757,9,2019-12-21,Nathan for You,https://www.imdb.com/title/tt2297757/,tvSeries,8.8,30,2013,"Documentary, Comedy",15349,2013-02-28,
+tt2314952,7,2019-12-19,Comedians in Cars Getting Coffee,https://www.imdb.com/title/tt2314952/,tvSeries,8.1,20,2012,"Comedy, Talk-Show",9659,2012-07-19,
+tt0240772,10,2019-12-06,Ocean's Eleven,https://www.imdb.com/title/tt0240772/,movie,7.8,116,2001,"Crime, Thriller",484949,2001-12-05,Steven Soderbergh
+tt2461150,7,2019-07-18,Masterminds,https://www.imdb.com/title/tt2461150/,movie,5.8,95,2016,"Comedy, Crime",47038,2016-09-26,Jared Hess
+tt0246578,9,2017-08-28,Donnie Darko,https://www.imdb.com/title/tt0246578/,movie,8.0,113,2001,"Drama, Sci-Fi, Thriller",710753,2001-01-19,Richard Kelly
+tt2467372,8,2019-12-19,Brooklyn Nine-Nine,https://www.imdb.com/title/tt2467372/,tvSeries,8.4,22,2013,"Comedy, Crime",170837,2013-09-17,
+tt2481498,6,2019-05-29,"Extremely Wicked, Shockingly Evil and Vile",https://www.imdb.com/title/tt2481498/,movie,6.6,110,2019,"Biography, Crime, Drama, Thriller",59921,2019-01-26,Joe Berlinger
+tt2543164,10,2017-07-29,Arrival,https://www.imdb.com/title/tt2543164/,movie,7.9,116,2016,"Drama, Mystery, Sci-Fi, Thriller",540421,2016-09-01,Denis Villeneuve
+tt2548396,5,2019-12-19,The Cloverfield Paradox,https://www.imdb.com/title/tt2548396/,movie,5.5,102,2018,"Drama, Horror, Mystery, Sci-Fi, Thriller",87419,2018-02-04,Julius Onah
+tt2561572,7,2019-12-19,Get Hard,https://www.imdb.com/title/tt2561572/,movie,6.0,100,2015,"Comedy, Crime",114174,2015-03-16,Etan Cohen
+tt2575988,8,2019-12-21,Silicon Valley,https://www.imdb.com/title/tt2575988/,tvSeries,8.5,28,2014,Comedy,111882,2014-04-06,
+tt2582782,8,2017-09-08,Hell or High Water,https://www.imdb.com/title/tt2582782/,movie,7.6,102,2016,"Action, Crime, Drama, Thriller, Western",184379,2016-05-16,David Mackenzie
+tt2584384,8,2019-11-07,Jojo Rabbit,https://www.imdb.com/title/tt2584384/,movie,8.1,108,2019,"Comedy, Drama, War",17365,2019-09-08,Taika Waititi
+tt2704998,8,2019-03-26,Game Night,https://www.imdb.com/title/tt2704998/,movie,6.9,100,2018,"Action, Comedy, Crime, Mystery",177171,2018-02-15,"Jonathan Goldstein, John Francis Daley"
+tt2798920,9,2018-02-24,Annihilation,https://www.imdb.com/title/tt2798920/,movie,6.9,115,2018,"Adventure, Drama, Horror, Mystery, Sci-Fi, Thriller",247159,2018-02-13,Alex Garland
+tt2854926,7,2019-06-16,Tag,https://www.imdb.com/title/tt2854926/,movie,6.5,100,2018,Comedy,95512,2018-06-14,Jeff Tomsic
+tt2861424,8,2019-12-21,Rick and Morty,https://www.imdb.com/title/tt2861424/,tvSeries,9.3,23,2013,"Animation, Adventure, Comedy, Sci-Fi",308229,2013-12-02,
+tt2872718,8,2017-10-18,Nightcrawler,https://www.imdb.com/title/tt2872718/,movie,7.9,117,2014,"Crime, Drama, Thriller",421614,2014-09-05,Dan Gilroy
+tt2935510,9,2019-09-23,Ad Astra,https://www.imdb.com/title/tt2935510/,movie,6.7,123,2019,"Adventure, Drama, Mystery, Sci-Fi, Thriller",100976,2019-08-29,James Gray
+tt2948356,8,2019-12-19,Zootopia,https://www.imdb.com/title/tt2948356/,movie,8.0,108,2016,"Animation, Adventure, Comedy, Crime, Family, Mystery",398798,2016-02-11,"Rich Moore, Jared Bush, Byron Howard"
+tt0312172,8,2019-12-19,Monk,https://www.imdb.com/title/tt0312172/,tvSeries,7.9,44,2002,"Comedy, Crime, Drama, Mystery",60715,2002-07-12,
+tt0319343,9,2018-07-10,Elf,https://www.imdb.com/title/tt0319343/,movie,6.9,97,2003,"Comedy, Family, Fantasy, Romance",199786,2003-10-09,Jon Favreau
+tt3263904,8,2017-08-25,Sully,https://www.imdb.com/title/tt3263904/,movie,7.4,96,2016,"Biography, Drama",213480,2016-09-02,Clint Eastwood
+tt3397884,7,2018-03-05,Sicario,https://www.imdb.com/title/tt3397884/,movie,7.6,121,2015,"Action, Crime, Drama, Mystery, Thriller",341209,2015-05-19,Denis Villeneuve
+tt0343818,9,2018-12-24,"I, Robot",https://www.imdb.com/title/tt0343818/,movie,7.1,115,2004,"Action, Crime, Drama, Sci-Fi, Thriller",475432,2004-07-07,Alex Proyas
+tt0349903,9,2019-12-04,Ocean's Twelve,https://www.imdb.com/title/tt0349903/,movie,6.5,125,2004,"Crime, Thriller",338984,2004-12-08,Steven Soderbergh
+tt3513548,8,2019-12-22,Richard Jewell,https://www.imdb.com/title/tt3513548/,movie,7.7,131,2019,Drama,3217,2019-11-20,Clint Eastwood
+tt3521126,9,2018-03-30,The Disaster Artist,https://www.imdb.com/title/tt3521126/,movie,7.4,104,2017,"Biography, Comedy, Drama",119944,2017-09-11,James Franco
+tt3532216,7,2019-06-16,American Made,https://www.imdb.com/title/tt3532216/,movie,7.1,115,2017,"Action, Biography, Comedy, Crime",141938,2017-08-18,Doug Liman
+tt0361748,9,2019-10-11,Inglourious Basterds,https://www.imdb.com/title/tt0361748/,movie,8.3,153,2009,"Adventure, Drama, War",1168513,2009-05-20,Quentin Tarantino
+tt3659388,9,2018-04-11,The Martian,https://www.imdb.com/title/tt3659388/,movie,8.0,144,2015,"Adventure, Drama, Sci-Fi",705661,2015-09-11,Ridley Scott
+tt0367279,8,2019-12-19,Arrested Development,https://www.imdb.com/title/tt0367279/,tvSeries,8.8,22,2003,Comedy,262113,2003-11-02,
+tt0372784,8,2018-04-05,Batman Begins,https://www.imdb.com/title/tt0372784/,movie,8.2,140,2005,"Action, Adventure",1230338,2005-05-31,Christopher Nolan
+tt3783958,10,2017-05-04,La La Land,https://www.imdb.com/title/tt3783958/,movie,8.0,128,2016,"Comedy, Drama, Music, Musical, Romance",456881,2016-08-31,Damien Chazelle
+tt3799694,9,2019-06-10,The Nice Guys,https://www.imdb.com/title/tt3799694/,movie,7.4,116,2016,"Action, Comedy, Crime, Mystery, Thriller",251405,2016-05-10,Shane Black
+tt0382932,9,2018-04-02,Ratatouille,https://www.imdb.com/title/tt0382932/,movie,8.0,111,2007,"Animation, Adventure, Comedy, Drama, Family, Fantasy",598502,2007-06-22,"Brad Bird, Jan Pinkava"
+tt0384642,8,2019-12-19,Kicking & Screaming,https://www.imdb.com/title/tt0384642/,movie,5.6,95,2005,"Comedy, Family, Romance, Sport",34472,2005-05-01,Jesse Dylan
+tt3890160,9,2017-07-29,Baby Driver,https://www.imdb.com/title/tt3890160/,movie,7.6,113,2017,"Action, Crime, Drama, Music, Thriller",390139,2017-03-11,Edgar Wright
+tt0390384,8,2018-03-11,Primer,https://www.imdb.com/title/tt0390384/,movie,6.9,77,2004,"Drama, Sci-Fi, Thriller",91939,2004-01-16,Shane Carruth
+tt3960412,9,2017-09-29,Popstar: Never Stop Never Stopping,https://www.imdb.com/title/tt3960412/,movie,6.7,87,2016,"Comedy, Music",49274,2016-05-24,"Jorma Taccone, Akiva Schaffer"
+tt0406375,7,2019-12-21,Zathura: A Space Adventure,https://www.imdb.com/title/tt0406375/,movie,6.1,101,2005,"Action, Adventure, Comedy, Family, Fantasy, Sci-Fi",86625,2005-11-06,Jon Favreau
+tt0425061,7,2019-12-19,Get Smart,https://www.imdb.com/title/tt0425061/,movie,6.5,110,2008,"Action, Adventure, Comedy",194130,2008-06-19,Peter Segal
+tt0425112,10,2017-07-29,Hot Fuzz,https://www.imdb.com/title/tt0425112/,movie,7.8,121,2007,"Action, Comedy, Mystery",437228,2007-02-16,Edgar Wright
+tt4288182,9,2019-12-19,Atlanta,https://www.imdb.com/title/tt4288182/,tvSeries,8.6,30,2016,"Comedy, Drama, Music",43094,2016-09-06,
+tt0432283,9,2018-02-22,Fantastic Mr. Fox,https://www.imdb.com/title/tt0432283/,movie,7.8,87,2009,"Animation, Adventure, Comedy, Crime, Drama, Family",182241,2009-10-14,Wes Anderson
+tt0443706,8,2018-03-14,Zodiac,https://www.imdb.com/title/tt0443706/,movie,7.7,157,2007,"Crime, Drama, Mystery, Thriller",409918,2007-02-28,David Fincher
+tt4633694,9,2019-01-09,Spider-Man: Into the Spider-Verse,https://www.imdb.com/title/tt4633694/,movie,8.4,117,2018,"Animation, Action, Adventure, Family, Sci-Fi",282828,2018-12-06,"Bob Persichetti, Rodney Rothman, Peter Ramsey"
+tt0468569,10,2017-07-28,The Dark Knight,https://www.imdb.com/title/tt0468569/,movie,9.0,152,2008,"Action, Crime, Drama, Thriller",2154419,2008-07-14,Christopher Nolan
+tt0475784,7,2019-12-21,Westworld,https://www.imdb.com/title/tt0475784/,tvSeries,8.8,62,2016,"Drama, Mystery, Sci-Fi, Western",369027,2016-09-30,
+tt0478311,8,2019-10-31,Knocked Up,https://www.imdb.com/title/tt0478311/,movie,6.9,129,2007,"Comedy, Romance",337141,2007-03-12,Judd Apatow
+tt0482571,9,2017-08-26,The Prestige,https://www.imdb.com/title/tt0482571/,movie,8.5,130,2006,"Drama, Mystery, Sci-Fi, Thriller",1100559,2006-10-17,Christopher Nolan
+tt4955642,9,2019-12-19,The Good Place,https://www.imdb.com/title/tt4955642/,tvSeries,8.1,22,2016,"Comedy, Drama, Fantasy, Romance",77987,2016-09-19,
+tt0496806,8,2019-10-26,Ocean's Thirteen,https://www.imdb.com/title/tt0496806/,movie,6.9,122,2007,"Action, Crime, Thriller",303930,2007-05-24,Steven Soderbergh
+tt0499549,8,2019-12-19,Avatar,https://www.imdb.com/title/tt0499549/,movie,7.8,162,2009,"Action, Adventure, Fantasy, Sci-Fi",1070568,2009-12-10,James Cameron
+tt5013056,9,2017-07-28,Dunkirk,https://www.imdb.com/title/tt5013056/,movie,7.9,106,2017,"Action, Drama, History, Thriller, War",491246,2017-07-13,Christopher Nolan
+tt5052448,8,2017-07-29,Get Out,https://www.imdb.com/title/tt5052448/,movie,7.7,104,2017,"Horror, Mystery, Thriller",433852,2017-01-23,Jordan Peele
+tt5104604,9,2018-04-01,Isle of Dogs,https://www.imdb.com/title/tt5104604/,movie,7.9,101,2018,"Animation, Adventure, Comedy, Drama, Fantasy, Sci-Fi",118968,2018-02-15,Wes Anderson
+tt5348176,9,2019-12-19,Barry,https://www.imdb.com/title/tt5348176/,tvSeries,8.3,30,2018,"Action, Comedy, Crime, Drama",32101,2018-03-09,
+tt5439796,10,2017-11-24,Logan Lucky,https://www.imdb.com/title/tt5439796/,movie,7.0,118,2017,"Comedy, Crime, Drama",112088,2017-08-07,Steven Soderbergh
+tt5442430,7,2019-12-19,Life,https://www.imdb.com/title/tt5442430/,movie,6.6,104,2017,"Horror, Sci-Fi, Thriller",190295,2017-03-18,Daniel Espinosa
+tt5462602,7,2018-07-04,The Big Sick,https://www.imdb.com/title/tt5462602/,movie,7.6,120,2017,"Comedy, Drama, Romance",109298,2017-01-20,Michael Showalter
+tt5688932,8,2018-11-09,Sorry to Bother You,https://www.imdb.com/title/tt5688932/,movie,6.9,112,2018,"Comedy, Fantasy, Sci-Fi",48831,2018-01-20,Boots Riley
+tt6266538,8,2018-12-26,Vice,https://www.imdb.com/title/tt6266538/,movie,7.2,132,2018,"Biography, Comedy, Drama",95378,2018-12-12,Adam McKay
+tt6857112,6,2019-07-04,Us,https://www.imdb.com/title/tt6857112/,movie,6.9,116,2019,"Horror, Mystery, Thriller",168740,2019-03-08,Jordan Peele
+tt6966692,9,2019-03-14,Green Book,https://www.imdb.com/title/tt6966692/,movie,8.2,130,2018,"Biography, Comedy, Drama, Music",268907,2018-09-11,Peter Farrelly
+tt7131622,10,2019-08-03,Once Upon a Time... in Hollywood,https://www.imdb.com/title/tt7131622/,movie,7.8,161,2019,"Comedy, Drama",288604,2019-05-21,Quentin Tarantino
+tt7286456,6,2019-10-04,Joker,https://www.imdb.com/title/tt7286456/,movie,8.7,122,2019,"Crime, Drama, Thriller",540230,2019-08-31,Todd Phillips
+tt7343762,6,2019-12-19,Good Boys,https://www.imdb.com/title/tt7343762/,movie,6.7,90,2019,"Adventure, Comedy",33498,2019-03-11,Gene Stupnitsky
+tt7349662,8,2018-09-03,BlacKkKlansman,https://www.imdb.com/title/tt7349662/,movie,7.5,135,2018,"Biography, Crime, Drama",171951,2018-05-14,Spike Lee
+tt7529770,4,2019-12-19,Miracle Workers,https://www.imdb.com/title/tt7529770/,tvSeries,6.9,30,2019,"Comedy, Drama, Fantasy, Romance",5042,2019-02-08,
+tt7775622,8,2019-07-09,Free Solo,https://www.imdb.com/title/tt7775622/,movie,8.2,100,2018,"Documentary, Adventure, Sport",41731,2018-08-31,"Jimmy Chin, Elizabeth Chai Vasarhelyi"
+tt0787475,7,2019-12-10,Hot Rod,https://www.imdb.com/title/tt0787475/,movie,6.7,88,2007,"Comedy, Sport",71843,2007-08-03,Akiva Schaffer
+tt0799934,8,2019-12-09,Be Kind Rewind,https://www.imdb.com/title/tt0799934/,movie,6.4,102,2008,Comedy,86612,2008-01-20,Michel Gondry
+tt8079248,9,2019-06-28,Yesterday,https://www.imdb.com/title/tt8079248/,movie,6.9,116,2019,"Comedy, Fantasy, Music, Musical, Romance",68860,2019-05-04,Danny Boyle
+tt0816692,8,2017-08-28,Interstellar,https://www.imdb.com/title/tt0816692/,movie,8.6,169,2014,"Adventure, Drama, Sci-Fi",1357174,2014-10-26,Christopher Nolan
+tt0816711,7,2017-08-10,World War Z,https://www.imdb.com/title/tt0816711/,movie,7.0,116,2013,"Action, Adventure, Horror, Sci-Fi",567211,2013-06-02,Marc Forster
+tt0083658,6,2019-12-19,Blade Runner,https://www.imdb.com/title/tt0083658/,movie,8.1,117,1982,"Action, Sci-Fi, Thriller",648355,1982-06-25,Ridley Scott
+tt0840361,9,2019-08-04,The Town,https://www.imdb.com/title/tt0840361/,movie,7.5,125,2010,"Crime, Drama, Thriller",330441,2010-09-08,Ben Affleck
+tt8722346,8,2019-12-13,Queen & Slim,https://www.imdb.com/title/tt8722346/,movie,7.0,132,2019,Drama,4223,2019-11-14,Melina Matsoukas
+tt0088763,9,2019-06-16,Back to the Future,https://www.imdb.com/title/tt0088763/,movie,8.5,116,1985,"Adventure, Comedy, Sci-Fi",970579,1985-07-03,Robert Zemeckis
+tt8946378,10,2019-11-28,Knives Out,https://www.imdb.com/title/tt8946378/,movie,8.1,130,2019,"Comedy, Crime, Drama, Mystery, Thriller",65107,2019-09-07,Rian Johnson
+tt0903747,10,2019-12-19,Breaking Bad,https://www.imdb.com/title/tt0903747/,tvSeries,9.5,49,2008,"Crime, Drama, Thriller",1290228,2008-01-20,
+tt0910970,9,2017-08-28,WALL·E,https://www.imdb.com/title/tt0910970/,movie,8.4,98,2008,"Animation, Adventure, Family, Sci-Fi",935881,2008-06-21,Andrew Stanton
+tt9243946,10,2019-10-14,El Camino: A Breaking Bad Movie,https://www.imdb.com/title/tt9243946/,movie,7.4,122,2019,"Action, Drama",139009,2019-10-11,Vince Gilligan
+tt9398640,7,2019-09-23,Between Two Ferns: The Movie,https://www.imdb.com/title/tt9398640/,movie,6.1,82,2019,Comedy,20068,2019-09-20,Scott Aukerman
+tt0942385,8,2017-08-24,Tropic Thunder,https://www.imdb.com/title/tt0942385/,movie,7.0,107,2008,"Action, Comedy, War",359369,2008-08-11,Ben Stiller
+tt0945513,7,2018-04-19,Source Code,https://www.imdb.com/title/tt0945513/,movie,7.5,93,2011,"Action, Drama, Mystery, Sci-Fi, Thriller",461844,2011-03-11,Duncan Jones
+tt0098904,10,2019-12-19,Seinfeld,https://www.imdb.com/title/tt0098904/,tvSeries,8.8,22,1989,Comedy,234297,1989-07-05,
+tt0990407,7,2019-12-19,The Green Hornet,https://www.imdb.com/title/tt0990407/,movie,5.8,119,2011,"Action, Comedy, Crime, Sci-Fi, Thriller",150472,2011-01-12,Michel Gondry
+tt0993846,8,2017-08-28,The Wolf of Wall Street,https://www.imdb.com/title/tt0993846/,movie,8.2,180,2013,"Biography, Crime, Drama",1076219,2013-12-17,Martin Scorsese
+tt0099685,8,2019-12-01,Goodfellas,https://www.imdb.com/title/tt0099685/,movie,8.7,146,1990,"Biography, Crime, Drama",942059,1990-09-09,Martin Scorsese
