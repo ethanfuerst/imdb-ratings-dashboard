@@ -2,7 +2,7 @@
 
 This project is for me to look a little bit more at my imdb ratings. Eventually, I'd like to create a Plotly/Dash dashboard that summarizes the data just like in ethanfuerst/[spotifyinsights](https://github.com/ethanfuerst/spotifyinsights)
 
-## Files in this repository:
+## Files in this repository
 
 __*ratings_analysis.py*__ - .py file that takes data from the ratings.csv and creates the visualizations
 
@@ -14,7 +14,7 @@ __*rating_vis.twb*__ - Tableau workbook where I can plan out how I want to visua
 
 __*.gitignore*__ - shows github what files to ignore when I commit my changes.
 
-## TODO:
+## TODO
 
 - [x] one hot encoding for genres
   - [ ] Figure out threshold of records for the ML model (for one-hot columns, what is the number of records that each column must contain when compared to the length of the df. Is it 10 percent?)
