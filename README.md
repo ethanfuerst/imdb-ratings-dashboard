@@ -17,8 +17,7 @@ __*.gitignore*__ - shows github what files to ignore when I commit my changes.
 ## TODO
 
 - [x] one hot encoding for genres
-  - [ ] Figure out threshold of records for the ML model (for one-hot columns, what is the number of records that each column must contain when compared to the length of the df. Is it 10 percent?)
 - [ ] Bin columns
+- [ ] visualize my ratings in different ways
 - [ ] look in to [APIs](http://www.omdbapi.com/)
-- [ ] learn more about Plotly and Dash and create visualizations
 - [ ] create ML model to predict my scores
