@@ -16,12 +16,10 @@ def media_kind(x):
 
 df['Release Date'] = pd.to_datetime(df['Release Date'])
 df['Date Rated'] = pd.to_datetime(df['Date Rated'])
-# Get number of days
-df['Days waited to see'] = df['Date Rated'] - df['Release Date']
-df['Days waited to see'] = (df['Days waited to see'].astype(int) / int(float('8.64e+13'))).astype(int)
 df['Diff in ratings'] = df['IMDb Rating'] - df['Your Rating']
 
-df['Title Type'] = df['Title Type'].apply(media_kind)
+df['Type'] = df['Title Type'].apply(media_kind)
+df.drop('Title Type', axis=1, inplace=True)
 df.to_csv('ratings_clean.csv', index=False)
 #%%
 # Before adding to df, need to remove one-hot columns with very few values
@@ -40,7 +38,7 @@ to_drop = []
 for i in one_hot.columns:
     if not thres_check(one_hot[i]):
         to_drop.append(i)
-one_hot.drop(to_drop, axis=1, inplace=True)
+# one_hot.drop(to_drop, axis=1, inplace=True)
 
 # Figure out a way to check other values count to drop
 # thres = .2
