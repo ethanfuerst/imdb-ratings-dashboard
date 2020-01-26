@@ -8,51 +8,44 @@ import matplotlib.pyplot as plt
 with open('ratings.csv', 'r', encoding='mac_roman', newline='') as csvfile:
     df = pd.read_csv(csvfile)
 
-def media_kind(x):
-    if x == 'movie':
-        return 'Movie'
-    elif x == 'tvSeries':
-        return 'TV'
-
 df['Release Date'] = pd.to_datetime(df['Release Date'])
 df['Date Rated'] = pd.to_datetime(df['Date Rated'])
 df['Diff in ratings'] = df['IMDb Rating'] - df['Your Rating']
+df = df[df['Title Type'] == 'movie'].copy()
 
-df['Type'] = df['Title Type'].apply(media_kind)
 df.drop('Title Type', axis=1, inplace=True)
 df.to_csv('ratings_clean.csv', index=False)
-#%%
+
+one_hot = df['Genres'].str.get_dummies(sep=', ')
+
 # Before adding to df, need to remove one-hot columns with very few values
 one_hot = df['Genres'].str.get_dummies(sep=', ')
 
-def get_frac(col):
-    if len(col.value_counts()) != 2:
-        return False
-    return col.value_counts()[1] / (col.value_counts()[0]+col.value_counts()[1])
+# for markdown
+print('## My movie taste by genre')
+print('| Genre | Count |\n|:-|:-|')
+for i in range(len(one_hot.sum().sort_values().values) - 1):
+    print('|', one_hot.sum().sort_values(ascending=False).index[i], '|', one_hot.sum().sort_values(ascending=False).iloc[i], '|')
+print('\n')
+genres = list(one_hot.sum().sort_values()[(one_hot.sum().sort_values() / len(df)) > .15].index)
+one_hot = one_hot[genres].astype(bool).copy()
+df = df.join(one_hot)
+df = df.drop(['Genres', 'Date Rated'], axis=1)
 
-# See if the one-hot columns represent at least 20 percent of the columns
-def thres_check(col, thres=.2):
-    return get_frac(col) > thres
 
-to_drop = []
-for i in one_hot.columns:
-    if not thres_check(one_hot[i]):
-        to_drop.append(i)
-# one_hot.drop(to_drop, axis=1, inplace=True)
+df_diff = df.sort_values(axis=0,by='Diff in ratings').reset_index(drop=True).copy()
+print('## Top 15 Movies I liked more than IMDb')
+print('| Movie Title | IMDb Rating | My Rating | Difference |\n|:-|-|-|-|')
+for i in range(15):
+    print('|','[' + df['Title'].iloc[i] + ' (' + df['Year'].iloc[i].astype(str) + ')](' + df['URL'].iloc[i] + ')', '|',df_diff['IMDb Rating'].iloc[i], '|', df_diff['Your Rating'].iloc[i], '|', round(df_diff['Diff in ratings'].iloc[i],2),'|')
+print('\n')
+print('## Top 15 Movies IMDb liked more than me')
+print('| Movie Title | IMDb Rating | My Rating | Difference |\n|:-|-|-|-|')
+for i in range(len(df_diff) - 1, len(df_diff) - 16, -1):
+    print('|','[' + df['Title'].iloc[i] + ' (' + df['Year'].iloc[i].astype(str) + ')](' + df['URL'].iloc[i] + ')', '|',df_diff['IMDb Rating'].iloc[i], '|', df_diff['Your Rating'].iloc[i], '|', round(df_diff['Diff in ratings'].iloc[i],2),'|')
 
-# Figure out a way to check other values count to drop
-# thres = .2
-# col = df['Title Type']
-# vals = list(col.value_counts().index)
-# counts = list(col.value_counts().values)
-# for i in range(len(counts)):
-#     print(vals[i], counts[i] / sum(counts))
-#     if (counts[i] / sum(counts)) < thres:
-#         print(col.values[i])
-
-df = pd.concat([df, one_hot], axis=1, sort=False)
-
-# Bin IMDb rating, year, Num Votes, Days waited to see, Diff in ratings
+df['Decade'] = pd.cut(df['Year'], bins=[1979, 1989, 1999, 2009, 2019, 2029], labels=["80's", "90's", "00's", "10's", "20's"], include_lowest=True)
+df['IMDb Rating binned'] = df['IMDb Rating'].astype(int)
 
 
 # %%
