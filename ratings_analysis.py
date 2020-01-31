@@ -37,12 +37,12 @@ df_diff = df.sort_values(axis=0,by='Diff in ratings').reset_index(drop=True).cop
 print('## Top 15 Movies I liked more than IMDb')
 print('| Movie Title | IMDb Rating | My Rating | Difference |\n|:-|-|-|-|')
 for i in range(15):
-    print('|','[' + df['Title'].iloc[i] + ' (' + df['Year'].iloc[i].astype(str) + ')](' + df['URL'].iloc[i] + ')', '|',df_diff['IMDb Rating'].iloc[i], '|', df_diff['Your Rating'].iloc[i], '|', round(df_diff['Diff in ratings'].iloc[i],2),'|')
+    print('|','[' + df_diff['Title'].iloc[i] + ' (' + df_diff['Year'].iloc[i].astype(str) + ')](' + df_diff['URL'].iloc[i] + ')', '|',df_diff['IMDb Rating'].iloc[i], '|', df_diff['Your Rating'].iloc[i], '|', round(df_diff['Diff in ratings'].iloc[i],2),'|')
 print('\n')
 print('## Top 15 Movies IMDb liked more than me')
 print('| Movie Title | IMDb Rating | My Rating | Difference |\n|:-|-|-|-|')
 for i in range(len(df_diff) - 1, len(df_diff) - 16, -1):
-    print('|','[' + df['Title'].iloc[i] + ' (' + df['Year'].iloc[i].astype(str) + ')](' + df['URL'].iloc[i] + ')', '|',df_diff['IMDb Rating'].iloc[i], '|', df_diff['Your Rating'].iloc[i], '|', round(df_diff['Diff in ratings'].iloc[i],2),'|')
+    print('|','[' + df_diff['Title'].iloc[i] + ' (' + df_diff['Year'].iloc[i].astype(str) + ')](' + df_diff['URL'].iloc[i] + ')', '|',df_diff['IMDb Rating'].iloc[i], '|', df_diff['Your Rating'].iloc[i], '|', round(df_diff['Diff in ratings'].iloc[i],2),'|')
 
 df['Decade'] = pd.cut(df['Year'], bins=[1979, 1989, 1999, 2009, 2019, 2029], labels=["80's", "90's", "00's", "10's", "20's"], include_lowest=True)
 df['IMDb Rating binned'] = df['IMDb Rating'].astype(int)
