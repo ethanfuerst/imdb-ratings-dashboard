@@ -44,9 +44,15 @@ print('| Movie Title | IMDb Rating | My Rating | Difference |\n|:-|-|-|-|')
 for i in range(len(df_diff) - 1, len(df_diff) - 16, -1):
     print('|','[' + df_diff['Title'].iloc[i] + ' (' + df_diff['Year'].iloc[i].astype(str) + ')](' + df_diff['URL'].iloc[i] + ')', '|',df_diff['IMDb Rating'].iloc[i], '|', df_diff['Your Rating'].iloc[i], '|', round(df_diff['Diff in ratings'].iloc[i],2),'|')
 
-df['Decade'] = pd.cut(df['Year'], bins=[1979, 1989, 1999, 2009, 2019, 2029], labels=["80's", "90's", "00's", "10's", "20's"], include_lowest=True)
+df['Decade'] = pd.cut(df['Year'], bins=list(range(1979, 2039, 10)), labels=["80's", "90's", "00's", "10's", "20's"], include_lowest=True)
 df['IMDb Rating binned'] = df['IMDb Rating'].astype(int)
 
+
+'''
+[str(i+1)[2:] + "'s" for i in range(1979, 2039, 10)]
+df.groupby('Decade').sum().reset_index()[list(one_hot.columns) + ['Decade']].plot(kind='bar')
+
+'''
 
 # %%
 plt.scatter(df['IMDb Rating'], df['Your Rating'])
@@ -56,3 +62,4 @@ plt.ylabel('My Rating')
 plt.show()
 
 # %%
+# top 5 genres by decade
