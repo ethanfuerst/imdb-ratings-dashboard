@@ -33,6 +33,8 @@ bafta['category'] = bafta['category'].replace(bafta_rep)
 bafta['nominee'] = bafta['nominee'].str.upper()
 bafta['workers'] = bafta['workers'].str.upper()
 bafta = bafta.reset_index(drop=True)
+bafta = bafta.drop(columns=['winner'])
+bafta = bafta.rename(columns={'nominee':'b_nominee','workers':'b_winner'})
 
 #%%
 gg = pd.read_csv('awarddata/gg.csv')
@@ -64,6 +66,9 @@ gg['category'] = gg['category'].replace(gg_rep)
 gg['nominee'] = gg['nominee'].str.upper()
 gg['film'] = gg['film'].str.upper()
 gg = gg.reset_index(drop=True)
+gg = gg.rename(columns={'year_award':'year'})
+gg = gg.drop(columns=['win'])
+gg = gg.rename(columns={'nominee':'g_nominee','film':'g_film'})
 
 #%%
 osc = pd.read_csv('awarddata/oscars.csv')
@@ -88,6 +93,8 @@ osc['category'] = osc['category'].replace(osc_rep)
 osc['name'] = osc['name'].str.upper()
 osc['film'] = osc['film'].str.upper()
 osc = osc.reset_index(drop=True)
+osc = osc.rename(columns={'year_ceremony':'year', 'name':'o_nominee', 'film':'o_film'})
+osc = osc.drop(columns=['win'])
 
 #%%
 sag = pd.read_csv('awarddata/sag.csv')
@@ -127,12 +134,26 @@ sag['show'] = sag['show'].str.upper()
 sag = sag.reset_index(drop=True)
 sag = sag.drop(20)
 sag = sag.reset_index(drop=True)
+sag = sag.rename(columns={'full_name':'name', 'name': 's_nominee', 'film': 's_film'})
+sag = sag.drop(columns=['won'])
 
 #%%
 dga = pd.read_csv('awarddata/dga.csv')
-dga['win'] = True
-dga['director'] = dga['director'].str.upper()
-dga['film'] = dga['film'].str.upper()
+dga['d_nominee'] = dga['d_nominee'].str.upper()
+dga['d_film'] = dga['d_film'].str.upper()
+dga['year'] = dga['year'] + 1
 
 
+# %%
+# Directors
+o_dir = osc[osc['category'] == 'directing']
+g_dir = gg[gg['category'] == 'directing']
+b_dir = bafta[bafta['category'] == 'directing']
+df = o_dir.merge(g_dir, on='year', how='outer').copy()
+df = df.merge(b_dir, on='year', how='outer').copy()
+df = df.merge(dga, on='year', how='outer').copy()
+direct = df[df['category_y'].notnull()]
+direct_all = direct[(direct['o_film'] == direct['g_film']) & ((direct['o_film'] == direct['b_nominee']) | (direct['o_film'] == direct['b_winner'])) & (direct['o_film'] == direct['d_film'])].copy()
+direct_one = direct[(direct['o_nominee'] == direct['g_film']) | ((direct['o_film'] == direct['b_nominee']) | (direct['o_film'] == direct['b_winner'])) | (direct['o_film'] == direct['d_film'])].copy()
+direct_none = direct[(direct['o_nominee'] != direct['g_film']) & ((direct['o_film'] != direct['b_nominee']) | (direct['o_film'] != direct['b_winner'])) & (direct['o_film'] != direct['d_film'])].copy()
 # %%
