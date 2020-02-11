@@ -4,6 +4,8 @@ This project is for me to look a little bit more at my imdb ratings. Eventually,
 
 ## Files in this repository
 
+__*award_shows.py*__ - .py file where I did some exploratory analysis for award show season
+
 __*ratings_analysis.py*__ - .py file that takes data from the ratings.csv and creates the visualizations
 
 __*ratings.csv*__ - .csv file with my ratings data.
