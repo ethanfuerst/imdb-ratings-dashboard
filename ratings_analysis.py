@@ -23,7 +23,7 @@ one_hot = df['Genres'].str.get_dummies(sep=', ')
 
 #%%
 # for markdown
-print('## My movie taste by genre')
+print('#### My movie taste by genre')
 print('')
 print('| Genre | Count |\n|:-|:-|')
 for i in range(len(one_hot.sum().sort_values().values) - 1):
@@ -36,7 +36,7 @@ df = df.drop(['Genres', 'Date Rated'], axis=1)
 
 
 df_diff = df.sort_values(axis=0,by='Diff in ratings').reset_index(drop=True).copy()
-print('## Top 10 Movies I liked more than IMDb')
+print('#### Top 10 Movies I liked more than IMDb')
 print('')
 print('| Movie Title | IMDb Rating | My Rating | Difference |\n|:-|-|-|-|')
 for i in range(10):
@@ -49,28 +49,21 @@ print('| Movie Title | IMDb Rating | My Rating | Difference |\n|:-|-|-|-|')
 for i in range(10):
     print('|','[' + no9_10['Title'].iloc[i] + ' (' + no9_10['Year'].iloc[i].astype(str) + ')](' + no9_10['URL'].iloc[i] + ')', '|',no9_10['IMDb Rating'].iloc[i], '|', no9_10['Your Rating'].iloc[i], '|', round(no9_10['Diff in ratings'].iloc[i],2),'|')
 print('\n')
-lt8 = df[df['Your Rating'] < 8].sort_values(axis=0,by='Diff in ratings').reset_index(drop=True).copy()
-print("## Top 10 Movies I liked more than IMDb (no 8's, 9's or 10's)")
+print('#### Top 10 Movies IMDb liked more than me')
 print('')
 print('| Movie Title | IMDb Rating | My Rating | Difference |\n|:-|-|-|-|')
-for i in range(10):
-    print('|','[' + lt8['Title'].iloc[i] + ' (' + lt8['Year'].iloc[i].astype(str) + ')](' + lt8['URL'].iloc[i] + ')', '|',lt8['IMDb Rating'].iloc[i], '|', lt8['Your Rating'].iloc[i], '|', round(lt8['Diff in ratings'].iloc[i],2),'|')
-print('\n')
-print('## Top 15 Movies IMDb liked more than me')
-print('')
-print('| Movie Title | IMDb Rating | My Rating | Difference |\n|:-|-|-|-|')
-for i in range(len(df_diff) - 1, len(df_diff) - 16, -1):
+for i in range(len(df_diff) - 1, len(df_diff) - 11, -1):
     print('|','[' + df_diff['Title'].iloc[i] + ' (' + df_diff['Year'].iloc[i].astype(str) + ')](' + df_diff['URL'].iloc[i] + ')', '|',df_diff['IMDb Rating'].iloc[i], '|', df_diff['Your Rating'].iloc[i], '|', round(df_diff['Diff in ratings'].iloc[i],2),'|')
 
 #%%
 fig, ax = plt.subplots(facecolor='#E4E4E4')
 fig.patch.set_facecolor('#E4E4E4')
 ax.patch.set_facecolor('#E4E4E4')
-m, bins, plot = ax.hist(df['IMDb Rating'], bins=[x/5 for x in range(0,50)])
+m, bins, plot = ax.hist(df['IMDb Rating'], bins=[x/10 for x in range(0,100)])
 plt.xlabel("IMDb Rating")
-xint = [x/2 for x in range(0,20)]
+# xint = [x/2 for x in range(0,20)]
 plt.title('Number of movies in my ratings by IMDb Rating')
-plt.xticks(xint)
+# plt.xticks(xint)
 plt.ylabel('# of movies')
 fig.set_size_inches(12,7, forward=True)
 for i in range(0, len(plot)-4, 4):
@@ -85,10 +78,19 @@ df['IMDb Rating binned'] = df['IMDb Rating'].astype(int)
 # Focus on thriller, action, comedy, crime, sci fi
 df.drop(['Drama','Biography','Mystery','Adventure'],axis=1,inplace=True)
 
+#%%
 # number of records for each decade
+fig, ax = plt.subplots(facecolor='#E4E4E4')
+fig.patch.set_facecolor('#E4E4E4')
+ax.patch.set_facecolor('#E4E4E4')
 plt.bar(df['Decade'].value_counts(sort=False).index,df['Decade'].value_counts(sort=False).values)
+plt.xlabel("Decade")
+plt.ylabel('# of movies')
+plt.title('Number of movies in my ratings by Decade')
+fig.set_size_inches(12,7, forward=True)
 
-
+#%%
+plt.bar(df['Year'].value_counts(sort=False).index,df['Year'].value_counts(sort=False).values)
 
 # box and whisker plot for my rating - one with genre and one with decade on x axis
 
