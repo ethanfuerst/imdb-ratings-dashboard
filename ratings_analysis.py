@@ -4,6 +4,16 @@ import numpy as np
 import datetime
 import matplotlib.pyplot as plt
 
+def autolabel(rects,fsize=10):
+    """
+    Attach a text label above each bar displaying its height
+    """
+    for rect in rects:
+        height = rect.get_height()
+        ax.text(rect.get_x() + rect.get_width()/2., 1.05*height,
+                '%d' % int(height),
+                ha='center', va='bottom', fontsize=fsize)
+
 #%%
 with open('ratings.csv', 'r', encoding='mac_roman', newline='') as csvfile:
     df = pd.read_csv(csvfile)
@@ -56,6 +66,7 @@ for i in range(len(df_diff) - 1, len(df_diff) - 11, -1):
     print('|','[' + df_diff['Title'].iloc[i] + ' (' + df_diff['Year'].iloc[i].astype(str) + ')](' + df_diff['URL'].iloc[i] + ')', '|',df_diff['IMDb Rating'].iloc[i], '|', df_diff['Your Rating'].iloc[i], '|', round(df_diff['Diff in ratings'].iloc[i],2),'|')
 
 #%%
+'''
 fig, ax = plt.subplots(facecolor='#E4E4E4')
 fig.patch.set_facecolor('#E4E4E4')
 ax.patch.set_facecolor('#E4E4E4')
@@ -71,6 +82,7 @@ for i in range(0, len(plot)-4, 4):
     plot[i+1].set_facecolor('#007A33')
     plot[i+2].set_facecolor('#CB4F0A')
     plot[i+3].set_facecolor('#5A2D81')
+'''
 
 #%%
 df['Decade'] = pd.cut(df['Year'], bins=list(range(1979, 2039, 10)), labels=[str(i+1)[2:] + "'s" for i in range(1979, 2029, 10)], include_lowest=True)
@@ -83,15 +95,32 @@ df.drop(['Drama','Biography','Mystery','Adventure'],axis=1,inplace=True)
 fig, ax = plt.subplots(facecolor='#E4E4E4')
 fig.patch.set_facecolor('#E4E4E4')
 ax.patch.set_facecolor('#E4E4E4')
-plt.bar(df['Decade'].value_counts(sort=False).index,df['Decade'].value_counts(sort=False).values)
+plot = plt.bar(df['Decade'].value_counts(sort=False).index,df['Decade'].value_counts(sort=False).values)
 plt.xlabel("Decade")
 plt.ylabel('# of movies')
 plt.title('Number of movies in my ratings by Decade')
-fig.set_size_inches(12,7, forward=True)
+autolabel(plot, 8)
+# fig.set_size_inches(12,7, forward=True)
 
 #%%
-plt.bar(df['Year'].value_counts(sort=False).index,df['Year'].value_counts(sort=False).values)
+fig, ax = plt.subplots(facecolor='#E4E4E4')
+fig.patch.set_facecolor('#E4E4E4')
+ax.patch.set_facecolor('#E4E4E4')
+plot = ax.bar(df['Year'].value_counts(sort=False).index,df['Year'].value_counts(sort=False).values)
+plt.xlabel("Year")
+plt.ylabel('# of movies rated')
+for i in range(0, len(plot), 2):
+    plot[i].set_facecolor('#DFAEE6')
+    try:
+        plot[i+1].set_facecolor('#5A2D81')
+    except:
+        continue
 
+plt.title('Number of movies in my ratings by Year Released')
+fig.set_size_inches(12,8, forward=True)
+
+
+#%%
 # box and whisker plot for my rating - one with genre and one with decade on x axis
 
 # %%
@@ -99,12 +128,33 @@ plt.bar(df['Year'].value_counts(sort=False).index,df['Year'].value_counts(sort=F
 
 # %%
 # Is there correlation?
-plt.scatter(df['IMDb Rating'], df['Your Rating'])
-plt.title('IMDb Rating vs. My Rating')
-plt.xlabel('IMDb Rating')
-plt.ylabel('My Rating')
-plt.show()
+import plotly.express as px
+fig = px.scatter(x=df['Your Rating'], y=df['IMDb Rating'])
+fig.show()
 
+#%%
+import plotly.graph_objects as go
+fig = go.Figure(data=go.Scatter(x=df['Your Rating'],
+                                y=df['IMDb Rating'],
+                                mode='markers',
+                                marker_color=df['Year'],
+                                marker=dict(
+                                    size=8,
+                                    color=np.random.randn(500), #set color equal to a variable
+                                    colorscale='Viridis', # one of plotly colorscales
+                                    showscale=True),
+                                text=df['Title'].astype(str) + ' (' +df['Year'].astype(str) + ' film)')) # fig, ax = plt.subplots(facecolor='#E4E4E4')
+fig.show()
+# fig.patch.set_facecolor('#E4E4E4')
+# ax.patch.set_facecolor('#E4E4E4')
+# plt.scatter(df['IMDb Rating'], df['Your Rating'], c='#5A2D81')
+# plt.title('IMDb Rating vs. My Rating')
+# plt.xlabel('IMDb Rating')
+# plt.ylabel('My Rating')
+# fig.set_size_inches(12,8, forward=True)
+# plt.show()
+
+#%%
 '''
 Post that
 '''
@@ -114,3 +164,6 @@ Post that
 df.groupby('Decade').sum()[['Sci-Fi', 'Crime', 'Comedy', 'Action', 'Thriller']].plot(kind='bar')
 # eh idk
 
+
+
+# %%
