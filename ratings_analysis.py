@@ -3,106 +3,117 @@ import pandas as pd
 import numpy as np
 import datetime
 import matplotlib.pyplot as plt
+import plotly
+import plotly.graph_objects as go
+from plotly.colors import n_colors
+import plotly.express as px
+import plotly.figure_factory as ff
 
-def autolabel(rects,fsize=10):
-    """
-    Attach a text label above each bar displaying its height
-    """
-    for rect in rects:
-        height = rect.get_height()
-        ax.text(rect.get_x() + rect.get_width()/2., 1.05*height,
-                '%d' % int(height),
-                ha='center', va='bottom', fontsize=fsize)
 
 #%%
 with open('ratings.csv', 'r', encoding='mac_roman', newline='') as csvfile:
     df = pd.read_csv(csvfile)
 
+df = df[df['Title Type'] == 'movie'].copy()
 df['Release Date'] = pd.to_datetime(df['Release Date'])
 df['Date Rated'] = pd.to_datetime(df['Date Rated'])
-df['Diff in ratings'] = df['IMDb Rating'] - df['Your Rating']
-df = df[df['Title Type'] == 'movie'].copy()
+df['Diff in ratings'] = round(df['IMDb Rating'] - df['Your Rating'],1)
+df['Link'] = '<a href=”' + df['URL'].astype(str) +'”>'+ df['Title'].astype(str) 
+
 
 df.drop('Title Type', axis=1, inplace=True)
 df.to_csv('ratings_clean.csv', index=False)
 
-one_hot = df['Genres'].str.get_dummies(sep=', ')
-
-# Before adding to df, need to remove one-hot columns with very few values
+# Figure out genre stuff
 one_hot = df['Genres'].str.get_dummies(sep=', ')
 
 #%%
-# for markdown
-print('#### My movie taste by genre')
-print('')
-print('| Genre | Count |\n|:-|:-|')
-for i in range(len(one_hot.sum().sort_values().values) - 1):
-    print('|', one_hot.sum().sort_values(ascending=False).index[i], '|', one_hot.sum().sort_values(ascending=False).iloc[i], '|')
-print('\n')
-genres = list(one_hot.sum().sort_values()[(one_hot.sum().sort_values() / len(df)) > .15].index)
-one_hot = one_hot[genres].astype(bool).copy()
-df = df.join(one_hot)
-df = df.drop(['Genres', 'Date Rated'], axis=1)
+# Table1
+# Make links work
+# Make Table narrower and taller
+my_ratings = pd.DataFrame()
+my_ratings['My Rating'] = [i for i in range(10,0,-1)]
+my_ratings['Criteria'] = ['Perfect','Great','Really good','Good','Okay','Average','Not good','Really not good','Bad','Is this even a movie?']
+my_ratings['Link'] = ['<a href=”https://www.imdb.com/title/tt0468569/”>The Dark Knight</a>',
+        '<a href=”https://www.imdb.com/title/tt0361748/”>Inglourious Basterds</a>',
+        '<a href=”https://www.imdb.com/title/tt0993846/”>The Wolf of Wall Street</a>',
+        '<a href=”https://www.imdb.com/title/tt1677720/”>Ready Player One</a>',
+        '<a href=”https://www.imdb.com/title/tt1219289/”>Limitless</a>',
+        '<a href=”https://www.imdb.com/title/tt2461150/”>Masterminds</a>',
+        '',
+        '<a href=”https://www.imdb.com/title/tt0360556/”>Fahrenheit 451</a>',
+        '',
+        '<a href=”https://www.imdb.com/title/tt0368226/”>The Room</a>'
+]
+my_ratings['Title'] = ['The Dark Knight',
+'Inglourious Basterds',
+'The Wolf of Wall Street',
+'Ready Player One',
+'Limitless',
+'Masterminds',
+'',
+'Fahrenheit 451',
+'',
+'The Room'
+]
 
 
+fig = go.Figure(data=[go.Table(
+    header=dict(values=['My Rating', 'Criteria', 'Example'],
+                align='left'),
+    cells=dict(values=[my_ratings['My Rating'], my_ratings['Criteria'], my_ratings['Title']],
+               align='left'))])
+
+fig.show()
+
+#%%
+# my rating vs. imdb rating
+# Scatter1
+fig = go.Figure(data=go.Scatter(x=df['Your Rating'],
+                                y=df['IMDb Rating'],
+                                mode='markers',
+                                marker_color=df['Year'],
+                                marker=dict(
+                                    size=8,
+                                    colorscale='Viridis', # one of plotly colorscales
+                                    showscale=True),
+                                text=df['Title'].astype(str) + ' (' +df['Year'].astype(str) + ' film)')) # fig, ax = plt.subplots(facecolor='#E4E4E4')
+fig.show()
+
+
+#%%
 df_diff = df.sort_values(axis=0,by='Diff in ratings').reset_index(drop=True).copy()
-print('#### Top 10 Movies I liked more than IMDb')
-print('')
-print('| Movie Title | IMDb Rating | My Rating | Difference |\n|:-|-|-|-|')
-for i in range(10):
-    print('|','[' + df_diff['Title'].iloc[i] + ' (' + df_diff['Year'].iloc[i].astype(str) + ')](' + df_diff['URL'].iloc[i] + ')', '|',df_diff['IMDb Rating'].iloc[i], '|', df_diff['Your Rating'].iloc[i], '|', round(df_diff['Diff in ratings'].iloc[i],2),'|')
-print('\n')
-no9_10 = df[df['Your Rating'] < 9].sort_values(axis=0,by='Diff in ratings').reset_index(drop=True).copy()
-print("## Top 10 Movies I liked more than IMDb (no 9's or 10's)")
-print('')
-print('| Movie Title | IMDb Rating | My Rating | Difference |\n|:-|-|-|-|')
-for i in range(10):
-    print('|','[' + no9_10['Title'].iloc[i] + ' (' + no9_10['Year'].iloc[i].astype(str) + ')](' + no9_10['URL'].iloc[i] + ')', '|',no9_10['IMDb Rating'].iloc[i], '|', no9_10['Your Rating'].iloc[i], '|', round(no9_10['Diff in ratings'].iloc[i],2),'|')
-print('\n')
-print('#### Top 10 Movies IMDb liked more than me')
-print('')
-print('| Movie Title | IMDb Rating | My Rating | Difference |\n|:-|-|-|-|')
-for i in range(len(df_diff) - 1, len(df_diff) - 11, -1):
-    print('|','[' + df_diff['Title'].iloc[i] + ' (' + df_diff['Year'].iloc[i].astype(str) + ')](' + df_diff['URL'].iloc[i] + ')', '|',df_diff['IMDb Rating'].iloc[i], '|', df_diff['Your Rating'].iloc[i], '|', round(df_diff['Diff in ratings'].iloc[i],2),'|')
+
+# Change to 
+# colors = n_colors('#DFAEE6', '#5A2D81', len(df_diff), colortype='hex')
+
+# Table2
+# Make taller
+# Color just diff in ratings column
+# Sort on other columns
+fig = go.Figure(data=[go.Table(
+  header=dict(
+    values=['<b>Title</b>', '<b>IMDb Rating</b>', '<b>My Rating</b>', '<b>Difference in Ratings</b>'],
+    align='center',font=dict(color='black', size=12)
+  ),
+  cells=dict(
+    values=[df_diff['Link'], df_diff['IMDb Rating'], df_diff['Your Rating'], round(df_diff['Diff in ratings'],1)],
+    align='left', font=dict(color='black', size=11)
+    # ,
+    # fill_color=()
+    ))
+])
+plotly.offline.plot(fig, filename='basic-pie-chart')
+
+fig.show()
 
 #%%
-'''
-fig, ax = plt.subplots(facecolor='#E4E4E4')
-fig.patch.set_facecolor('#E4E4E4')
-ax.patch.set_facecolor('#E4E4E4')
-m, bins, plot = ax.hist(df['IMDb Rating'], bins=[x/10 for x in range(0,100)])
-plt.xlabel("IMDb Rating")
-# xint = [x/2 for x in range(0,20)]
-plt.title('Number of movies in my ratings by IMDb Rating')
-# plt.xticks(xint)
-plt.ylabel('# of movies')
-fig.set_size_inches(12,7, forward=True)
-for i in range(0, len(plot)-4, 4):
-    plot[i].set_facecolor('#1A4D94')
-    plot[i+1].set_facecolor('#007A33')
-    plot[i+2].set_facecolor('#CB4F0A')
-    plot[i+3].set_facecolor('#5A2D81')
-'''
+# year vs diff in ratings
+# Scatter2
 
 #%%
-df['Decade'] = pd.cut(df['Year'], bins=list(range(1979, 2039, 10)), labels=[str(i+1)[2:] + "'s" for i in range(1979, 2029, 10)], include_lowest=True)
-df['IMDb Rating binned'] = df['IMDb Rating'].astype(int)
-# Focus on thriller, action, comedy, crime, sci fi
-df.drop(['Drama','Biography','Mystery','Adventure'],axis=1,inplace=True)
-
-#%%
-# number of records for each decade
-fig, ax = plt.subplots(facecolor='#E4E4E4')
-fig.patch.set_facecolor('#E4E4E4')
-ax.patch.set_facecolor('#E4E4E4')
-plot = plt.bar(df['Decade'].value_counts(sort=False).index,df['Decade'].value_counts(sort=False).values)
-plt.xlabel("Decade")
-plt.ylabel('# of movies')
-plt.title('Number of movies in my ratings by Decade')
-autolabel(plot, 8)
-# fig.set_size_inches(12,7, forward=True)
-
-#%%
+# bar1
+# num movies per year
 fig, ax = plt.subplots(facecolor='#E4E4E4')
 fig.patch.set_facecolor('#E4E4E4')
 ax.patch.set_facecolor('#E4E4E4')
@@ -119,45 +130,29 @@ for i in range(0, len(plot), 2):
 plt.title('Number of movies in my ratings by Year Released')
 fig.set_size_inches(12,8, forward=True)
 
-
 #%%
-# box and whisker plot for my rating - one with genre and one with decade on x axis
-
-# %%
+# Table3
 # top 5 genres by decade
 
-# %%
-# Is there correlation?
-import plotly.express as px
-fig = px.scatter(x=df['Your Rating'], y=df['IMDb Rating'])
-fig.show()
+genres = list(one_hot.sum().sort_values()[(one_hot.sum().sort_values() / len(df)) > .15].index)
+one_hot = one_hot[genres].astype(bool).copy()
+df = df.join(one_hot)
+df = df.drop(['Genres', 'Date Rated'], axis=1)
 
 #%%
-import plotly.graph_objects as go
-fig = go.Figure(data=go.Scatter(x=df['Your Rating'],
-                                y=df['IMDb Rating'],
-                                mode='markers',
-                                marker_color=df['Year'],
-                                marker=dict(
-                                    size=8,
-                                    color=np.random.randn(500), #set color equal to a variable
-                                    colorscale='Viridis', # one of plotly colorscales
-                                    showscale=True),
-                                text=df['Title'].astype(str) + ' (' +df['Year'].astype(str) + ' film)')) # fig, ax = plt.subplots(facecolor='#E4E4E4')
-fig.show()
-# fig.patch.set_facecolor('#E4E4E4')
-# ax.patch.set_facecolor('#E4E4E4')
-# plt.scatter(df['IMDb Rating'], df['Your Rating'], c='#5A2D81')
-# plt.title('IMDb Rating vs. My Rating')
-# plt.xlabel('IMDb Rating')
-# plt.ylabel('My Rating')
-# fig.set_size_inches(12,8, forward=True)
-# plt.show()
+df['Decade'] = pd.cut(df['Year'], bins=list(range(1979, 2039, 10)), labels=[str(i+1)[2:] + "'s" for i in range(1979, 2029, 10)], include_lowest=True)
+df['IMDb Rating binned'] = df['IMDb Rating'].astype(int)
+# Focus on thriller, action, comedy, crime, sci fi
+df.drop(['Drama','Biography','Mystery','Adventure'],axis=1,inplace=True)
+
 
 #%%
-'''
-Post that
-'''
+# plotly box/whisker1
+# x is decade y is my rating
+
+#%%
+# plotly box/whisker2
+# x is genre y is my rating
 
 #%%
 # Change to plt bar
