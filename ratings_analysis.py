@@ -23,8 +23,14 @@ df['Link'] = '<a href=”' + df['URL'].astype(str) +'”>'+ df['Title'].astype(s
 df.drop('Title Type', axis=1, inplace=True)
 df.to_csv('ratings_clean.csv', index=False)
 
-# Figure out genre stuff
+# Genres
 one_hot = df['Genres'].str.get_dummies(sep=', ')
+genres = list(one_hot.sum().sort_values(ascending=False).index)[:8]
+one_hot = one_hot[genres].astype(bool).copy()
+df = df.join(one_hot)
+df = df.drop(['Genres', 'Date Rated'], axis=1)
+
+df['Decade'] = pd.cut(df['Year'], bins=list(range(1979, 2039, 10)), labels=[str(i+1)[2:] + "'s" for i in range(1979, 2029, 10)], include_lowest=True)
 
 color_list = ['#1A4D94', '#007A33', '#CB4F0A', '#5A2D81'] * int(len(df)/3)
 full_color_list = ['#1A4D94', '#5C7DAA', '#007A33', '#33955C', '#CB4F0A', '#F58426','#5A2D81', '#DFAEE6'] * int(len(df)/7)
@@ -199,22 +205,11 @@ fig.show()
 # Table3
 # top 5 genres by decade
 
-genres = list(one_hot.sum().sort_values()[(one_hot.sum().sort_values() / len(df)) > .15].index)
-one_hot = one_hot[genres].astype(bool).copy()
-df = df.join(one_hot)
-df = df.drop(['Genres', 'Date Rated'], axis=1)
-
-#%%
-df['IMDb Rating binned'] = df['IMDb Rating'].astype(int)
-# Focus on thriller, action, comedy, crime, sci fi
-df.drop(['Drama','Biography','Mystery','Adventure'],axis=1,inplace=True)
-
 
 #%%
 # plotly box/whisker1
 # x is decade y is my rating
 # See if I can change colors of decades
-df['Decade'] = pd.cut(df['Year'], bins=list(range(1979, 2039, 10)), labels=[str(i+1)[2:] + "'s" for i in range(1979, 2029, 10)], include_lowest=True)
 
 df.sort_values('Year', inplace=True)
 fig = go.Figure(data=go.Box(x=df['Decade'],
@@ -246,6 +241,72 @@ fig.show()
 #%%
 # plotly box/whisker2
 # x is genre y is my rating
+
+fig = go.Figure()
+for i in range(len(genres)):
+    fig.add_trace(go.Box(
+        y=df[df[genres[i]] == True]['Your Rating'],
+        name=genres[i]
+    ))
+fig.update_layout(
+    plot_bgcolor='#e4e4e4',
+    title=dict(
+        text='My ratings by genre',
+        font=dict(
+            size=24,
+            color='#000000'
+        ),
+        x=.5
+    ),
+    xaxis=dict(
+        title='Genre'
+    ),
+    yaxis=dict(
+        title='My Rating'
+    )
+)
+fig.show()
+
+
+#%%
+# This is confusing. Brainstorm this
+# df[(df['Decade'] == "90's") & (df['Sci-Fi'] == True)]
+# df[(df['Decade'] == "90's") & (df['Sci-Fi'] == False)]
+df_2 = df.groupby(['Decade','Sci-Fi'], as_index=False).mean()[['Decade','Sci-Fi','IMDb Rating', 'Your Rating']]
+df_2['Sci-Fi'] = np.where(df_2['Sci-Fi'], 'Sci-Fi', 'not Sci-Fi')
+df_2['combo'] = df_2['Decade'].astype(str) + ' ' + df_2['Sci-Fi'].astype(str)
+df_2.sort_values(['Decade','Sci-Fi'], inplace=True)
+fig = go.Figure()
+fig.add_trace(go.Scatter(
+    x=df_2['combo'], 
+    y=df_2['IMDb Rating'],
+    name='IMDb Rating',
+    mode='markers'
+))
+fig.add_trace(go.Scatter(
+    x=df_2['combo'], 
+    y=df_2['Your Rating'],
+    name='My Rating',
+    mode='markers'
+))
+fig.update_layout(
+    plot_bgcolor='#e4e4e4',
+    title=dict(
+        text='My ratings by decade and genre',
+        font=dict(
+            size=24,
+            color='#000000'
+        ),
+        x=.5
+    ),
+    xaxis=dict(
+        title='Decade and Genre'
+    ),
+    yaxis=dict(
+        title='Average Rating'
+    )
+)
+fig.show()
 
 #%%
 # Change to plt bar
