@@ -35,6 +35,8 @@ df['Decade'] = pd.cut(df['Year'], bins=list(range(1979, 2039, 10)), labels=[str(
 color_list = ['#1A4D94', '#007A33', '#CB4F0A', '#5A2D81'] * int(len(df)/3)
 full_color_list = ['#1A4D94', '#5C7DAA', '#007A33', '#33955C', '#CB4F0A', '#F58426','#5A2D81', '#DFAEE6'] * int(len(df)/7)
 
+alt_greys = ['#cccccc', '#e4e4e4'] * len(df)
+
 #%%
 # Table1
 # See if links work when exporting as picture and .html file
@@ -71,7 +73,7 @@ fig = go.Figure(data=[go.Table(
                 font_color='white',
                 align='left'),
     cells=dict(values=[my_ratings['My Rating'], my_ratings['Criteria'], my_ratings['Title']],
-                fill_color='#E4E4E4',
+                fill_color=[alt_greys[:len(df)]]*3,
                 font_color='black',
                 align='left'))])
 
@@ -80,20 +82,27 @@ fig.show()
 #%%
 # Scatter1
 # my rating vs. imdb rating
-# Figure out color scale
 fig = go.Figure(data=go.Scatter(x=df['IMDb Rating'],
                                 y=df['Your Rating'],
                                 mode='markers',
                                 marker=dict(
                                     size=8,
-                                    color='#007A33'
+                                    color=df['Year'],
+                                    colorscale=[[0, 'rgb(255,255,255)'], [1, 'rgb(0,122,51)']],
+                                    showscale=True,
+                                    colorbar=dict(
+                                        title="Year released"
+                                    ),
+                                    cmin=df['Year'].min(),
+                                    cmax=df['Year'].max(),
+                                    cmid=df['Year'].mean()
                                 ),
                                 hovertemplate=df['Title'].astype(str)+' (' +df['Year'].astype(str) + ' film)'+
                                 '<br><b>IMDb Rating</b>: %{x}<br>'+
                                 '<b>My Rating</b>: %{y}'+'<extra></extra>'
                                 ))
 fig.update_layout(
-    plot_bgcolor='#e4e4e4',
+    plot_bgcolor='#cccccc',
     title=dict(
         text='IMDb Rating vs. My Rating',
         font=dict(
@@ -115,22 +124,21 @@ fig.show()
 #%%
 # Table2
 # Sort on columns?
-# Links?
-# Muted color scale
+# Do links work in html file
+# Add legend
 df_diff = df.sort_values(axis=0,by='Diff in ratings').reset_index(drop=True).copy()
 
-colors = n_colors('rgb(24,200,10)','rgb(200,10,24)', len(df_diff), colortype='rgb')
+colors = n_colors('rgb(0,122,51)','rgb(207, 198, 0)', int(len(df_diff)/2), colortype='rgb') + n_colors('rgb(207, 198, 0)', 'rgb(0, 145, 222)', int(len(df_diff)/2), colortype='rgb')
 fig = go.Figure(data=[go.Table(
   header=dict(
     values=['<b>Title</b>', '<b>IMDb Rating</b>', '<b>My Rating</b>', '<b>Difference in Ratings</b>'],
-    align='center',font=dict(color='black', size=12)
+    align='center',font=dict(color='white', size=12),
+    fill_color='#5C7DAA'
   ),
   cells=dict(
     values=[df_diff['Link'], df_diff['IMDb Rating'], df_diff['Your Rating'], round(df_diff['Diff in ratings'],1)],
     align='left', font=dict(color=['black', 'black', 'black', 'white'], size=11),
-    fill_color=['rgb(228,228,228)','rgb(228,228,228)','rgb(228,228,228)',colors]
-    # ,
-    # fill_color=()
+    fill_color=[alt_greys[:len(df)],alt_greys[:len(df)],alt_greys[:len(df)],colors]
     ))
 ])
 # plotly.offline.plot(fig, filename='table2')
@@ -148,7 +156,15 @@ fig = go.Figure(data=go.Scatter(x=df['Year'],
                     # marker_color=df['Runtime (mins)'],
                     marker=dict(
                         size=8,
-                        color='#1A4D94'
+                        color=df['Your Rating'],
+                        colorscale=[[0, 'rgb(255,255,255)'], [1, 'rgb(26,77,148)']],
+                        showscale=True,
+                        colorbar=dict(
+                            title="My rating"
+                        ),
+                        cmin=df['Your Rating'].min(),
+                        cmax=df['Your Rating'].max(),
+                        cmid=df['Your Rating'].mean()
                     ),
                     hovertemplate=df['Title'].astype(str)+' (' +df['Year'].astype(str) + ' film)'+
                     '<br><b>IMDb Rating</b>: '+df['IMDb Rating'].astype(str)+'<br>'+
@@ -156,7 +172,7 @@ fig = go.Figure(data=go.Scatter(x=df['Year'],
                     '<b>Difference</b>: %{y}'+'<extra></extra>'
                 ))
 fig.update_layout(
-    plot_bgcolor='#e4e4e4',
+    plot_bgcolor='#cccccc',
     title=dict(
         text='Year vs. Difference in Ratings',
         font=dict(
@@ -177,13 +193,14 @@ fig.show()
 #%%
 # bar1
 # num movies per year
+# Add hovertext
 bar = df.groupby('Year').count()['Title'].copy()
 fig = go.Figure(data=go.Bar(x=bar.index,
                     y=bar.values,
                     marker_color=full_color_list[0:len(bar)]
                 ))
 fig.update_layout(
-    plot_bgcolor='#e4e4e4',
+    plot_bgcolor='#cccccc',
     title=dict(
         text='Number of movies in my ratings by year released',
         font=dict(
@@ -220,7 +237,7 @@ fig = go.Figure(data=go.Box(x=df['Decade'],
                     line=dict(color='#CB4F0A')
                 ))
 fig.update_layout(
-    plot_bgcolor='#e4e4e4',
+    plot_bgcolor='#cccccc',
     title=dict(
         text='My ratings by decade',
         font=dict(
@@ -249,7 +266,7 @@ for i in range(len(genres)):
         name=genres[i]
     ))
 fig.update_layout(
-    plot_bgcolor='#e4e4e4',
+    plot_bgcolor='#cccccc',
     title=dict(
         text='My ratings by genre',
         font=dict(
@@ -290,7 +307,7 @@ fig.add_trace(go.Scatter(
     mode='markers'
 ))
 fig.update_layout(
-    plot_bgcolor='#e4e4e4',
+    plot_bgcolor='#cccccc',
     title=dict(
         text='My ratings by decade and genre',
         font=dict(
