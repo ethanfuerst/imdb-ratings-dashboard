@@ -43,16 +43,16 @@ alt_greys = ['#cccccc', '#e4e4e4'] * len(df)
 my_ratings = pd.DataFrame()
 my_ratings['My Rating'] = [i for i in range(10,0,-1)]
 my_ratings['Criteria'] = ['Perfect','Great','Really good','Good','Okay','Average','Not good','Really not good','Bad','Is this even a movie?']
-my_ratings['Link'] = ['<a href=”https://www.imdb.com/title/tt0468569/”>The Dark Knight</a>',
-        '<a href=”https://www.imdb.com/title/tt0361748/”>Inglourious Basterds</a>',
-        '<a href=”https://www.imdb.com/title/tt0993846/”>The Wolf of Wall Street</a>',
-        '<a href=”https://www.imdb.com/title/tt1677720/”>Ready Player One</a>',
-        '<a href=”https://www.imdb.com/title/tt1219289/”>Limitless</a>',
-        '<a href=”https://www.imdb.com/title/tt2461150/”>Masterminds</a>',
-        '',
-        '<a href=”https://www.imdb.com/title/tt0360556/”>Fahrenheit 451</a>',
-        '',
-        '<a href=”https://www.imdb.com/title/tt0368226/”>The Room</a>'
+my_ratings['Link'] = ['[The Dark Knight](https://www.imdb.com/title/tt0468569/)',
+                        '[Inglourious Basterds](https://www.imdb.com/title/tt0361748/)',
+                        '[The Wolf of Wall Street](https://www.imdb.com/title/tt0993846/)',
+                        '[Ready Player One](https://www.imdb.com/title/tt1677720/)',
+                        '[Limitless](https://www.imdb.com/title/tt1219289/)',
+                        '[Masterminds](https://www.imdb.com/title/tt2461150/)',
+                        '',
+                        '[Fahrenheit 451](https://www.imdb.com/title/tt0360556/)',
+                        '',
+                        '[The Room](https://www.imdb.com/title/tt0368226/)'
 ]
 my_ratings['Title'] = ['The Dark Knight',
 'Inglourious Basterds',
@@ -77,7 +77,19 @@ fig = go.Figure(data=[go.Table(
                 font_color='black',
                 align='left'))])
 
+fig.update_layout(
+    title=dict(
+        text='How I breakdown my ratings',
+        font=dict(
+            size=24,
+            color='#000000'
+        ),
+        x=.5
+    ))
+
 fig.show()
+# plotly.offline.plot(fig, filename='3-13-20-table1.html')
+# fig.write_image("3-13-20-table1.png")
 
 #%%
 # Scatter1
@@ -118,15 +130,15 @@ fig.update_layout(
         title='My Rating'
     )
 )
-fig.show()
 
+fig.show()
+# plotly.offline.plot(fig, filename='3-13-20-scatter1.html')
+# fig.write_image("3-13-20-scatter1.png")
 
 #%%
 # Table2
-# Sort on columns?
-# Do links work in html file
-# Add legend
 df_diff = df.sort_values(axis=0,by='Diff in ratings').reset_index(drop=True).copy()
+df_diff['T_Title'] = df_diff['Title'].astype(str) + ' (' + df_diff['Year'].astype(str) + ' film)'
 
 colors = n_colors('rgb(0,122,51)','rgb(207, 198, 0)', int(len(df_diff)/2), colortype='rgb') + n_colors('rgb(207, 198, 0)', 'rgb(0, 145, 222)', int(len(df_diff)/2), colortype='rgb')
 fig = go.Figure(data=[go.Table(
@@ -136,20 +148,29 @@ fig = go.Figure(data=[go.Table(
     fill_color='#5C7DAA'
   ),
   cells=dict(
-    values=[df_diff['Link'], df_diff['IMDb Rating'], df_diff['Your Rating'], round(df_diff['Diff in ratings'],1)],
+    values=[df_diff['T_Title'], df_diff['IMDb Rating'], df_diff['Your Rating'], round(df_diff['Diff in ratings'],1)],
     align='left', font=dict(color=['black', 'black', 'black', 'white'], size=11),
     fill_color=[alt_greys[:len(df)],alt_greys[:len(df)],alt_greys[:len(df)],colors]
     ))
 ])
-# plotly.offline.plot(fig, filename='table2')
+
+fig.update_layout(
+    title=dict(
+        text='IMDb Rating vs. My Rating breakdown',
+        font=dict(
+            size=24,
+            color='#000000'
+        ),
+        x=.5
+    ))
 
 fig.show()
+# plotly.offline.plot(fig, filename='3-13-20-table2.html')
+# fig.write_image("3-13-20-table2.png")
 
 #%%
 # Scatter2
 # year vs diff in ratings
-# Add text labels
-# Add color gradient
 fig = go.Figure(data=go.Scatter(x=df['Year'],
                     y=df['Diff in ratings'],
                     mode='markers',
@@ -189,15 +210,19 @@ fig.update_layout(
     )
 )
 fig.show()
+# plotly.offline.plot(fig, filename='3-13-20-scatter2.html')
+# fig.write_image("3-13-20-scatter2.png")
 
 #%%
 # bar1
 # num movies per year
-# Add hovertext
 bar = df.groupby('Year').count()['Title'].copy()
 fig = go.Figure(data=go.Bar(x=bar.index,
                     y=bar.values,
-                    marker_color=full_color_list[0:len(bar)]
+                    marker_color=full_color_list[0:len(bar)],
+                    hovertemplate='Year: ' + bar.index.astype(str) + ''+
+                    '<br>Count: '+ bar.values.astype(str) +'<br>'
+                    + '<extra></extra>'
                 ))
 fig.update_layout(
     plot_bgcolor='#cccccc',
@@ -217,16 +242,27 @@ fig.update_layout(
     )
 )
 fig.show()
+# plotly.offline.plot(fig, filename='3-13-20-bar1.html')
+# fig.write_image("3-13-20-bar1.png")
 
 #%%
 # Table3
 # top 5 genres by decade
 
+fig.update_layout(
+    title=dict(
+        text='How I breakdown my ratings',
+        font=dict(
+            size=24,
+            color='#000000'
+        ),
+        x=.5
+    ))
+
 
 #%%
 # plotly box/whisker1
 # x is decade y is my rating
-# See if I can change colors of decades
 
 df.sort_values('Year', inplace=True)
 fig = go.Figure(data=go.Box(x=df['Decade'],
@@ -250,10 +286,12 @@ fig.update_layout(
         title='Decade'
     ),
     yaxis=dict(
-        title='Rating'
+        title='My Rating'
     )
 )
 fig.show()
+# plotly.offline.plot(fig, filename='3-13-20-boxandwhisker1.html')
+# fig.write_image("3-13-20-boxandwhisker1.png")
 
 #%%
 # plotly box/whisker2
@@ -283,7 +321,8 @@ fig.update_layout(
     )
 )
 fig.show()
-
+# plotly.offline.plot(fig, filename='3-13-20-boxandwhisker2.html')
+# fig.write_image("3-13-20-boxandwhisker2.png")
 
 #%%
 # This is confusing. Brainstorm this
