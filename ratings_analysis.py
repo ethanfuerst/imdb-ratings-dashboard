@@ -150,7 +150,7 @@ fig = go.Figure(data=[go.Table(
   cells=dict(
     values=[df_diff['T_Title'], df_diff['IMDb Rating'], df_diff['Your Rating'], round(df_diff['Diff in ratings'],1)],
     align='left', font=dict(color=['black', 'black', 'black', 'white'], size=11),
-    fill_color=[alt_greys[:len(df)],alt_greys[:len(df)],alt_greys[:len(df)],colors]
+    fill_color=[alt_greys[:len(df_diff)],alt_greys[:len(df_diff)],alt_greys[:len(df_diff)],colors]
     ))
 ])
 
