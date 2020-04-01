@@ -5,6 +5,7 @@ import datetime
 import matplotlib.pyplot as plt
 import plotly
 import plotly.graph_objects as go
+import plotly.io as pio
 from plotly.colors import n_colors
 import plotly.express as px
 import plotly.figure_factory as ff
@@ -89,6 +90,8 @@ fig.update_layout(
 
 fig.show()
 # plotly.offline.plot(fig, filename='3-13-20-table1.html')
+# Originally run with 'https://github.com/ethanfuerst/imdb_ratings/blob/226cfa35e9f54639c2e5a042ac60bea2a2ffc0f7/ratings.csv'
+# pio.write_html(fig, file='3-3-20-table1.html', auto_open=True)
 # fig.write_image("3-13-20-table1.png")
 
 #%%
@@ -132,7 +135,9 @@ fig.update_layout(
 )
 
 fig.show()
-# plotly.offline.plot(fig, filename='3-13-20-scatter1.html')
+# plotly.offline.plot(fig, filename='3-3-20-scatter1.html')
+# Originally run with 'https://github.com/ethanfuerst/imdb_ratings/blob/226cfa35e9f54639c2e5a042ac60bea2a2ffc0f7/ratings.csv'
+# pio.write_html(fig, file='3-3-20-scatter1.html', auto_open=True)
 # fig.write_image("3-13-20-scatter1.png")
 
 #%%
@@ -166,6 +171,8 @@ fig.update_layout(
 
 fig.show()
 # plotly.offline.plot(fig, filename='3-13-20-table2.html')
+# Originally run with 'https://github.com/ethanfuerst/imdb_ratings/blob/226cfa35e9f54639c2e5a042ac60bea2a2ffc0f7/ratings.csv'
+# pio.write_html(fig, file='3-3-20-table2.html', auto_open=True)
 # fig.write_image("3-13-20-table2.png")
 
 #%%
@@ -211,6 +218,8 @@ fig.update_layout(
 )
 fig.show()
 # plotly.offline.plot(fig, filename='3-13-20-scatter2.html')
+# Originally run with 'https://github.com/ethanfuerst/imdb_ratings/blob/226cfa35e9f54639c2e5a042ac60bea2a2ffc0f7/ratings.csv'
+# pio.write_html(fig, file='3-3-20-scatter2.html', auto_open=True)
 # fig.write_image("3-13-20-scatter2.png")
 
 #%%
@@ -243,6 +252,8 @@ fig.update_layout(
 )
 fig.show()
 # plotly.offline.plot(fig, filename='3-13-20-bar1.html')
+# Originally run with 'https://github.com/ethanfuerst/imdb_ratings/blob/226cfa35e9f54639c2e5a042ac60bea2a2ffc0f7/ratings.csv'
+# pio.write_html(fig, file='3-3-20-bar1.html', auto_open=True)
 # fig.write_image("3-13-20-bar1.png")
 
 #%%
@@ -291,6 +302,8 @@ fig.update_layout(
 )
 fig.show()
 # plotly.offline.plot(fig, filename='3-13-20-boxandwhisker1.html')
+# Originally run with 'https://github.com/ethanfuerst/imdb_ratings/blob/226cfa35e9f54639c2e5a042ac60bea2a2ffc0f7/ratings.csv'
+# pio.write_html(fig, file='3-3-20-boxandwhisker1.html', auto_open=True)
 # fig.write_image("3-13-20-boxandwhisker1.png")
 
 #%%
@@ -322,6 +335,8 @@ fig.update_layout(
 )
 fig.show()
 # plotly.offline.plot(fig, filename='3-13-20-boxandwhisker2.html')
+# Originally run with 'https://github.com/ethanfuerst/imdb_ratings/blob/226cfa35e9f54639c2e5a042ac60bea2a2ffc0f7/ratings.csv'
+# pio.write_html(fig, file='3-3-20-boxandwhisker2.html', auto_open=True)
 # fig.write_image("3-13-20-boxandwhisker2.png")
 
 #%%
