@@ -4,17 +4,15 @@ This project is for me to look a little bit more at my imdb ratings. Eventually,
 
 ## Files in this repository
 
-__*award_shows.py*__ - .py file where I did some exploratory analysis for award show season
+### .csvs
 
-__*ratings_analysis.py*__ - .py file that takes data from the ratings.csv and creates the visualizations
+__*ratings.csv*__ - my ratings data from iMDB
 
-__*ratings.csv*__ - .csv file with my ratings data.
+### Jupyter notebooks
 
-__*ratings_clean.csv*__ - .csv file connected to the .twb
+__*award_shows.ipynb*__ - exploratory analysis for award show season to see if you can predict oscar winners
 
-__*rating_vis.twb*__ - Tableau workbook where I can plan out how I want to visualize the data
-
-__*.gitignore*__ - shows github what files to ignore when I commit my changes.
+__*ratings_analysis.ipynb*__ - visualizations from ratings.csv. Will rewrite ratings.csv when run.
 
 ## TODO
 
