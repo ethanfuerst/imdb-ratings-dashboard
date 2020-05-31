@@ -17,6 +17,7 @@ __*ratings_analysis.ipynb*__ - visualizations from ratings.csv. Will rewrite rat
 ## TODO
 
 - [x] one hot encoding for genres
+- [ ] Ratings diff vs. year - add toggle by genre
 - [ ] Bin columns
 - [ ] visualize my ratings in different ways
 - [ ] look in to [APIs](http://www.omdbapi.com/)
