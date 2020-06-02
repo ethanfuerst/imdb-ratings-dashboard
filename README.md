@@ -2,17 +2,17 @@
 
 This project is for me to look a little bit more at my imdb ratings. Eventually, I'd like to create a Plotly/Dash dashboard that summarizes the data just like in ethanfuerst/[spotifyinsights](https://github.com/ethanfuerst/spotifyinsights)
 
-## Files in this repository
+## Files in this repository by extension
 
-### .csvs
+### .csv
 
 __*ratings.csv*__ - my ratings data from iMDB
 
-### Jupyter notebooks
+### .py
 
-__*award_shows.ipynb*__ - exploratory analysis for award show season to see if you can predict oscar winners
+__*award_shows.py*__ - exploratory analysis for award show season to see if you can predict oscar winners
 
-__*ratings_analysis.ipynb*__ - visualizations from ratings.csv. Will rewrite ratings.csv when run.
+__*ratings_analysis.py*__ - visualizations from ratings.csv. Will rewrite ratings.csv when run.
 
 ## TODO
 
