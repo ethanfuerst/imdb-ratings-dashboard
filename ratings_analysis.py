@@ -13,7 +13,7 @@ import plotly.figure_factory as ff
 
 
 # %%
-# import and clean data
+# - import and clean data
 with open('ratings.csv', 'r', encoding='mac_roman', newline='') as csvfile:
     df = pd.read_csv(csvfile)
 
@@ -27,7 +27,7 @@ df['Link'] = '<a href=”' + df['URL'].astype(str) +'”>'+ df['Title'].astype(s
 df.drop('Title Type', axis=1, inplace=True)
 df.to_csv('ratings.csv', index=False)
 
-# Genres
+# - Genres
 one_hot = df['Genres'].str.get_dummies(sep=', ')
 genres = list(one_hot.sum().sort_values(ascending=False).index)[:8]
 one_hot = one_hot[genres].astype(bool).copy()
@@ -43,8 +43,8 @@ alt_greys = ['#cccccc', '#e4e4e4'] * len(df)
 
 
 # %%
-# Table1
-# See if links work when exporting as picture and .html file
+# - Table1
+# todo See if links work when exporting as picture and .html file
 my_ratings = pd.DataFrame()
 my_ratings['My Rating'] = [i for i in range(10,0,-1)]
 my_ratings['Criteria'] = ['Perfect','Great','Really good','Good','Okay','Average','Not good','Really not good','Bad','Really Bad']
@@ -97,14 +97,14 @@ fig.update_layout(
 
 fig.show()
 # plotly.offline.plot(fig, filename='3-13-20-table1.html')
-# Originally run with 'https://github.com/ethanfuerst/imdb_ratings/blob/226cfa35e9f54639c2e5a042ac60bea2a2ffc0f7/ratings.csv'
+# - Originally run with 'https://github.com/ethanfuerst/imdb_ratings/blob/226cfa35e9f54639c2e5a042ac60bea2a2ffc0f7/ratings.csv'
 # pio.write_html(fig, file='3-3-20-table1.html', auto_open=True)
 # fig.write_image("3-13-20-table1.png")
 
 
 # %%
-# Scatter1
-# my rating vs. imdb rating
+# - Scatter1
+# - my rating vs. imdb rating
 fig = go.Figure(data=go.Scatter(x=df['IMDb Rating'],
                                 y=df['Your Rating'],
                                 mode='markers',
@@ -183,13 +183,13 @@ fig.update_layout(
 
 fig.show()
 # plotly.offline.plot(fig, filename='3-3-20-scatter1.html')
-# Originally run with 'https://github.com/ethanfuerst/imdb_ratings/blob/226cfa35e9f54639c2e5a042ac60bea2a2ffc0f7/ratings.csv'
+# - Originally run with 'https://github.com/ethanfuerst/imdb_ratings/blob/226cfa35e9f54639c2e5a042ac60bea2a2ffc0f7/ratings.csv'
 # pio.write_html(fig, file='3-3-20-scatter1.html', auto_open=True)
 # fig.write_image("3-13-20-scatter1.png")
 
 
 # %%
-# Table2
+# - Table2
 df_diff = df.sort_values(axis=0,by='Diff in ratings').reset_index(drop=True).copy()
 df_diff['T_Title'] = df_diff['Title'].astype(str) + ' (' + df_diff['Year'].astype(str) + ' film)'
 
@@ -221,15 +221,15 @@ fig.update_layout(
 
 fig.show()
 # plotly.offline.plot(fig, filename='3-13-20-table2.html')
-# Originally run with 'https://github.com/ethanfuerst/imdb_ratings/blob/226cfa35e9f54639c2e5a042ac60bea2a2ffc0f7/ratings.csv'
+# - Originally run with 'https://github.com/ethanfuerst/imdb_ratings/blob/226cfa35e9f54639c2e5a042ac60bea2a2ffc0f7/ratings.csv'
 # pio.write_html(fig, file='3-3-20-table2.html', auto_open=True)
 # fig.write_image("3-13-20-table2.png")
 
 
 # %%
-# Scatter2
-# year vs diff in ratings
-# toggle by genres (buttons)
+# - Scatter2
+# - year vs diff in ratings
+# todo toggle by genres (buttons)
 fig = go.Figure(data=go.Scatter(x=df['Year'],
                     y=df['Diff in ratings'],
                     mode='markers',
@@ -309,14 +309,14 @@ fig.update_layout(
 )
 fig.show()
 # plotly.offline.plot(fig, filename='3-13-20-scatter2.html')
-# Originally run with 'https://github.com/ethanfuerst/imdb_ratings/blob/226cfa35e9f54639c2e5a042ac60bea2a2ffc0f7/ratings.csv'
+# - Originally run with 'https://github.com/ethanfuerst/imdb_ratings/blob/226cfa35e9f54639c2e5a042ac60bea2a2ffc0f7/ratings.csv'
 # pio.write_html(fig, file='3-3-20-scatter2.html', auto_open=True)
 # fig.write_image("3-13-20-scatter2.png")
 
 
 # %%
-# bar1
-# num movies per year
+# - bar1
+# - num movies per year
 bar = df.groupby('Year').count()['Title'].copy()
 fig = go.Figure(data=go.Bar(x=bar.index,
                     y=bar.values,
@@ -346,14 +346,14 @@ fig.update_layout(
 )
 fig.show()
 # plotly.offline.plot(fig, filename='3-13-20-bar1.html')
-# Originally run with 'https://github.com/ethanfuerst/imdb_ratings/blob/226cfa35e9f54639c2e5a042ac60bea2a2ffc0f7/ratings.csv'
+# - Originally run with 'https://github.com/ethanfuerst/imdb_ratings/blob/226cfa35e9f54639c2e5a042ac60bea2a2ffc0f7/ratings.csv'
 # pio.write_html(fig, file='3-3-20-bar1.html', auto_open=True)
 # fig.write_image("3-13-20-bar1.png")
 
 
 # %%
-# Table3
-# top 5 genres by decade
+# - Table3
+# - top 5 genres by decade
 
 # fig.update_layout(
 #     title=dict(
@@ -367,8 +367,8 @@ fig.show()
 
 
 # %%
-# plotly box/whisker1
-# x is decade y is my rating
+# - plotly box/whisker1
+# - x is decade y is my rating
 
 df.sort_values('Year', inplace=True)
 fig = go.Figure(data=go.Box(x=df['Decade'],
@@ -399,16 +399,16 @@ fig.update_layout(
 )
 fig.show()
 # plotly.offline.plot(fig, filename='3-13-20-boxandwhisker1.html')
-# Originally run with 'https://github.com/ethanfuerst/imdb_ratings/blob/226cfa35e9f54639c2e5a042ac60bea2a2ffc0f7/ratings.csv'
+# - Originally run with 'https://github.com/ethanfuerst/imdb_ratings/blob/226cfa35e9f54639c2e5a042ac60bea2a2ffc0f7/ratings.csv'
 # pio.write_html(fig, file='3-3-20-boxandwhisker1.html', auto_open=True)
 # fig.write_image("3-13-20-boxandwhisker1.png")
 
 
 # %%
-# plotly box/whisker2
-# x is genre y is my rating
-# change hovertext
-# Add mean
+# - plotly box/whisker2
+# - x is genre y is my rating
+# todo change hovertext
+# todo Add mean
 
 fig = go.Figure()
 for i in range(len(genres)):
@@ -437,13 +437,13 @@ fig.update_layout(
 )
 fig.show()
 # plotly.offline.plot(fig, filename='3-13-20-boxandwhisker2.html')
-# Originally run with 'https://github.com/ethanfuerst/imdb_ratings/blob/226cfa35e9f54639c2e5a042ac60bea2a2ffc0f7/ratings.csv'
+# - Originally run with 'https://github.com/ethanfuerst/imdb_ratings/blob/226cfa35e9f54639c2e5a042ac60bea2a2ffc0f7/ratings.csv'
 # pio.write_html(fig, file='3-3-20-boxandwhisker2.html', auto_open=True)
 # fig.write_image("3-13-20-boxandwhisker2.png")
 
 
 # %%
-# This is confusing. Brainstorm this
+# todo This is confusing. Brainstorm this
 # df[(df['Decade'] == "90's") & (df['Sci-Fi'] == True)]
 # df[(df['Decade'] == "90's") & (df['Sci-Fi'] == False)]
 df_2 = df.groupby(['Decade','Sci-Fi'], as_index=False).mean()[['Decade','Sci-Fi','IMDb Rating', 'Your Rating']]
@@ -484,13 +484,11 @@ fig.show()
 
 
 # %%
-# Change to plt bar
+# todo Change to plt bar
 df.groupby('Decade').sum()[['Sci-Fi', 'Crime', 'Comedy', 'Action', 'Thriller']].plot(kind='bar')
-# eh idk
-# Maybe do averages? or box plot
+# - eh idk
+# - Maybe do averages? or box plot
 
 
 # %%
-
-
 

@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 
 
 # %%
+# - BAFTA
 bafta = pd.read_csv('awarddata/bafta.csv')
 bafta = bafta[bafta['winner'] == True].copy()
 new = bafta['category'].str.split(' in ', expand=True)
@@ -39,6 +40,7 @@ bafta = bafta.rename(columns={'nominee':'b_nominee','workers':'b_winner'})
 
 
 # %%
+# - Golden Globes
 gg = pd.read_csv('awarddata/gg.csv')
 gg = gg[gg['win'] == True].copy()
 gg = gg.drop(['year_film', 'ceremony'], axis =1).copy()
@@ -74,6 +76,7 @@ gg = gg.rename(columns={'nominee':'g_nominee','film':'g_film'})
 
 
 # %%
+# - Oscars
 osc = pd.read_csv('awarddata/oscars.csv')
 osc = osc[osc['win'] == True].copy()
 osc = osc.drop(['year_film', 'ceremony'], axis =1).copy()
@@ -101,6 +104,7 @@ osc = osc.drop(columns=['win'])
 
 
 # %%
+# - SAG Awards
 sag = pd.read_csv('awarddata/sag.csv')
 sag = sag[sag['won'] == True].copy()
 sag['year'] = sag['year'].str.split(' - ', expand=True)[0]
@@ -143,6 +147,7 @@ sag = sag.drop(columns=['won'])
 
 
 # %%
+# - DGA
 dga = pd.read_csv('awarddata/dga.csv')
 dga['d_nominee'] = dga['d_nominee'].str.upper()
 dga['d_film'] = dga['d_film'].str.upper()
@@ -150,7 +155,7 @@ dga['year'] = dga['year'] + 1
 
 
 # %%
-# Directors
+# - Directors
 o_dir = osc[osc['category'] == 'directing']
 g_dir = gg[gg['category'] == 'directing']
 b_dir = bafta[bafta['category'] == 'directing']
@@ -164,5 +169,3 @@ direct_none = direct[(direct['o_nominee'] != direct['g_film']) & ((direct['o_fil
 
 
 # %%
-
-
