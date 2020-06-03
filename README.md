@@ -12,7 +12,7 @@ __*ratings.csv*__ - my ratings data from iMDB
 
 __*award_shows.py*__ - exploratory analysis for award show season to see if you can predict oscar winners
 
-__*ratings_analysis.py*__ - visualizations from ratings.csv. Will rewrite ratings.csv when run.
+__*ratings_analysis.py*__ - visualizations from ratings.csv
 
 ## TODO
 
