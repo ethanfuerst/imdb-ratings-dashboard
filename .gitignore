@@ -22,3 +22,6 @@ Icon[\r]
 
 # Data
 /awarddata
+
+# Plotly API Key
+plotly_key.txt
