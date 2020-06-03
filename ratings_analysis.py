@@ -101,10 +101,6 @@ fig.update_layout(
 fig.show()
 
 chart_studio.plotly.plot(fig, filename='My iMDB Rating guide', auto_open=False)
-# plotly.offline.plot(fig, filename='3-13-20-table1.html')
-# - Originally run with 'https://github.com/ethanfuerst/imdb_ratings/blob/226cfa35e9f54639c2e5a042ac60bea2a2ffc0f7/ratings.csv'
-# pio.write_html(fig, file='3-3-20-table1.html', auto_open=False)
-# fig.write_image("3-13-20-table1.png")
 
 
 # %%
@@ -189,10 +185,6 @@ fig.update_layout(
 fig.show()
 
 chart_studio.plotly.plot(fig, filename='IMDb Rating vs. My Rating', auto_open=False)
-# plotly.offline.plot(fig, filename='3-3-20-scatter1.html')
-# - Originally run with 'https://github.com/ethanfuerst/imdb_ratings/blob/226cfa35e9f54639c2e5a042ac60bea2a2ffc0f7/ratings.csv'
-# pio.write_html(fig, file='3-3-20-scatter1.html', auto_open=False)
-# fig.write_image("3-13-20-scatter1.png")
 
 
 # %%
@@ -229,10 +221,6 @@ fig.update_layout(
 fig.show()
 
 chart_studio.plotly.plot(fig, filename='IMDb Rating vs. My Rating breakdown', auto_open=False)
-# plotly.offline.plot(fig, filename='3-13-20-table2.html')
-# - Originally run with 'https://github.com/ethanfuerst/imdb_ratings/blob/226cfa35e9f54639c2e5a042ac60bea2a2ffc0f7/ratings.csv'
-# pio.write_html(fig, file='3-3-20-table2.html', auto_open=False)
-# fig.write_image("3-13-20-table2.png")
 
 
 # %%
@@ -319,10 +307,6 @@ fig.update_layout(
 fig.show()
 
 chart_studio.plotly.plot(fig, filename='Year vs. Difference in Ratings', auto_open=False)
-# plotly.offline.plot(fig, filename='3-13-20-scatter2.html')
-# - Originally run with 'https://github.com/ethanfuerst/imdb_ratings/blob/226cfa35e9f54639c2e5a042ac60bea2a2ffc0f7/ratings.csv'
-# pio.write_html(fig, file='3-3-20-scatter2.html', auto_open=False)
-# fig.write_image("3-13-20-scatter2.png")
 
 
 # %%
@@ -358,10 +342,6 @@ fig.update_layout(
 fig.show()
 
 chart_studio.plotly.plot(fig, filename='Number of movies in my ratings by year released', auto_open=False)
-# plotly.offline.plot(fig, filename='3-13-20-bar1.html')
-# - Originally run with 'https://github.com/ethanfuerst/imdb_ratings/blob/226cfa35e9f54639c2e5a042ac60bea2a2ffc0f7/ratings.csv'
-# pio.write_html(fig, file='3-3-20-bar1.html', auto_open=False)
-# fig.write_image("3-13-20-bar1.png")
 
 
 # %%
@@ -413,10 +393,6 @@ fig.update_layout(
 fig.show()
 
 chart_studio.plotly.plot(fig, filename='Distribution of my ratings by decade', auto_open=False)
-# plotly.offline.plot(fig, filename='3-13-20-boxandwhisker1.html')
-# - Originally run with 'https://github.com/ethanfuerst/imdb_ratings/blob/226cfa35e9f54639c2e5a042ac60bea2a2ffc0f7/ratings.csv'
-# pio.write_html(fig, file='3-3-20-boxandwhisker1.html', auto_open=False)
-# fig.write_image("3-13-20-boxandwhisker1.png")
 
 
 # %%
@@ -452,10 +428,6 @@ fig.update_layout(
 )
 fig.show()
 chart_studio.plotly.plot(fig, filename='Distribution of my ratings by genre', auto_open=False)
-# plotly.offline.plot(fig, filename='3-13-20-boxandwhisker2.html')
-# - Originally run with 'https://github.com/ethanfuerst/imdb_ratings/blob/226cfa35e9f54639c2e5a042ac60bea2a2ffc0f7/ratings.csv'
-# pio.write_html(fig, file='3-3-20-boxandwhisker2.html', auto_open=False)
-# fig.write_image("3-13-20-boxandwhisker2.png")
 
 
 # %%
