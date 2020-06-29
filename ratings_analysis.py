@@ -479,4 +479,19 @@ df.groupby('Decade').sum()[['Sci-Fi', 'Crime', 'Comedy', 'Action', 'Thriller']].
 
 
 # %%
+# todo change tooltip
+# todo add title
+# todo change x-axis
+fig = go.Figure()
+
+fig.add_trace(go.Histogram(x=df['Your Rating'],
+                            name='My Rating'))
+fig.add_trace(go.Histogram(x=df['IMDb Rating'],
+                            name='IMDb Rating'))
+
+fig.update_layout(barmode='overlay')
+fig.update_traces(opacity=0.75)
+fig.show()
+
+# chart_studio.plotly.plot(fig, filename='Distribution of my ratings and IMDb ratings', auto_open=False)
 
