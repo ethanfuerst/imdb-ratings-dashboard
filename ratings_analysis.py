@@ -14,7 +14,8 @@ import chart_studio
 api_key = f = open("plotly_key.txt", "r").readline()
 chart_studio.tools.set_credentials_file(username='ethanfuerst', api_key=api_key)
 
-
+# - Change to see all graphs when run
+show_all = False
 
 # %%
 # - import and clean data
@@ -98,7 +99,10 @@ fig.update_layout(
     height=500
 )
 
-fig.show()
+
+
+if show_all:
+    fig.show()
 
 chart_studio.plotly.plot(fig, filename='My iMDB Rating guide', auto_open=False)
 
@@ -133,8 +137,11 @@ fig.update_layout(barmode='overlay',
     ),
     width=700,
     height=500)
+
 fig.update_traces(opacity=0.75)
-fig.show()
+
+if show_all:
+    fig.show()
 
 chart_studio.plotly.plot(fig, filename='Distribution of my ratings and IMDb ratings', auto_open=False)
 
@@ -218,7 +225,10 @@ fig.update_layout(
         ]
 )
 
-fig.show()
+
+
+if show_all:
+    fig.show()
 
 chart_studio.plotly.plot(fig, filename='IMDb Rating vs. My Rating', auto_open=False)
 
@@ -254,7 +264,10 @@ fig.update_layout(
     width=600,
     height=600)
 
-fig.show()
+
+
+if show_all:
+    fig.show()
 
 chart_studio.plotly.plot(fig, filename='IMDb Rating vs. My Rating breakdown', auto_open=False)
 
@@ -339,8 +352,11 @@ fig.update_layout(
                 borderwidth=1
             )
         ]
+
 )
-fig.show()
+
+if show_all:
+    fig.show()
 
 chart_studio.plotly.plot(fig, filename='Year vs. Difference in Ratings', auto_open=False)
 
@@ -374,8 +390,11 @@ fig.update_layout(
     ),
     width=700,
     height=500
+
 )
-fig.show()
+
+if show_all:
+    fig.show()
 
 chart_studio.plotly.plot(fig, filename='Number of movies in my ratings by year released', auto_open=False)
 
@@ -425,8 +444,11 @@ fig.update_layout(
     ),
     width=700,
     height=500
+
 )
-fig.show()
+
+if show_all:
+    fig.show()
 
 chart_studio.plotly.plot(fig, filename='Distribution of my ratings by decade', auto_open=False)
 
@@ -461,8 +483,12 @@ fig.update_layout(
     ),
     width=700,
     height=500
+
 )
-fig.show()
+
+if show_all:
+    fig.show()
+
 chart_studio.plotly.plot(fig, filename='Distribution of my ratings by genre', auto_open=False)
 
 
@@ -503,8 +529,11 @@ fig.update_layout(
     yaxis=dict(
         title='Average Rating'
     )
+
 )
-fig.show()
+
+if show_all:
+    fig.show()
 
 
 # %%
