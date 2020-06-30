@@ -103,21 +103,40 @@ fig.show()
 chart_studio.plotly.plot(fig, filename='My iMDB Rating guide', auto_open=False)
 
 #%%
-# todo change tooltip
-# todo add title
-# todo change x-axis
 fig = go.Figure()
 
 fig.add_trace(go.Histogram(x=df['Your Rating'],
-                            name='My Rating'))
+                            name='My Rating',
+                            hovertemplate=
+                                'I gave a %{y}/' + str(len(df)) + ' movies rating of %{x}<extra></extra>'))
 fig.add_trace(go.Histogram(x=df['IMDb Rating'],
-                            name='IMDb Rating'))
+                            name='IMDb Rating',
+                            hovertemplate=
+                                '%{y}/' + str(len(df)) + ' of the movies that I rated <br>have an IMDb rating of %{x}<extra></extra>'))
 
-fig.update_layout(barmode='overlay')
+fig.update_layout(barmode='overlay',
+    title=dict(
+            text='Distribution of my ratings and IMDb ratings',
+            font=dict(
+                size=24,
+                color='#000000'
+            ),
+            x=.5
+        ),
+    xaxis=dict(
+        title='Rating',
+        tickvals=[i for i in range(1,11)]
+    ),
+    yaxis=dict(
+        title='Count',
+        tickvals=[i if i != 0 else '' for i in range(0,len(df),10)]
+    ),
+    width=700,
+    height=500)
 fig.update_traces(opacity=0.75)
 fig.show()
 
-# chart_studio.plotly.plot(fig, filename='Distribution of my ratings and IMDb ratings', auto_open=False)
+chart_studio.plotly.plot(fig, filename='Distribution of my ratings and IMDb ratings', auto_open=False)
 
 
 # %%
