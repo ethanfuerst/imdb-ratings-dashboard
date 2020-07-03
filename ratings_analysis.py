@@ -1,5 +1,6 @@
 # %%
 import pandas as pd
+pd.set_option('display.max_columns', None)
 import numpy as np
 import datetime
 import math
@@ -36,7 +37,7 @@ one_hot = df['Genres'].str.get_dummies(sep=', ')
 genres = list(one_hot.sum().sort_values(ascending=False).index)[:8]
 one_hot = one_hot[genres].astype(bool).copy()
 df = df.join(one_hot)
-df = df.drop(['Genres', 'Date Rated'], axis=1)
+df = df.drop(['Genres'], axis=1)
 
 df['Decade'] = pd.cut(df['Year'], bins=list(range(1979, 2039, 10)), labels=[str(i+1)[2:] + "'s" for i in range(1979, 2029, 10)], include_lowest=True)
 
@@ -149,26 +150,110 @@ chart_studio.plotly.plot(fig, filename='Distribution of my ratings and IMDb rati
 # %%
 # - Scatter1
 # - my rating vs. imdb rating
-fig = go.Figure(data=go.Scatter(x=df['IMDb Rating'],
-                                y=df['Your Rating'],
-                                mode='markers',
-                                marker=dict(
-                                    size=8,
-                                    color=df['Year'],
-                                    colorscale=[[0, 'rgb(255,255,255)'], [1, 'rgb(0,122,51)']],
-                                    showscale=True,
-                                    colorbar=dict(
-                                        title="Year released"
-                                    ),
-                                    cmin=df['Year'].min(),
-                                    cmax=df['Year'].max(),
-                                    cmid=df['Year'].mean()
+
+rated = df.sort_values('Date Rated',ascending=False).head(25).copy()
+released = df.sort_values('Release Date',ascending=False).head(25).copy()
+
+fig = go.Figure()
+
+fig.add_trace(go.Scatter(x=df['IMDb Rating'],
+                            y=df['Your Rating'],
+                            mode='markers',
+                            marker=dict(
+                                size=8,
+                                color=df['Year'],
+                                colorscale=[[0, 'rgb(255,255,255)'], [1, 'rgb(0,122,51)']],
+                                showscale=True,
+                                colorbar=dict(
+                                    title="Year released"
                                 ),
-                                hovertemplate=df['Title'].astype(str)+' (' +df['Year'].astype(str) + ' film)'+
-                                '<br><b>IMDb Rating</b>: %{x}<br>'+
-                                '<b>My Rating</b>: %{y}'+'<extra></extra>'
-                                ))
+                                cmin=df['Year'].min(),
+                                cmax=df['Year'].max(),
+                                cmid=df['Year'].mean()
+                            ),
+                            hovertemplate=df['Title'].astype(str)+' (' +df['Year'].astype(str) + ' film)'+
+                            '<br><b>IMDb Rating</b>: %{x}<br>'+
+                            '<b>My Rating</b>: %{y}'+'<extra></extra>'
+                            ))
+
+fig.add_trace(go.Scatter(x=rated['IMDb Rating'],
+                            y=rated['Your Rating'],
+                            mode='markers',
+                            marker=dict(
+                                size=8,
+                                color=rated['Year'],
+                                colorscale=[[0, 'rgb(255,255,255)'], [1, 'rgb(0,122,51)']],
+                                showscale=True,
+                                colorbar=dict(
+                                    title="Year released"
+                                ),
+                                cmin=df['Year'].min(),
+                                cmax=df['Year'].max(),
+                                cmid=df['Year'].mean()
+                            ),
+                            hovertemplate=rated['Title'].astype(str)+' (' +rated['Year'].astype(str) + ' film)'+
+                            '<br><b>IMDb Rating</b>: %{x}<br>'+
+                            '<b>My Rating</b>: %{y}<br>'+
+                            '<b>Date Rated</b>: '+ rated['Date Rated'].dt.strftime("%B %-d '%y") +
+                            '<extra></extra>'
+                            ))
+
+fig.add_trace(go.Scatter(x=released['IMDb Rating'],
+                            y=released['Your Rating'],
+                            mode='markers',
+                            marker=dict(
+                                size=8,
+                                color=released['Year'],
+                                colorscale=[[0, 'rgb(255,255,255)'], [1, 'rgb(0,122,51)']],
+                                showscale=True,
+                                colorbar=dict(
+                                    title="Year released"
+                                ),
+                                cmin=df['Year'].min(),
+                                cmax=df['Year'].max(),
+                                cmid=df['Year'].mean()
+                            ),
+                            hovertemplate=released['Title'].astype(str)+' (' +released['Year'].astype(str) + ' film)'+
+                            '<br><b>IMDb Rating</b>: %{x}<br>'+
+                            '<b>My Rating</b>: %{y}<br>'+
+                            '<b>Date Released</b>: '+ released['Date Rated'].dt.strftime("%B %-d '%y") +
+                            '<extra></extra>'
+                            ))
+
+
 fig.update_layout(
+    showlegend=False,
+    updatemenus=[
+        dict(
+            type = "buttons",
+            buttons=list([
+                dict(
+                    args=[dict(visible=[True, False, False])
+                            ],
+                    label="All ratings",
+                    method="update"
+                ),
+                dict(
+                    args=[dict(visible=[False, True, False])
+                            ],
+                    label="Most recently rated",
+                    method="update"
+                ),
+                dict(
+                    args = [dict(visible=[False, False, True])
+                            ],
+                    label="Most recently released",
+                    method="update"
+                )
+            ]),
+            direction='left',
+            showactive=False,
+            x=0,
+            y=-.3,
+            xanchor="left",
+            yanchor="bottom"
+        ),
+    ],
     plot_bgcolor='#cccccc',
     title=dict(
         text='IMDb Rating vs. My Rating',
@@ -534,6 +619,14 @@ fig.update_layout(
 
 if show_all:
     fig.show()
+
+
+#%%
+# todo x most recent movies rated or released
+
+
+#%%
+# todo My 10's/9's
 
 
 # %%
