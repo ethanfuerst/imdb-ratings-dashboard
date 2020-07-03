@@ -17,6 +17,8 @@ __*ratings_analysis.py*__ - visualizations from ratings.csv
 ## TODO
 
 - [x] one hot encoding for genres
+- [x] Add most recently rated/released to scatter
+- [ ] Make analysis for 10/10 movies
 - [ ] Ratings diff vs. year - add toggle by genre
 - [ ] Bin columns
 - [ ] visualize my ratings in different ways
