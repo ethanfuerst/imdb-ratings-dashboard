@@ -28,18 +28,37 @@ df['Release Date'] = pd.to_datetime(df['Release Date'])
 df['Date Rated'] = pd.to_datetime(df['Date Rated'])
 df['Diff in ratings'] = round(df['IMDb Rating'] - df['Your Rating'],1)
 df['Link'] = '<a href=”' + df['URL'].astype(str) +'”>'+ df['Title'].astype(str) 
-
+decade_date_range = range(math.floor(df['Year'].min()/10) * 10, datetime.date.today().year + 11, 10)
+decade_date_labels = [str(i)[2:] + "'s" for i in list(decade_date_range)[:len(list(decade_date_range))-1]]
+# - to get a value to sort the df on
+decade_mapping = dict(zip(decade_date_labels, list(decade_date_range)[:len(list(decade_date_range))-1]))
+df['Decade'] = pd.cut(df['Year'], bins=list(decade_date_range), labels=decade_date_labels, include_lowest=True)
 
 df.drop('Title Type', axis=1, inplace=True)
 
+# - Create genre breakdown
+df_g = pd.DataFrame(df['Genres'].str.split(', ').tolist(), index=df['Title']).stack().copy()
+df_g = df_g.reset_index([0, 'Title']).copy()
+df_g.columns = ['Title', 'Genre']
+# - need to outer join in the other data 
+df_j = df[['Your Rating', 'Date Rated', 'Title', 'IMDb Rating', 'Runtime (mins)', 
+        'Year', 'Decade', 'Num Votes', 'Release Date', 'Diff in ratings']].copy()
+df_g = df_g.merge(df_j, how='outer', on='Title', suffixes=('', '')).copy()
+df_g = df_g.sort_values('Release Date').reset_index(drop=True).copy()
+df_g['Category'] = df_g['Decade'].astype(str) + ' ' + df_g['Genre'].astype(str)
+
+# // agg_cols = ['Genre', 'Decade', 'Your Rating', 'IMDb Rating', 'Diff in ratings']
+# // g_mean = df_g.groupby(['Genre', 'Decade']).mean().reset_index()[agg_cols].round({'Your Rating':2,'IMDb Rating':1,'Diff in ratings':2})
+
+genre_list = list(df_g['Genre'].value_counts().index)
+
 # - Genres
+# * may want to delete (and change the plot using it) after above code is implemented
 one_hot = df['Genres'].str.get_dummies(sep=', ')
 genres = list(one_hot.sum().sort_values(ascending=False).index)[:8]
 one_hot = one_hot[genres].astype(bool).copy()
 df = df.join(one_hot)
 df = df.drop(['Genres'], axis=1)
-
-df['Decade'] = pd.cut(df['Year'], bins=list(range(1979, 2039, 10)), labels=[str(i+1)[2:] + "'s" for i in range(1979, 2029, 10)], include_lowest=True)
 
 color_list = ['#1A4D94', '#007A33', '#CB4F0A', '#5A2D81'] * int(len(df)/3)
 full_color_list = ['#1A4D94', '#5C7DAA', '#007A33', '#33955C', '#CB4F0A', '#F58426','#5A2D81', '#DFAEE6'] * int(len(df)/7)
@@ -541,6 +560,7 @@ chart_studio.plotly.plot(fig, filename='Distribution of my ratings by decade', a
 # %%
 # - plotly box/whisker2
 # - x is genre y is my rating
+# todo update with new genre handling
 # todo change hovertext
 # todo Add mean
 
@@ -577,56 +597,86 @@ if show_all:
 chart_studio.plotly.plot(fig, filename='Distribution of my ratings by genre', auto_open=False)
 
 
-# %%
-# todo This is confusing. Brainstorm this
-# df[(df['Decade'] == "90's") & (df['Sci-Fi'] == True)]
-# df[(df['Decade'] == "90's") & (df['Sci-Fi'] == False)]
-df_2 = df.groupby(['Decade','Sci-Fi'], as_index=False).mean()[['Decade','Sci-Fi','IMDb Rating', 'Your Rating']]
-df_2['Sci-Fi'] = np.where(df_2['Sci-Fi'], 'Sci-Fi', 'not Sci-Fi')
-df_2['combo'] = df_2['Decade'].astype(str) + ' ' + df_2['Sci-Fi'].astype(str)
-df_2.sort_values(['Decade','Sci-Fi'], inplace=True)
+#%%
+# - genre box plot
+# - y is rating x is decade
+# - filter on genres
+# todo dynamically add genres from genre_list
+# todo add title
+# todo toggle between my rating/imdb rating
+
+
 fig = go.Figure()
-fig.add_trace(go.Scatter(
-    x=df_2['combo'], 
-    y=df_2['IMDb Rating'],
-    name='IMDb Rating',
-    mode='markers'
-))
-fig.add_trace(go.Scatter(
-    x=df_2['combo'], 
-    y=df_2['Your Rating'],
-    name='My Rating',
-    mode='markers'
-))
+
+# - Dynamically add traces
+# for i in genre_list:
+#     fig.add_trace(go.Box(
+#         y=df_g[df_g['Genre'] == i]['Your Rating'],
+#         name=i
+#     ))
+
+# ! hover template doesn't really work
+fig.add_trace(go.Box(
+        y=df_g[df_g['Genre'] == 'Comedy']['Your Rating'],
+        x=df_g[df_g['Genre'] == 'Comedy']['Decade'],
+        # hovertemplate=df_g[df_g['Genre'] == 'Comedy']['Title'].astype(str)+
+        #             ' (' +df_g[df_g['Genre'] == 'Comedy']['Year'].astype(str) + ' film)'+
+        #             '<br><b>IMDb Rating</b>: '+df_g[df_g['Genre'] == 'Comedy']['IMDb Rating'].astype(str)+'<br>'+
+        #             '<b>My Rating</b>: %{y}<br>'+
+        #             '<b>Difference</b>: '+ df_g[df_g['Genre'] == 'Comedy']['Diff in ratings'].astype(str)+'<extra></extra>',
+        name=i,
+        boxpoints='all',
+        jitter=.25,
+        pointpos=-1.8,
+        # - make first trace visible
+        visible = True
+    ))
+
+fig.add_trace(go.Box(
+        y=df_g[df_g['Genre'] == 'Drama']['Your Rating'],
+        x=df_g[df_g['Genre'] == 'Drama']['Decade'],
+        # hovertemplate=df_g[df_g['Genre'] == 'Drama']['Title'].astype(str)+
+        #             ' (' +df_g[df_g['Genre'] == 'Drama']['Year'].astype(str) + ' film)'+
+        #             '<br><b>IMDb Rating</b>: '+df_g[df_g['Genre'] == 'Drama']['IMDb Rating'].astype(str)+'<br>'+
+        #             '<b>My Rating</b>: %{y}<br>'+
+        #             '<b>Difference</b>: '+ df_g[df_g['Genre'] == 'Drama']['Diff in ratings'].astype(str)+'<extra></extra>',
+        name=i,
+        boxpoints='all',
+        jitter=.25,
+        pointpos=-1.8,
+        visible = False
+    ))
+
 fig.update_layout(
-    plot_bgcolor='#cccccc',
-    title=dict(
-        text='My sci-fi ratings by decade',
-        font=dict(
-            size=24,
-            color='#000000'
-        ),
-        x=.5
-    ),
     xaxis=dict(
-        title='Decade and Genre'
+        title='Decade'
     ),
     yaxis=dict(
-        title='Average Rating'
-    )
+        title='Your Rating',
+        range=[0,11]
+    ),
+    updatemenus=[
+        dict(
+            buttons=list([
+                dict(label="Comedy",
+                     method="update",
+                     args=[{"visible": [True, False]},
+                           {"title": "Comedy"}]),
+                dict(label="Drama",
+                     method="update",
+                     args=[{"visible": [False, True]},
+                           {"title": "Drama"}])
+            ]),
+        )
+    ])
 
-)
-
-if show_all:
-    fig.show()
-
-
-#%%
-# todo x most recent movies rated or released
-
+fig.show()
 
 #%%
 # todo My 10's/9's
+# - y is number of votes
+# - x is IMDb rating
+
 
 
 # %%
