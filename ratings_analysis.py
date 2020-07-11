@@ -670,7 +670,8 @@ fig.update_layout(
         )
     ])
 
-fig.show()
+if show_all:
+    fig.show()
 
 #%%
 # todo My 10's/9's
