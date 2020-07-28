@@ -32,7 +32,8 @@ decade_date_range = range(math.floor(df['Year'].min()/10) * 10, datetime.date.to
 decade_date_labels = [str(i)[2:] + "'s" for i in list(decade_date_range)[:len(list(decade_date_range))-1]]
 # - to get a value to sort the df on
 decade_mapping = dict(zip(decade_date_labels, list(decade_date_range)[:len(list(decade_date_range))-1]))
-df['Decade'] = pd.cut(df['Year'], bins=list(decade_date_range), labels=decade_date_labels, include_lowest=True)
+df['Decade'] = pd.cut(df['Year'], bins=list(decade_date_range), labels=decade_date_labels, 
+                        include_lowest=True, right=False)
 
 df.drop('Title Type', axis=1, inplace=True)
 
