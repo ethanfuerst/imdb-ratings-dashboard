@@ -16,7 +16,7 @@ api_key = f = open("plotly_key.txt", "r").readline()
 chart_studio.tools.set_credentials_file(username='ethanfuerst', api_key=api_key)
 
 # - Change to see all graphs when run
-show_all = False
+show_all = True
 
 # %%
 # - import and clean data
@@ -59,7 +59,10 @@ one_hot = df['Genres'].str.get_dummies(sep=', ')
 genres = list(one_hot.sum().sort_values(ascending=False).index)[:8]
 one_hot = one_hot[genres].astype(bool).copy()
 df = df.join(one_hot)
-df = df.drop(['Genres'], axis=1)
+# df = df.drop(['Genres'], axis=1)
+
+df['Genres'] = df['Genres'].str.split(', ')
+df_l = df[['Title', 'IMDb Rating', 'Your Rating', 'Decade', 'Genres']].explode('Genres')
 
 color_list = ['#1A4D94', '#007A33', '#CB4F0A', '#5A2D81'] * int(len(df)/3)
 full_color_list = ['#1A4D94', '#5C7DAA', '#007A33', '#33955C', '#CB4F0A', '#F58426','#5A2D81', '#DFAEE6'] * int(len(df)/7)
@@ -306,7 +309,7 @@ fig.update_layout(
                 ))],
     annotations=[
             go.layout.Annotation(
-                text='Movies I liked<br>more than iMDB',
+                text='Movies I liked<br>more than IMDb',
                 align='center',
                 showarrow=False,
                 xref='paper',
@@ -317,7 +320,7 @@ fig.update_layout(
                 borderwidth=1
             ),
             go.layout.Annotation(
-                text='Movies I liked<br>less than iMDB',
+                text='Movies I liked<br>less than IMDb',
                 align='center',
                 showarrow=False,
                 xref='paper',
@@ -435,7 +438,7 @@ fig.update_layout(
                     ))],
     annotations=[
             go.layout.Annotation(
-                text='Movies I liked<br>more than iMDB',
+                text='Movies I liked<br>more than IMDb',
                 align='center',
                 showarrow=False,
                 xref='paper',
@@ -446,7 +449,7 @@ fig.update_layout(
                 borderwidth=1
             ),
             go.layout.Annotation(
-                text='Movies I liked<br>less than iMDB',
+                text='Movies I liked<br>less than IMDb',
                 align='center',
                 showarrow=False,
                 xref='paper',
@@ -678,7 +681,7 @@ if show_all:
 # todo My 10's/9's
 # - y is number of votes
 # - x is IMDb rating
-
+# - fitler by genre?
 
 
 # %%
@@ -689,4 +692,22 @@ df.groupby('Decade').sum()[['Sci-Fi', 'Crime', 'Comedy', 'Action', 'Thriller']].
 
 
 # %%
+# todo grid of genre and decade correlations
+# * at least 10 records to get meaningful data
 
+# - do 4x4 correlation grid with titles
+
+min_recs = 10
+gen_records = df_l.groupby(['Genres', 'Decade']).count().reset_index()[df_l.groupby(['Genres', 'Decade']).count().reset_index()['Title'] >= min_recs][['Genres', 'Decade']]
+
+# popular_genres = df_l['Genres'].value_counts()[df_l['Genres'].value_counts().values >= 15].index
+# - or df_l['Genres'].value_counts().head().index
+dict_list = []
+for i, j in gen_records.itertuples(index=False):
+    column_1 = df_l[(df_l['Decade'] == j) & (df_l['Genres'] == i)]['Your Rating']
+    column_2 = df_l[(df_l['Decade'] == j) & (df_l['Genres'] == i)]['IMDb Rating']
+    dict_list.append({'Decade': i, 'Genre': j, 'Correlation': column_1.corr(column_2)})
+
+df_corr = pd.DataFrame.from_dict(dict_list).sort_values('Correlation', ascending=False).reset_index(drop=True)
+
+# %%
