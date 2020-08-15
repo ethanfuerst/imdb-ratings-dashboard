@@ -16,7 +16,7 @@ api_key = f = open("plotly_key.txt", "r").readline()
 chart_studio.tools.set_credentials_file(username='ethanfuerst', api_key=api_key)
 
 # - Change to see all graphs when run
-show_all = True
+show_all = False
 
 # %%
 # - import and clean data
