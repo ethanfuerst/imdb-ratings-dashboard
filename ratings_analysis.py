@@ -131,16 +131,19 @@ if show_all:
 chart_studio.plotly.plot(fig, filename='My iMDB Rating guide', auto_open=False)
 
 #%%
+# - my rating, imdb rating histogram
+# * could try to fix the hovertemplate with the binning
 fig = go.Figure()
 
 fig.add_trace(go.Histogram(x=df['Your Rating'],
                             name='My Rating',
                             hovertemplate=
-                                'I gave a %{y}/' + str(len(df)) + ' movies rating of %{x}<extra></extra>'))
-fig.add_trace(go.Histogram(x=df['IMDb Rating'],
+                                'I gave a %{y}/' + str(len(df)) + ' movies a rating of %{x}<extra></extra>'))
+fig.add_trace(go.Histogram(x=df['IMDb Rating'].apply(lambda x: math.floor(x*2)/2),
                             name='IMDb Rating',
                             hovertemplate=
-                                '%{y}/' + str(len(df)) + ' of the movies that I rated <br>have an IMDb rating of %{x}<extra></extra>'))
+                                '%{y}/' + str(len(df)) + ' of the movies that I rated <br>have an IMDb rating of %{x}' +
+                                ' to .4 points higher<extra></extra>'))
 
 fig.update_layout(barmode='overlay',
     title=dict(
