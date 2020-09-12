@@ -17,6 +17,7 @@ chart_studio.tools.set_credentials_file(username='ethanfuerst', api_key=api_key)
 
 # - Change to see all graphs when run
 show_all = False
+update_layouts = True
 
 # %%
 # - import and clean data
@@ -61,9 +62,12 @@ one_hot = one_hot[genres].astype(bool).copy()
 df = df.join(one_hot)
 # df = df.drop(['Genres'], axis=1)
 
+
 df['Genres'] = df['Genres'].str.split(', ')
 df_l = df[['Title', 'IMDb Rating', 'Your Rating', 'Decade', 'Genres']].explode('Genres')
 
+
+# * Plotly color lists
 color_list = ['#1A4D94', '#007A33', '#CB4F0A', '#5A2D81'] * int(len(df)/3)
 full_color_list = ['#1A4D94', '#5C7DAA', '#007A33', '#33955C', '#CB4F0A', '#F58426','#5A2D81', '#DFAEE6'] * int(len(df)/7)
 
@@ -128,7 +132,8 @@ fig.update_layout(
 if show_all:
     fig.show()
 
-chart_studio.plotly.plot(fig, filename='My iMDB Rating guide', auto_open=False)
+if update_layouts:
+    chart_studio.plotly.plot(fig, filename='My iMDB Rating guide', auto_open=False)
 
 #%%
 # - my rating, imdb rating histogram
@@ -170,7 +175,8 @@ fig.update_traces(opacity=0.75)
 if show_all:
     fig.show()
 
-chart_studio.plotly.plot(fig, filename='Distribution of my ratings and IMDb ratings', auto_open=False)
+if update_layouts:
+    chart_studio.plotly.plot(fig, filename='Distribution of my ratings and IMDb ratings', auto_open=False)
 
 
 # %%
@@ -341,7 +347,8 @@ fig.update_layout(
 if show_all:
     fig.show()
 
-chart_studio.plotly.plot(fig, filename='IMDb Rating vs. My Rating', auto_open=False)
+if update_layouts:
+    chart_studio.plotly.plot(fig, filename='IMDb Rating vs. My Rating', auto_open=False)
 
 
 # %%
@@ -380,7 +387,8 @@ fig.update_layout(
 if show_all:
     fig.show()
 
-chart_studio.plotly.plot(fig, filename='IMDb Rating vs. My Rating breakdown', auto_open=False)
+if update_layouts:
+    chart_studio.plotly.plot(fig, filename='IMDb Rating vs. My Rating breakdown', auto_open=False)
 
 
 # %%
@@ -469,7 +477,8 @@ fig.update_layout(
 if show_all:
     fig.show()
 
-chart_studio.plotly.plot(fig, filename='Year vs. Difference in Ratings', auto_open=False)
+if update_layouts:
+    chart_studio.plotly.plot(fig, filename='Year vs. Difference in Ratings', auto_open=False)
 
 
 # %%
@@ -507,7 +516,8 @@ fig.update_layout(
 if show_all:
     fig.show()
 
-chart_studio.plotly.plot(fig, filename='Number of movies in my ratings by year released', auto_open=False)
+if update_layouts:
+    chart_studio.plotly.plot(fig, filename='Number of movies in my ratings by year released', auto_open=False)
 
 
 # %%
@@ -561,7 +571,8 @@ fig.update_layout(
 if show_all:
     fig.show()
 
-chart_studio.plotly.plot(fig, filename='Distribution of my ratings by decade', auto_open=False)
+if update_layouts:
+    chart_studio.plotly.plot(fig, filename='Distribution of my ratings by decade', auto_open=False)
 
 
 # %%
@@ -601,7 +612,8 @@ fig.update_layout(
 if show_all:
     fig.show()
 
-chart_studio.plotly.plot(fig, filename='Distribution of my ratings by genre', auto_open=False)
+if update_layouts:
+    chart_studio.plotly.plot(fig, filename='Distribution of my ratings by genre', auto_open=False)
 
 
 #%%
