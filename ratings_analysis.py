@@ -24,6 +24,7 @@ update_layouts = True
 with open('ratings.csv', 'r', encoding='mac_roman', newline='') as csvfile:
     df = pd.read_csv(csvfile)
 
+# * preliminary data cleaning
 df = df[df['Title Type'] == 'movie'].copy()
 df['Release Date'] = pd.to_datetime(df['Release Date'])
 df['Date Rated'] = pd.to_datetime(df['Date Rated'])
@@ -35,37 +36,28 @@ decade_date_labels = [str(i)[2:] + "'s" for i in list(decade_date_range)[:len(li
 decade_mapping = dict(zip(decade_date_labels, list(decade_date_range)[:len(list(decade_date_range))-1]))
 df['Decade'] = pd.cut(df['Year'], bins=list(decade_date_range), labels=decade_date_labels, 
                         include_lowest=True, right=False)
+df[['Genre 1', 'Genre 2', 'Genre 3']] = df['Genres'].str.split(', ').apply(pd.Series)[[0,1,2]]
+df['Days not rated'] = (df['Date Rated'] - df['Release Date']).dt.days
 
 df.drop('Title Type', axis=1, inplace=True)
 
+#%%
 # - Create genre breakdown
-df_g = pd.DataFrame(df['Genres'].str.split(', ').tolist(), index=df['Title']).stack().copy()
-df_g = df_g.reset_index([0, 'Title']).copy()
-df_g.columns = ['Title', 'Genre']
-# - need to outer join in the other data 
-df_j = df[['Your Rating', 'Date Rated', 'Title', 'IMDb Rating', 'Runtime (mins)', 
-        'Year', 'Decade', 'Num Votes', 'Release Date', 'Diff in ratings']].copy()
-df_g = df_g.merge(df_j, how='outer', on='Title', suffixes=('', '')).copy()
-df_g = df_g.sort_values('Release Date').reset_index(drop=True).copy()
+# * df_g adds multiple rows for each genre that a movie is
+df_g = df.copy()
+df_g['Genres'] = df_g['Genres'].str.split(', ')
+df_g = df_g.explode('Genres')
+df_g = df_g.rename({'Genres':'Genre'}, axis='columns')
 df_g['Category'] = df_g['Decade'].astype(str) + ' ' + df_g['Genre'].astype(str)
-
+genre_counts = df_g['Genre'].value_counts()
 # // agg_cols = ['Genre', 'Decade', 'Your Rating', 'IMDb Rating', 'Diff in ratings']
 # // g_mean = df_g.groupby(['Genre', 'Decade']).mean().reset_index()[agg_cols].round({'Your Rating':2,'IMDb Rating':1,'Diff in ratings':2})
 
-genre_list = list(df_g['Genre'].value_counts().index)
-
-# - Genres
-# * may want to delete (and change the plot using it) after above code is implemented
+# - Adding top 5 genres as one hot encoded columns to the df
 one_hot = df['Genres'].str.get_dummies(sep=', ')
-genres = list(one_hot.sum().sort_values(ascending=False).index)[:8]
-one_hot = one_hot[genres].astype(bool).copy()
+top_5_genres = genre_counts.index[:5]
+one_hot = one_hot[top_5_genres]
 df = df.join(one_hot)
-# df = df.drop(['Genres'], axis=1)
-
-
-df['Genres'] = df['Genres'].str.split(', ')
-df_l = df[['Title', 'IMDb Rating', 'Your Rating', 'Decade', 'Genres']].explode('Genres')
-
 
 # * Plotly color lists
 color_list = ['#1A4D94', '#007A33', '#CB4F0A', '#5A2D81'] * int(len(df)/3)
@@ -583,10 +575,10 @@ if update_layouts:
 # todo Add mean
 
 fig = go.Figure()
-for i in range(len(genres)):
+for i in range(len(top_5_genres)):
     fig.add_trace(go.Box(
-        y=df[df[genres[i]] == True]['Your Rating'],
-        name=genres[i]
+        y=df[df[top_5_genres[i]] == 1]['Your Rating'],
+        name=top_5_genres[i]
     ))
 fig.update_layout(
     plot_bgcolor='#cccccc',
@@ -620,7 +612,7 @@ if update_layouts:
 # - genre box plot
 # - y is rating x is decade
 # - filter on genres
-# todo dynamically add genres from genre_list
+# todo dynamically add genres from genre_counts
 # todo add title
 # todo toggle between my rating/imdb rating
 
@@ -628,7 +620,7 @@ if update_layouts:
 fig = go.Figure()
 
 # - Dynamically add traces
-# for i in genre_list:
+# for i in genre_counts:
 #     fig.add_trace(go.Box(
 #         y=df_g[df_g['Genre'] == i]['Your Rating'],
 #         name=i
@@ -643,7 +635,7 @@ fig.add_trace(go.Box(
         #             '<br><b>IMDb Rating</b>: '+df_g[df_g['Genre'] == 'Comedy']['IMDb Rating'].astype(str)+'<br>'+
         #             '<b>My Rating</b>: %{y}<br>'+
         #             '<b>Difference</b>: '+ df_g[df_g['Genre'] == 'Comedy']['Diff in ratings'].astype(str)+'<extra></extra>',
-        name=i,
+        name='Comedy',
         boxpoints='all',
         jitter=.25,
         pointpos=-1.8,
@@ -659,7 +651,7 @@ fig.add_trace(go.Box(
         #             '<br><b>IMDb Rating</b>: '+df_g[df_g['Genre'] == 'Drama']['IMDb Rating'].astype(str)+'<br>'+
         #             '<b>My Rating</b>: %{y}<br>'+
         #             '<b>Difference</b>: '+ df_g[df_g['Genre'] == 'Drama']['Diff in ratings'].astype(str)+'<extra></extra>',
-        name=i,
+        name='Drama',
         boxpoints='all',
         jitter=.25,
         pointpos=-1.8,
@@ -701,7 +693,7 @@ if show_all:
 
 # %%
 # todo Change to plt bar
-df.groupby('Decade').sum()[['Sci-Fi', 'Crime', 'Comedy', 'Action', 'Thriller']].plot(kind='bar')
+# df.groupby('Decade').sum()[['Sci-Fi', 'Crime', 'Comedy', 'Action', 'Thriller']].plot(kind='bar')
 # - eh idk
 # - Maybe do averages? or box plot
 
@@ -711,16 +703,17 @@ df.groupby('Decade').sum()[['Sci-Fi', 'Crime', 'Comedy', 'Action', 'Thriller']].
 # * at least 10 records to get meaningful data
 
 # - do 4x4 correlation grid with titles
+#! need to use df_g for this now
 
 min_recs = 10
-gen_records = df_l.groupby(['Genres', 'Decade']).count().reset_index()[df_l.groupby(['Genres', 'Decade']).count().reset_index()['Title'] >= min_recs][['Genres', 'Decade']]
+gen_records = df_g.groupby(['Genre', 'Decade']).count().reset_index()[df_g.groupby(['Genre', 'Decade']).count().reset_index()['Title'] >= min_recs][['Genre', 'Decade']]
 
-# popular_genres = df_l['Genres'].value_counts()[df_l['Genres'].value_counts().values >= 15].index
-# - or df_l['Genres'].value_counts().head().index
+# popular_genres = df_g['Genres'].value_counts()[df_g['Genres'].value_counts().values >= 15].index
+# - or df_g['Genres'].value_counts().head().index
 dict_list = []
 for i, j in gen_records.itertuples(index=False):
-    column_1 = df_l[(df_l['Decade'] == j) & (df_l['Genres'] == i)]['Your Rating']
-    column_2 = df_l[(df_l['Decade'] == j) & (df_l['Genres'] == i)]['IMDb Rating']
+    column_1 = df_g[(df_g['Decade'] == j) & (df_g['Genre'] == i)]['Your Rating']
+    column_2 = df_g[(df_g['Decade'] == j) & (df_g['Genre'] == i)]['IMDb Rating']
     dict_list.append({'Decade': i, 'Genre': j, 'Correlation': column_1.corr(column_2)})
 
 df_corr = pd.DataFrame.from_dict(dict_list).sort_values('Correlation', ascending=False).reset_index(drop=True)
