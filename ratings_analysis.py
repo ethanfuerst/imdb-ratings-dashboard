@@ -72,17 +72,6 @@ alt_greys = ['#cccccc', '#e4e4e4'] * len(df)
 my_ratings = pd.DataFrame()
 my_ratings['My Rating'] = [i for i in range(10,0,-1)]
 my_ratings['Criteria'] = ['Perfect','Great','Really good','Good','Okay','Average','Not good','Really not good','Bad','Really Bad']
-my_ratings['Link'] = ['[The Dark Knight](https://www.imdb.com/title/tt0468569/)',
-                        '[Inglourious Basterds](https://www.imdb.com/title/tt0361748/)',
-                        '[The Wolf of Wall Street](https://www.imdb.com/title/tt0993846/)',
-                        '[Ready Player One](https://www.imdb.com/title/tt1677720/)',
-                        '[Limitless](https://www.imdb.com/title/tt1219289/)',
-                        '[Masterminds](https://www.imdb.com/title/tt2461150/)',
-                        '',
-                        '[Fahrenheit 451](https://www.imdb.com/title/tt0360556/)',
-                        '',
-                        '[The Room](https://www.imdb.com/title/tt0368226/)'
-]
 my_ratings['Title'] = ['The Dark Knight',
 'Inglourious Basterds',
 'The Wolf of Wall Street',
