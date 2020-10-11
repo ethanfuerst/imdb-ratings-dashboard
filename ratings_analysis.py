@@ -20,45 +20,53 @@ show_all = False
 update_layouts = True
 
 # %%
-# - import and clean data
-with open('ratings.csv', 'r', encoding='mac_roman', newline='') as csvfile:
-    df = pd.read_csv(csvfile)
 
-# * preliminary data cleaning
-df = df[df['Title Type'] == 'movie'].copy()
-df['Release Date'] = pd.to_datetime(df['Release Date'])
-df['Date Rated'] = pd.to_datetime(df['Date Rated'])
-df['Diff in ratings'] = round(df['IMDb Rating'] - df['Your Rating'],1)
-df['Link'] = '<a href=”' + df['URL'].astype(str) +'”>'+ df['Title'].astype(str) 
-decade_date_range = range(math.floor(df['Year'].min()/10) * 10, datetime.date.today().year + 11, 10)
-decade_date_labels = [str(i)[2:] + "'s" for i in list(decade_date_range)[:len(list(decade_date_range))-1]]
-# - to get a value to sort the df on
-decade_mapping = dict(zip(decade_date_labels, list(decade_date_range)[:len(list(decade_date_range))-1]))
-df['Decade'] = pd.cut(df['Year'], bins=list(decade_date_range), labels=decade_date_labels, 
-                        include_lowest=True, right=False)
-df[['Genre 1', 'Genre 2', 'Genre 3']] = df['Genres'].str.split(', ').apply(pd.Series)[[0,1,2]]
-df['Days not rated'] = (df['Date Rated'] - df['Release Date']).dt.days
+def imdb_data():
+    # - import and clean data
+    with open('ratings.csv', 'r', encoding='mac_roman', newline='') as csvfile:
+        df = pd.read_csv(csvfile)
+    
+    # * preliminary data cleaning
+    df = df[df['Title Type'] == 'movie'].copy()
+    df['Release Date'] = pd.to_datetime(df['Release Date'])
+    df['Date Rated'] = pd.to_datetime(df['Date Rated'])
+    df['Diff in ratings'] = round(df['IMDb Rating'] - df['Your Rating'],1)
+    df['Link'] = '<a href=”' + df['URL'].astype(str) +'”>'+ df['Title'].astype(str) 
+    decade_date_range = range(math.floor(df['Year'].min()/10) * 10, datetime.date.today().year + 11, 10)
+    decade_date_labels = [str(i)[2:] + "'s" for i in list(decade_date_range)[:len(list(decade_date_range))-1]]
+    # - to get a value to sort the df on
+    decade_mapping = dict(zip(decade_date_labels, list(decade_date_range)[:len(list(decade_date_range))-1]))
+    df['Decade'] = pd.cut(df['Year'], bins=list(decade_date_range), labels=decade_date_labels, 
+                            include_lowest=True, right=False)
+    df[['Genre 1', 'Genre 2', 'Genre 3']] = df['Genres'].str.split(', ').apply(pd.Series)[[0,1,2]]
+    df['Days not rated'] = (df['Date Rated'] - df['Release Date']).dt.days
 
-df.drop('Title Type', axis=1, inplace=True)
+    df.drop('Title Type', axis=1, inplace=True)
+
+    # - Create genre breakdown
+    # * df_g adds multiple rows for each genre that a movie is
+    df_g = df.copy()
+    df_g['Genres'] = df_g['Genres'].str.split(', ')
+    df_g = df_g.explode('Genres')
+    df_g = df_g.rename({'Genres':'Genre'}, axis='columns')
+    df_g['Category'] = df_g['Decade'].astype(str) + ' ' + df_g['Genre'].astype(str)
+    genre_counts = df_g['Genre'].value_counts()
+    # // agg_cols = ['Genre', 'Decade', 'Your Rating', 'IMDb Rating', 'Diff in ratings']
+    # // g_mean = df_g.groupby(['Genre', 'Decade']).mean().reset_index()[agg_cols].round({'Your Rating':2,'IMDb Rating':1,'Diff in ratings':2})
+
+    # - Adding top 5 genres as one hot encoded columns to the df
+    one_hot = df['Genres'].str.get_dummies(sep=', ')
+    top_5_genres = genre_counts.index[:5]
+    one_hot = one_hot[top_5_genres]
+    df = df.join(one_hot)
+
+    return df, df_g, one_hot, top_5_genres
+
 
 #%%
-# - Create genre breakdown
-# * df_g adds multiple rows for each genre that a movie is
-df_g = df.copy()
-df_g['Genres'] = df_g['Genres'].str.split(', ')
-df_g = df_g.explode('Genres')
-df_g = df_g.rename({'Genres':'Genre'}, axis='columns')
-df_g['Category'] = df_g['Decade'].astype(str) + ' ' + df_g['Genre'].astype(str)
-genre_counts = df_g['Genre'].value_counts()
-# // agg_cols = ['Genre', 'Decade', 'Your Rating', 'IMDb Rating', 'Diff in ratings']
-# // g_mean = df_g.groupby(['Genre', 'Decade']).mean().reset_index()[agg_cols].round({'Your Rating':2,'IMDb Rating':1,'Diff in ratings':2})
+df, df_g, one_hot, top_5_genres = imdb_data()
 
-# - Adding top 5 genres as one hot encoded columns to the df
-one_hot = df['Genres'].str.get_dummies(sep=', ')
-top_5_genres = genre_counts.index[:5]
-one_hot = one_hot[top_5_genres]
-df = df.join(one_hot)
-
+#%%
 # * Plotly color lists
 color_list = ['#1A4D94', '#007A33', '#CB4F0A', '#5A2D81'] * int(len(df)/3)
 full_color_list = ['#1A4D94', '#5C7DAA', '#007A33', '#33955C', '#CB4F0A', '#F58426','#5A2D81', '#DFAEE6'] * int(len(df)/7)
