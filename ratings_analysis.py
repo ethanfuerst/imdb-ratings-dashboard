@@ -33,7 +33,7 @@ def imdb_data():
     df['Diff in ratings'] = round(df['IMDb Rating'] - df['Your Rating'],1)
     df['Link'] = '<a href=”' + df['URL'].astype(str) +'”>'+ df['Title'].astype(str) 
     decade_date_range = range(math.floor(df['Year'].min()/10) * 10, datetime.date.today().year + 11, 10)
-    decade_date_labels = [str(i)[2:] + "'s" for i in list(decade_date_range)[:len(list(decade_date_range))-1]]
+    decade_date_labels = [str(i) + "'s" for i in list(decade_date_range)[:len(list(decade_date_range))-1]]
     # - to get a value to sort the df on
     decade_mapping = dict(zip(decade_date_labels, list(decade_date_range)[:len(list(decade_date_range))-1]))
     df['Decade'] = pd.cut(df['Year'], bins=list(decade_date_range), labels=decade_date_labels, 
@@ -604,6 +604,51 @@ if show_all:
 if update_layouts:
     chart_studio.plotly.plot(fig, filename='Distribution of my ratings by genre', auto_open=False)
 
+#%%
+# - grid of top genres and decades scatterplot
+
+num_plots = 3
+colors = ['blue', 'purple', 'red', 'green', 'orange']
+symbols = ['circle', 'cross', 'diamond', 104, 105]
+
+fig = make_subplots(rows=num_plots, cols=num_plots,
+                    vertical_spacing=0.05, horizontal_spacing=0.05,
+                    subplot_titles=[j + ' ' + i for j in df['Decade'].value_counts()[:num_plots].index for i in top_5_genres[:num_plots]])
+
+for decade, row, color in zip(df['Decade'].value_counts()[:num_plots].index, range(1, num_plots + 1), colors[:num_plots]):
+    for genre, col, shape in zip(top_5_genres[:num_plots], range(1, num_plots + 1), symbols[:num_plots]):
+        fig.add_trace(
+            go.Scatter(x=df[(df['Decade'] == decade) & (df[genre] == True)]['Your Rating'], 
+                    y=df[(df['Decade'] == decade) & (df[genre] == True)]['IMDb Rating'],
+                    mode='markers', marker_color=color, marker_symbol=shape, marker_size=8,
+                    hovertemplate=df[(df['Decade'] == decade) & (df[genre] == True)]['Title'].astype(str)+' (' 
+                    +df[(df['Decade'] == decade) & (df[genre] == True)]['Year'].astype(str) + ' film)'+
+                    '<br><b>IMDb Rating</b>: '+df[(df['Decade'] == decade) & (df[genre] == True)]['IMDb Rating'].astype(str)+'<br>'+
+                    '<b>My Rating</b>: '+df[(df['Decade'] == decade) & (df[genre] == True)]['Your Rating'].astype(str)+'<br>'+
+                    '<b>Difference</b>: %{y}'+'<extra></extra>'),
+            row=row, col=col
+        )
+
+        # print(df[(df['Decade'] == decade) & (df[genre] == True)]['Your Rating'].corr(df[(df['Decade'] == decade) & (df[genre] == True)]['IMDb Rating']))
+
+        if row == num_plots and col == 1:
+            fig.update_xaxes(title_text='My Rating', range=[-0.5, 10.5], row=row, col=col)
+            fig.update_yaxes(title_text='IMDb Rating', range=[-0.5, 10.5], row=row, col=col)
+        else:
+            fig.update_xaxes(range=[-0.5, 10.5], row=row, col=col, showticklabels=False)
+            fig.update_yaxes(range=[-0.5, 10.5], row=row, col=col, showticklabels=False)
+
+for i in fig['layout']['annotations']:
+    i['font']['size'] = 12
+
+fig.update_layout(height=500, width=700, showlegend=False, title_text="Top Genres and Decades")
+
+if show_all:
+    fig.show()
+
+if update_layouts:
+    chart_studio.plotly.plot(fig, filename='Top Genres and Decades', auto_open=False)
+
 
 #%%
 # - genre box plot
@@ -714,5 +759,3 @@ for i, j in gen_records.itertuples(index=False):
     dict_list.append({'Decade': i, 'Genre': j, 'Correlation': column_1.corr(column_2)})
 
 df_corr = pd.DataFrame.from_dict(dict_list).sort_values('Correlation', ascending=False).reset_index(drop=True)
-
-# %%
