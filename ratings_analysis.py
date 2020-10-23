@@ -11,6 +11,7 @@ import plotly.io as pio
 from plotly.colors import n_colors
 import plotly.express as px
 import plotly.figure_factory as ff
+from plotly.subplots import make_subplots
 import chart_studio
 api_key = f = open("plotly_key.txt", "r").readline()
 chart_studio.tools.set_credentials_file(username='ethanfuerst', api_key=api_key)
