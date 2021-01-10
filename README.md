@@ -1,4 +1,4 @@
-# imdb_ratings
+# imdb-ratings-dashboard
 
 This project is for me to look a little bit more at my imdb ratings. Eventually, I'd like to create a Plotly/Dash dashboard that summarizes the data just like in ethanfuerst/[spotifyinsights](https://github.com/ethanfuerst/spotifyinsights)
 
