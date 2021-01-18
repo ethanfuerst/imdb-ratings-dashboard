@@ -1,27 +1,6 @@
-# Folder view configuration files
 .DS_Store
-.~rating_vis__*
-
-# Icon
-Icon\r
-Icon\r\r
-Icon[
-]
-Icon?
-"Icon[\r]"
-Icon[\r]
-
-# VS Code Settings
 .vscode
-
-# Compiled Python files
 *.pyc
+__pycache__
 
-# Open Tableau files
-.~rating_vis__*
-
-# Data
 /awarddata
-
-# Plotly API Key
-plotly_key.txt
