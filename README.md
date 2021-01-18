@@ -1,26 +1,17 @@
 # imdb-ratings-dashboard
 
-This project is for me to look a little bit more at my imdb ratings. Eventually, I'd like to create a Plotly/Dash dashboard that summarizes the data just like in ethanfuerst/[spotifyinsights](https://github.com/ethanfuerst/spotifyinsights)
+IMDb Ratings Dashboard using Plotly and Dash
 
-## Files in this repository by extension
+[Link to dashboard](https://imdb-ratings-dashboard.herokuapp.com/)
 
-### .csv
+## Files in this repository
 
-__*ratings.csv*__ - my ratings data from iMDB
+__*app.<span></span>py*__ - the meat of my application
 
-### .py
+__*nba_data.py*__ - the bones of my application, gathers all data from ratings.csv and formats for usage in app.<span></span>py
 
-__*award_shows.py*__ - exploratory analysis for award show season to see if you can predict oscar winners
+__*ratings.csv*__ - [IMDb Ratings Data](https://www.imdb.com/user/ur37179566/ratings)
 
-__*ratings_analysis.py*__ - visualizations from ratings.csv
+__*Procfile, requirements.txt*__ - other files needed for app<span></span>.py to run with Heroku
 
-## TODO
-
-- [x] one hot encoding for genres
-- [x] Bin columns
-- [x] visualize my ratings in different ways
-- [x] Add most recently rated/released to scatter
-- [ ] Make analysis for 10/10 movies
-- [ ] Ratings diff vs. year - add toggle by genre
-- [ ] look in to [APIs](http://www.omdbapi.com/)
-- [ ] create ML model to predict my scores
+__*push_heroku_changes.sh*__ - shell script to updated dashboard changes in Heroku
