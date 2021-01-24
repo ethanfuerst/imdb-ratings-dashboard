@@ -39,8 +39,16 @@ datatable_params = dict(
         'font-family':'sans-serif',
         'backgroundColor': '#D3D3D3',
         'textAlign': 'center',
-        'border': '1px solid grey'
-    })
+        'border': '1px solid grey',
+        'overflow': 'hidden',
+        'textOverflow': 'ellipsis'
+    },
+    style_data={
+        'whiteSpace': 'normal',
+        'height': 'auto',
+        'lineHeight': '15px'
+    }
+    )
 
 app = dash.Dash(__name__, external_stylesheets=['https://codepen.io/chriddyp/pen/bWLwgP.css'])
 server = app.server
@@ -132,17 +140,27 @@ app.layout = html.Div([
         html.Div([
             dt.DataTable(
                 id='allmovies_table',
-                columns=[{
+                columns=[
+                    {
+                    "name": 'Title', 
+                    "id": 'Title'
+                    },
+                    {
+                    "name": 'Link', 
+                    "id": 'Link',
+                    'type':'text',
+                    'presentation':'markdown'
+                }] + [{
                     "name": i, 
                     "id": i
-                } for i in ['Title', 'My Rating', 'IMDb Rating', 'Difference in Ratings',
+                } for i in ['My Rating', 'IMDb Rating', 'Difference in Ratings',
                             'Year', 'Genres', 'Director', 'Date Released', 'Date Rated']],
                 **datatable_params,
                 style_table = {
-                    'overflowX': 'scroll',
+                    'overflowX': 'auto',
                     'maxWidth': '80%',
                     'minWidth': '40%',
-                    'height': '500px',
+                    'height': '750px',
                     'overflowY': 'auto'
                 },
                 filter_action="native",
@@ -549,7 +567,12 @@ def update_boxplot1(genre1, genre2):
 )
 def update_ratings_breakdown_table(genre1, genre2):
     mask = df['genre_list'].apply(lambda x: genre_finder(x, g1=genre1, g2=genre2))
-    movies = df[mask][['Title', 
+    movies = df[mask]
+    
+    movies['Link'] = '[Link](' + movies['URL'] + ')'
+
+    movies = movies[['Title', 
+        'Link',
         'Your Rating', 
         'IMDb Rating',
         'Diff in ratings',
@@ -557,9 +580,9 @@ def update_ratings_breakdown_table(genre1, genre2):
         'Genres',
         'Directors',
         'Release Date',
-        'Date Rated']]
+        'Date Rated']].copy()
     
-    movies.columns = ['Title', 'My Rating', 'IMDb Rating', 'Difference in Ratings',
+    movies.columns = ['Title', 'Link', 'My Rating', 'IMDb Rating', 'Difference in Ratings',
                             'Year', 'Genres', 'Director', 'Date Released', 'Date Rated']
 
     movies['Date Released'] = movies['Date Released'].dt.strftime('%B %-d, %Y')
