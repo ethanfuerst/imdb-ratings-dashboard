@@ -18,15 +18,31 @@ top_5_genres = genre_counts.index[:5]
 all_genres = ['All Genres'] + list(genre_counts.index)
 center_style = {'textAlign': 'center'}
 
-def genre_finder(x, g1, g2):
-    if 'All Genres' in [g1, g2]:
+def genre_finder(x, g1='', g2=''):
+
+    if 'All Genres' in [g1, g2] or (g1 in ['', None] and g2 in ['', None]):
         return True
     elif g1 == g2:
         return g1 in x
-    elif g2 == '':
+    elif g2 in ['', None]:
         return g1 in x
+    elif g1 in ['', None]:
+        return g2 in x
     else:
         return (g1 in x) and (g2 in x)
+
+def filter_movies(genre1, genre2, start_date, end_date):
+    mask = df['genre_list'].apply(lambda x: genre_finder(x, g1=genre1, g2=genre2))
+    sample_movies = df[mask]
+
+    return sample_movies[(sample_movies['Release Date'] >= start_date) & (sample_movies['Release Date'] <= end_date)].copy()
+
+figure_filter_inputs = [
+    Input('genre1', 'value'),
+    Input('genre2', 'value'),
+    dash.dependencies.Input('date_range_picker', 'start_date'),
+    dash.dependencies.Input('date_range_picker', 'end_date')
+]
 
 datatable_params = dict(
     style_header = {
@@ -39,8 +55,11 @@ datatable_params = dict(
         'font-family':'sans-serif',
         'backgroundColor': '#D3D3D3',
         'textAlign': 'center',
-        'border': '1px solid grey'
-    })
+        'border': '1px solid grey',
+        'overflow': 'hidden',
+        'textOverflow': 'ellipsis'
+    }
+    )
 
 app = dash.Dash(__name__, external_stylesheets=['https://codepen.io/chriddyp/pen/bWLwgP.css'])
 server = app.server
@@ -52,7 +71,7 @@ app.layout = html.Div([
     ),
     dbc.Row(
         html.H2(
-            children='Use the dropdowns below to sort by genre!',
+            children='Use the filters below to sort by genre and release date!',
             style=center_style
         )
     ),
@@ -95,6 +114,18 @@ app.layout = html.Div([
     }),
     
     html.Center([
+        html.Div(
+            dcc.DatePickerRange(
+                id='date_range_picker',
+                min_date_allowed=df['Release Date'].min().date(),
+                max_date_allowed=df['Release Date'].max().date(),
+                start_date=df['Release Date'].min().date(),
+                end_date=df['Release Date'].max().date()
+            )
+        )
+    ]),
+
+    html.Center([
         html.Div([
             dt.DataTable(
                 id='breakdown_table',
@@ -132,18 +163,33 @@ app.layout = html.Div([
         html.Div([
             dt.DataTable(
                 id='allmovies_table',
-                columns=[{
+                columns=[
+                    {
+                    "name": 'Title', 
+                    "id": 'Title'
+                    },
+                    {
+                    "name": 'Link', 
+                    "id": 'Link',
+                    'type':'text',
+                    'presentation':'markdown'
+                }] + [{
                     "name": i, 
                     "id": i
-                } for i in ['Title', 'My Rating', 'IMDb Rating', 'Difference in Ratings',
+                } for i in ['My Rating', 'IMDb Rating', 'Difference in Ratings',
                             'Year', 'Genres', 'Director', 'Date Released', 'Date Rated']],
                 **datatable_params,
                 style_table = {
-                    'overflowX': 'scroll',
+                    'overflowX': 'auto',
                     'maxWidth': '80%',
                     'minWidth': '40%',
-                    'height': '500px',
+                    'height': '750px',
                     'overflowY': 'auto'
+                },
+                style_data={
+                    'whiteSpace': 'normal',
+                    'height': 'auto',
+                    'lineHeight': '15px'
                 },
                 filter_action="native",
                 sort_action="native",
@@ -159,15 +205,30 @@ app.layout = html.Div([
 
 
 @app.callback(
-    Output('breakdown_table', 'data'),
+    [
+        Output('date_range_picker', 'start_date'),
+        Output('date_range_picker', 'end_date')
+    ],
     [
         Input('genre1', 'value'),
         Input('genre2', 'value')
     ]
 )
-def update_ratings_breakdown_table(genre1, genre2):
+def update_date_range_picker(genre1, genre2):
     mask = df['genre_list'].apply(lambda x: genre_finder(x, g1=genre1, g2=genre2))
     sample_movies = df[mask]
+
+    start_date = sample_movies.loc[:, 'Release Date'].min().date()
+    end_date = sample_movies.loc[:, 'Release Date'].max().date()
+
+    return start_date, end_date
+
+@app.callback(
+    Output('breakdown_table', 'data'),
+    figure_filter_inputs
+)
+def update_ratings_breakdown_table(genre1, genre2, start_date, end_date):
+    sample_movies = filter_movies(genre1, genre2, start_date, end_date)
 
     examples = pd.DataFrame(columns=['My Rating', 'Criteria', 'Example'])
     examples['My Rating'] = [i for i in range(10, 0, -1)]
@@ -186,14 +247,10 @@ def update_ratings_breakdown_table(genre1, genre2):
 
 @app.callback(
     Output('hist1', 'figure'),
-    [
-        Input('genre1', 'value'),
-        Input('genre2', 'value')
-    ]
+    figure_filter_inputs
 )
-def update_hist1(genre1, genre2):
-    mask = df['genre_list'].apply(lambda x: genre_finder(x, g1=genre1, g2=genre2))
-    movies = df[mask]
+def update_hist1(genre1, genre2, start_date, end_date):
+    movies = filter_movies(genre1, genre2, start_date, end_date)
 
     return {
         'data': [
@@ -248,14 +305,11 @@ def update_hist1(genre1, genre2):
 
 @app.callback(
     Output('scatter1', 'figure'),
-    [
-        Input('genre1', 'value'),
-        Input('genre2', 'value')
-    ]
+    figure_filter_inputs
 )
-def update_scatter1(genre1, genre2):
-    mask = df['genre_list'].apply(lambda x: genre_finder(x, g1=genre1, g2=genre2))
-    movies = df[mask]
+def update_scatter1(genre1, genre2, start_date, end_date):
+    movies = filter_movies(genre1, genre2, start_date, end_date)
+
     rated = movies.sort_values('Date Rated',ascending=False).head(10).copy()
     released = movies.sort_values('Release Date',ascending=False).head(10).copy()
 
@@ -278,31 +332,34 @@ def update_scatter1(genre1, genre2):
                 y=movies['Your Rating'],
                 mode='markers',
                 marker={**marker_format,  **{'color':movies['Year']}},
-                hovertemplate=movies['Title'].astype(str)+' (' +movies['Year'].astype(str) + ' film)'+
-                '<br><b>IMDb Rating</b>: %{x}<br>'+
-                '<b>My Rating</b>: %{y}'+'<extra></extra>'
+                hovertemplate=movies['Title'].astype(str)+ ' (' + 
+                    movies['Year'].astype(str) + ' film)' +
+                    '<br><b>IMDb Rating</b>: %{x}<br>' +
+                    '<b>My Rating</b>: %{y}<extra></extra>'
             ),
             go.Scatter(
                 x=rated['IMDb Rating'],
                 y=rated['Your Rating'],
                 mode='markers',
                 marker={**marker_format,  **{'color':rated['Year']}},
-                hovertemplate=rated['Title'].astype(str)+' (' +rated['Year'].astype(str) + ' film)'+
-                '<br><b>IMDb Rating</b>: %{x}<br>'+
-                '<b>My Rating</b>: %{y}<br>'+
-                '<b>Date Rated</b>: '+ rated['Date Rated'].dt.strftime("%B %-d '%y") +
-                '<extra></extra>'
+                hovertemplate=rated['Title'].astype(str)+ ' (' + 
+                    rated['Year'].astype(str) + ' film)' +
+                    '<br><b>IMDb Rating</b>: %{x}<br>' +
+                    '<b>My Rating</b>: %{y}<br>' +
+                    '<b>Date Rated</b>: ' + rated['Date Rated'].dt.strftime("%B %-d '%y") +
+                    '<extra></extra>'
             ),
             go.Scatter(
                 x=released['IMDb Rating'],
                 y=released['Your Rating'],
                 mode='markers',
                 marker={**marker_format,  **{'color':released['Year']}},
-                hovertemplate=released['Title'].astype(str)+' (' +released['Year'].astype(str) + ' film)'+
-                '<br><b>IMDb Rating</b>: %{x}<br>'+
-                '<b>My Rating</b>: %{y}<br>'+
-                '<b>Date Released</b>: '+ released['Date Rated'].dt.strftime("%B %-d '%y") +
-                '<extra></extra>'
+                hovertemplate=released['Title'].astype(str)+ ' (' + 
+                    released['Year'].astype(str) + ' film)' +
+                    '<br><b>IMDb Rating</b>: %{x}<br>' +
+                    '<b>My Rating</b>: %{y}<br>' +
+                    '<b>Date Released</b>: ' + released['Date Rated'].dt.strftime("%B %-d '%y") +
+                    '<extra></extra>'
             )
         ],
         'layout': go.Layout(
@@ -397,14 +454,10 @@ def update_scatter1(genre1, genre2):
 
 @app.callback(
     Output('scatter2', 'figure'),
-    [
-        Input('genre1', 'value'),
-        Input('genre2', 'value')
-    ]
+    figure_filter_inputs
 )
-def update_scatter2(genre1, genre2):
-    mask = df['genre_list'].apply(lambda x: genre_finder(x, g1=genre1, g2=genre2))
-    movies = df[mask]
+def update_scatter2(genre1, genre2, start_date, end_date):
+    movies = filter_movies(genre1, genre2, start_date, end_date)
 
     year_range = movies['Year'].max() - movies['Year'].min()
 
@@ -418,7 +471,8 @@ def update_scatter2(genre1, genre2):
                 marker=dict(
                     size=8,
                     color=movies['Your Rating'],
-                    colorscale=[[0, 'rgb(255,255,255)'], [1, 'rgb(26,77,148)']],
+                    colorscale=[[0, 'rgb(255,255,255)'], 
+                        [1, 'rgb(26,77,148)']],
                     showscale=True,
                     colorbar=dict(
                         title="My rating"
@@ -427,10 +481,11 @@ def update_scatter2(genre1, genre2):
                     cmax=movies['Your Rating'].max(),
                     cmid=movies['Your Rating'].mean()
                 ),
-                hovertemplate=movies['Title'].astype(str)+' (' +movies['Year'].astype(str) + ' film)'+
-                '<br><b>IMDb Rating</b>: '+movies['IMDb Rating'].astype(str)+'<br>'+
-                '<b>My Rating</b>: '+movies['Your Rating'].astype(str)+'<br>'+
-                '<b>Difference</b>: %{y}'+'<extra></extra>'
+                hovertemplate=movies['Title'].astype(str) + ' (' + 
+                    movies['Year'].astype(str) + ' film)' +
+                    '<br><b>IMDb Rating</b>: ' + movies['IMDb Rating'].astype(str) + '<br>' +
+                    '<b>My Rating</b>: ' + movies['Your Rating'].astype(str) + '<br>' +
+                    '<b>Difference</b>: %{y}<extra></extra>'
             )
         ],
         'layout': go.Layout(
@@ -450,9 +505,12 @@ def update_scatter2(genre1, genre2):
             ),
             yaxis=dict(
                 title='Difference in Ratings',
-                range=[math.ceil(movies['Diff in ratings'].max()), math.floor(movies['Diff in ratings'].min())],
-                tickvals=[i for i in range(math.floor(movies['Diff in ratings'].min()),
-                                            math.ceil(movies['Diff in ratings'].max()))]
+                range=[math.ceil(movies['Diff in ratings'].max()), 
+                    math.floor(movies['Diff in ratings'].min())],
+                tickvals=[i for i in range(
+                    math.floor(movies['Diff in ratings'].min()),
+                    math.ceil(movies['Diff in ratings'].max())
+                )]
             ),
             width=750,
             height=750,
@@ -481,7 +539,8 @@ def update_scatter2(genre1, genre2):
                     'Movies I liked<br>less than IMDb'],
                     [movies['Year'].min() + .2 * year_range, 
                     movies['Year'].min() + .2 * year_range],
-                    [-.2 * (movies['Diff in ratings'].max()), .2 * (movies['Diff in ratings'].max())]
+                    [-.2 * (movies['Diff in ratings'].max()), 
+                    .2 * (movies['Diff in ratings'].max())]
                 )
             ]
 
@@ -490,14 +549,10 @@ def update_scatter2(genre1, genre2):
 
 @app.callback(
     Output('boxplot1', 'figure'),
-    [
-        Input('genre1', 'value'),
-        Input('genre2', 'value')
-    ]
+    figure_filter_inputs
 )
-def update_boxplot1(genre1, genre2):
-    mask = df['genre_list'].apply(lambda x: genre_finder(x, g1=genre1, g2=genre2))
-    movies = df[mask].sort_values('Release Date')
+def update_boxplot1(genre1, genre2, start_date, end_date):
+    movies = filter_movies(genre1, genre2, start_date, end_date)
     decades = movies['Decade'].unique()
 
     colors = ['red', 'green', 'blue', 'orange', 'purple', 'yellow', 'red'] * len(decades)
@@ -542,14 +597,15 @@ def update_boxplot1(genre1, genre2):
 
 @app.callback(
     Output('allmovies_table', 'data'),
-    [
-        Input('genre1', 'value'),
-        Input('genre2', 'value')
-    ]
+    figure_filter_inputs
 )
-def update_ratings_breakdown_table(genre1, genre2):
-    mask = df['genre_list'].apply(lambda x: genre_finder(x, g1=genre1, g2=genre2))
-    movies = df[mask][['Title', 
+def update_ratings_breakdown_table(genre1, genre2, start_date, end_date):
+    movies = filter_movies(genre1, genre2, start_date, end_date)
+    
+    movies['Link'] = '[Link](' + movies['URL'] + ')'
+
+    movies = movies[['Title', 
+        'Link',
         'Your Rating', 
         'IMDb Rating',
         'Diff in ratings',
@@ -557,10 +613,19 @@ def update_ratings_breakdown_table(genre1, genre2):
         'Genres',
         'Directors',
         'Release Date',
-        'Date Rated']]
+        'Date Rated']].copy()
     
-    movies.columns = ['Title', 'My Rating', 'IMDb Rating', 'Difference in Ratings',
-                            'Year', 'Genres', 'Director', 'Date Released', 'Date Rated']
+    movies.columns = [
+        'Title', 
+        'Link', 
+        'My Rating', 
+        'IMDb Rating', 
+        'Difference in Ratings',
+        'Year', 
+        'Genres', 
+        'Director', 
+        'Date Released', 
+        'Date Rated']
 
     movies['Date Released'] = movies['Date Released'].dt.strftime('%B %-d, %Y')
     movies['Date Rated'] = movies['Date Rated'].dt.strftime('%B %-d, %Y')
