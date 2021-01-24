@@ -296,31 +296,34 @@ def update_scatter1(genre1, genre2):
                 y=movies['Your Rating'],
                 mode='markers',
                 marker={**marker_format,  **{'color':movies['Year']}},
-                hovertemplate=movies['Title'].astype(str)+' (' +movies['Year'].astype(str) + ' film)'+
-                '<br><b>IMDb Rating</b>: %{x}<br>'+
-                '<b>My Rating</b>: %{y}'+'<extra></extra>'
+                hovertemplate=movies['Title'].astype(str)+ ' (' + 
+                    movies['Year'].astype(str) + ' film)' +
+                    '<br><b>IMDb Rating</b>: %{x}<br>' +
+                    '<b>My Rating</b>: %{y}<extra></extra>'
             ),
             go.Scatter(
                 x=rated['IMDb Rating'],
                 y=rated['Your Rating'],
                 mode='markers',
                 marker={**marker_format,  **{'color':rated['Year']}},
-                hovertemplate=rated['Title'].astype(str)+' (' +rated['Year'].astype(str) + ' film)'+
-                '<br><b>IMDb Rating</b>: %{x}<br>'+
-                '<b>My Rating</b>: %{y}<br>'+
-                '<b>Date Rated</b>: '+ rated['Date Rated'].dt.strftime("%B %-d '%y") +
-                '<extra></extra>'
+                hovertemplate=rated['Title'].astype(str)+ ' (' + 
+                    rated['Year'].astype(str) + ' film)' +
+                    '<br><b>IMDb Rating</b>: %{x}<br>' +
+                    '<b>My Rating</b>: %{y}<br>' +
+                    '<b>Date Rated</b>: ' + rated['Date Rated'].dt.strftime("%B %-d '%y") +
+                    '<extra></extra>'
             ),
             go.Scatter(
                 x=released['IMDb Rating'],
                 y=released['Your Rating'],
                 mode='markers',
                 marker={**marker_format,  **{'color':released['Year']}},
-                hovertemplate=released['Title'].astype(str)+' (' +released['Year'].astype(str) + ' film)'+
-                '<br><b>IMDb Rating</b>: %{x}<br>'+
-                '<b>My Rating</b>: %{y}<br>'+
-                '<b>Date Released</b>: '+ released['Date Rated'].dt.strftime("%B %-d '%y") +
-                '<extra></extra>'
+                hovertemplate=released['Title'].astype(str)+ ' (' + 
+                    released['Year'].astype(str) + ' film)' +
+                    '<br><b>IMDb Rating</b>: %{x}<br>' +
+                    '<b>My Rating</b>: %{y}<br>' +
+                    '<b>Date Released</b>: ' + released['Date Rated'].dt.strftime("%B %-d '%y") +
+                    '<extra></extra>'
             )
         ],
         'layout': go.Layout(
@@ -436,7 +439,8 @@ def update_scatter2(genre1, genre2):
                 marker=dict(
                     size=8,
                     color=movies['Your Rating'],
-                    colorscale=[[0, 'rgb(255,255,255)'], [1, 'rgb(26,77,148)']],
+                    colorscale=[[0, 'rgb(255,255,255)'], 
+                        [1, 'rgb(26,77,148)']],
                     showscale=True,
                     colorbar=dict(
                         title="My rating"
@@ -445,10 +449,11 @@ def update_scatter2(genre1, genre2):
                     cmax=movies['Your Rating'].max(),
                     cmid=movies['Your Rating'].mean()
                 ),
-                hovertemplate=movies['Title'].astype(str)+' (' +movies['Year'].astype(str) + ' film)'+
-                '<br><b>IMDb Rating</b>: '+movies['IMDb Rating'].astype(str)+'<br>'+
-                '<b>My Rating</b>: '+movies['Your Rating'].astype(str)+'<br>'+
-                '<b>Difference</b>: %{y}'+'<extra></extra>'
+                hovertemplate=movies['Title'].astype(str) + ' (' + 
+                    movies['Year'].astype(str) + ' film)' +
+                    '<br><b>IMDb Rating</b>: ' + movies['IMDb Rating'].astype(str) + '<br>' +
+                    '<b>My Rating</b>: ' + movies['Your Rating'].astype(str) + '<br>' +
+                    '<b>Difference</b>: %{y}<extra></extra>'
             )
         ],
         'layout': go.Layout(
@@ -468,9 +473,12 @@ def update_scatter2(genre1, genre2):
             ),
             yaxis=dict(
                 title='Difference in Ratings',
-                range=[math.ceil(movies['Diff in ratings'].max()), math.floor(movies['Diff in ratings'].min())],
-                tickvals=[i for i in range(math.floor(movies['Diff in ratings'].min()),
-                                            math.ceil(movies['Diff in ratings'].max()))]
+                range=[math.ceil(movies['Diff in ratings'].max()), 
+                    math.floor(movies['Diff in ratings'].min())],
+                tickvals=[i for i in range(
+                    math.floor(movies['Diff in ratings'].min()),
+                    math.ceil(movies['Diff in ratings'].max())
+                )]
             ),
             width=750,
             height=750,
@@ -499,7 +507,8 @@ def update_scatter2(genre1, genre2):
                     'Movies I liked<br>less than IMDb'],
                     [movies['Year'].min() + .2 * year_range, 
                     movies['Year'].min() + .2 * year_range],
-                    [-.2 * (movies['Diff in ratings'].max()), .2 * (movies['Diff in ratings'].max())]
+                    [-.2 * (movies['Diff in ratings'].max()), 
+                    .2 * (movies['Diff in ratings'].max())]
                 )
             ]
 
@@ -582,8 +591,17 @@ def update_ratings_breakdown_table(genre1, genre2):
         'Release Date',
         'Date Rated']].copy()
     
-    movies.columns = ['Title', 'Link', 'My Rating', 'IMDb Rating', 'Difference in Ratings',
-                            'Year', 'Genres', 'Director', 'Date Released', 'Date Rated']
+    movies.columns = [
+        'Title', 
+        'Link', 
+        'My Rating', 
+        'IMDb Rating', 
+        'Difference in Ratings',
+        'Year', 
+        'Genres', 
+        'Director', 
+        'Date Released', 
+        'Date Rated']
 
     movies['Date Released'] = movies['Date Released'].dt.strftime('%B %-d, %Y')
     movies['Date Rated'] = movies['Date Rated'].dt.strftime('%B %-d, %Y')
