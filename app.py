@@ -14,7 +14,6 @@ from imdb_data import get_imdb_data
 
 df = get_imdb_data()
 genre_counts = df.explode('genre_list')['genre_list'].value_counts()
-top_5_genres = genre_counts.index[:5]
 all_genres = ['All Genres'] + list(genre_counts.index)
 center_style = {'textAlign': 'center'}
 
@@ -67,7 +66,8 @@ app.layout = html.Div([
     dbc.Row(
         html.H1(
             children='My IMDb Ratings Dashboard',
-            style=center_style)
+            style=center_style
+        )
     ),
     dbc.Row(
         html.H2(
