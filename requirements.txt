@@ -15,7 +15,7 @@ idna==3.10
 importlib_metadata==8.5.0
 isort==5.13.2
 itsdangerous==2.2.0
-Jinja2==3.1.5
+Jinja2==3.1.6
 MarkupSafe==3.0.2
 mypy-extensions==1.0.0
 nest-asyncio==1.6.0
