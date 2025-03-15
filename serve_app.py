@@ -10,7 +10,7 @@ current_dir = Path(__file__).parent
 required_files = {
     "app.py": "/root/app.py",
     "ratings.csv": "/root/ratings.csv",
-    "imdb_data.py": "/root/imdb_data.py"
+    "imdb_data.py": "/root/imdb_data.py",
 }
 
 for local_file in required_files:
@@ -19,21 +19,13 @@ for local_file in required_files:
             f"{local_file} not found! Place the file in the same directory."
         )
 
-image = (
-    modal.Image.debian_slim(python_version="3.9")
-    .pip_install(
-        "dash-bootstrap-components==1.6.0",
-        "plotly==5.24.1",
-        "dash==2.18.2",
-        "pandas==2.2.3",
-    )
+image = modal.Image.debian_slim(python_version="3.9").poetry_install_from_file(
+    poetry_pyproject_toml="pyproject.toml"
 )
 
 for local_file, remote_path in required_files.items():
-    image = image.add_local_file(
-        current_dir / local_file,
-        remote_path
-    )
+    image = image.add_local_file(current_dir / local_file, remote_path)
+
 
 @app.function(
     image=image,
