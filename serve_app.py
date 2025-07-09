@@ -19,8 +19,8 @@ for local_file in required_files:
             f'{local_file} not found! Place the file in the same directory.'
         )
 
-image = modal.Image.debian_slim(python_version='3.10').poetry_install_from_file(
-    poetry_pyproject_toml='pyproject.toml'
+image = modal.Image.debian_slim(python_version='3.10').pip_install_from_pyproject(
+    'pyproject.toml'
 )
 
 for local_file, remote_path in required_files.items():

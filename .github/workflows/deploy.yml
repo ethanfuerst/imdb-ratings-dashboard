@@ -23,8 +23,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install poetry
-          poetry install --no-root
+          uv sync
 
       - name: Deploy Application
-        run: poetry run modal deploy serve_app.py
+        run: uv run modal deploy serve_app.py
